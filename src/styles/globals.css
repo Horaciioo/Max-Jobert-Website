@@ -28,11 +28,12 @@
     @apply bg-primary/30;
   }
 
+  /* The family is chosen per level by HEADING_STYLES, only balancing is global */
   h1,
   h2,
   h3,
   h4 {
-    @apply text-balance font-display;
+    @apply text-balance;
   }
 
   p {
@@ -73,6 +74,45 @@
     pointer-events: none;
     opacity: 0.04;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)'/%3E%3C/svg%3E");
+  }
+
+  /* The mark's bolt, reduced to one angle and reused as a cut */
+  .slash-block {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 0.9rem) 100%, 0 100%);
+  }
+
+  .slash-media {
+    clip-path: polygon(0 0, 100% 4%, 100% 100%, 0 96%);
+  }
+
+  .slash-media-reverse {
+    clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+  }
+
+  /* Photographs are graded to the brand blue, and give their colour back on hover */
+  .duotone img {
+    filter: grayscale(1) contrast(1.06) brightness(0.92);
+    transition: filter var(--duration-slow) ease-out;
+  }
+
+  .duotone::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgb(var(--color-primary));
+    mix-blend-mode: color;
+    opacity: 0.45;
+    transition: opacity var(--duration-slow) ease-out;
+  }
+
+  .duotone:hover img,
+  .duotone:focus-within img {
+    filter: none;
+  }
+
+  .duotone:hover::after,
+  .duotone:focus-within::after {
+    opacity: 0;
   }
 
   .surface-shimmer {
@@ -116,6 +156,22 @@
 /* Own stacking context, so content layers above a fixed negative z-index backdrop */
 main > section {
   position: relative;
+}
+
+/*
+  Held out of sight until MotionService plays them in. The class is only set by the
+  boot script when motion is wanted, so reduced motion and no-script keep everything visible.
+*/
+.motion-ready [data-motion='rise'],
+.motion-ready [data-motion='fade'],
+.motion-ready [data-motion='slide'],
+.motion-ready [data-motion='riseStagger'] > * {
+  opacity: 0;
+}
+
+.motion-ready [data-motion='draw'] {
+  transform: scaleY(0);
+  transform-origin: top center;
 }
 
 @keyframes reveal-rise {

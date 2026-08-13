@@ -1,18 +1,16 @@
-import { Inter, Sora } from 'next/font/google'
+import { Bebas_Neue, Manrope } from 'next/font/google'
 
-/**
- * Project fonts
- * @type {Object}
- */
-
-const sans = Inter({
+// Running copy
+const sans = Manrope({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
 })
 
-const display = Sora({
+// Condensed caps, the loud voice of the brand
+const display = Bebas_Neue({
   subsets: ['latin'],
+  weight: '400',
   variable: '--font-display',
   display: 'swap',
 })

@@ -13,7 +13,7 @@ import type { Size, Tone } from '@/types/common'
  * @type {string}
  */
 
-export const BUTTON_BASE = `inline-flex items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap ${TRANSITION} ${FOCUS_RING} ${DISABLED}`
+export const BUTTON_BASE = `inline-flex items-center justify-center gap-2 rounded-lg font-semibold tracking-tight whitespace-nowrap ${TRANSITION_ALL} ${FOCUS_RING} ${DISABLED}`
 
 /**
  * Button sizes
@@ -21,23 +21,26 @@ export const BUTTON_BASE = `inline-flex items-center justify-center gap-2 rounde
  */
 
 export const BUTTON_SIZES: Record<Size, string> = {
-  sm: 'h-8 px-3 text-xs',
-  md: 'h-10 px-4 text-sm',
-  lg: 'h-12 px-6 text-base',
+  sm: 'h-9 px-4 text-xs',
+  md: 'h-11 px-5 text-sm',
+  lg: 'h-14 px-8 text-base',
 }
 
 /**
- * Button variants
+ * Button variants, every hover lifts and glows, none draws a hard outline
  * @type {Object}
  */
 
 export const BUTTON_VARIANTS = {
-  primary: 'bg-primary text-primary-foreground hover:bg-primary-hover shadow-xs',
-  secondary: 'bg-surface text-foreground border border-border hover:bg-surface-strong',
-  outline: 'border border-border-strong text-foreground hover:bg-surface',
-  ghost: 'text-foreground-muted hover:bg-surface-strong hover:text-foreground',
+  primary:
+    'bg-primary text-primary-foreground shadow-sm hover:bg-primary-hover hover:shadow-glow hover:-translate-y-0.5',
+  secondary:
+    'bg-surface-strong text-foreground shadow-xs hover:bg-surface-strong hover:text-primary hover:shadow-glow hover:-translate-y-0.5',
+  outline:
+    'border border-primary/40 text-primary hover:border-primary hover:bg-primary-soft hover:shadow-glow hover:-translate-y-0.5',
+  ghost: 'text-foreground-muted hover:bg-primary-soft hover:text-primary',
   link: 'text-primary underline-offset-4 hover:underline px-0 h-auto',
-  danger: 'bg-danger text-background hover:opacity-90',
+  danger: 'bg-danger text-background hover:opacity-90 hover:-translate-y-0.5',
 } as const
 
 /**
@@ -129,15 +132,22 @@ export type BadgeVariant = keyof typeof BADGE_VARIANTS
  */
 
 export const TEXT_STYLES = {
-  pageTitle: 'text-3xl sm:text-4xl font-semibold tracking-tight text-foreground',
-  sectionTitle: 'text-2xl sm:text-3xl font-semibold tracking-tight text-foreground',
-  blockTitle: 'text-lg font-semibold text-foreground',
-  lead: 'text-lg text-foreground-muted leading-relaxed',
-  body: 'text-sm text-foreground leading-relaxed',
-  description: 'text-sm text-foreground-muted leading-relaxed',
+  // Bebas Neue takes the two loudest levels, Manrope carries everything below
+  heroTitle:
+    'font-display text-[clamp(3.25rem,12vw,10rem)] uppercase leading-[0.82] tracking-[0.005em] text-foreground',
+  pageTitle:
+    'font-display text-[clamp(2.5rem,7vw,5rem)] uppercase leading-[0.86] tracking-[0.012em] text-foreground',
+  sectionTitle:
+    'font-display text-[clamp(1.9rem,4.4vw,3.5rem)] uppercase leading-[0.9] tracking-[0.014em] text-foreground',
+  blockTitle: 'text-lg font-bold tracking-tight text-foreground',
+  lead: 'text-lg sm:text-xl text-foreground-muted leading-relaxed',
+  body: 'text-base text-foreground leading-relaxed',
+  description: 'text-sm sm:text-base text-foreground-muted leading-relaxed',
   meta: 'text-xs text-foreground-subtle',
-  label: 'text-sm font-medium text-foreground',
-  overline: 'text-xs font-semibold uppercase tracking-[0.18em] text-primary',
+  label: 'text-sm font-semibold text-foreground',
+  overline: 'text-xs font-bold uppercase tracking-[0.22em] text-primary',
+  // Years, steps and counters, condensed so figures stay compact
+  figure: 'font-display text-2xl leading-none tracking-[0.04em] tabular-nums text-primary',
   code: 'font-mono text-xs text-foreground-muted',
 } as const
 
@@ -157,7 +167,7 @@ export const HEADING_STYLES = {
   1: TEXT_STYLES.pageTitle,
   2: TEXT_STYLES.sectionTitle,
   3: TEXT_STYLES.blockTitle,
-  4: 'text-base font-semibold text-foreground',
+  4: 'text-base font-bold tracking-tight text-foreground',
 } as const
 
 /**
@@ -421,16 +431,31 @@ export const PAGINATION_STYLES = {
  */
 
 export const NAVIGATION_STYLES = {
-  header: `sticky top-0 w-full border-b border-border bg-background/80 backdrop-blur`,
-  bar: 'flex h-header items-center justify-between gap-4',
+  // Rides over the hero until the page starts moving
+  header: `sticky top-0 w-full border-b border-transparent ${TRANSITION_ALL}`,
+  headerScrolled: 'border-border bg-background/75 backdrop-blur-xl',
+  bar: 'flex h-header items-center justify-between gap-6',
   list: 'hidden items-center gap-1 md:flex',
-  link: `rounded-md px-3 py-2 text-sm font-medium text-foreground-muted ${TRANSITION} ${FOCUS_RING} hover:bg-surface hover:text-foreground`,
-  linkActive: 'bg-surface-strong text-foreground',
+  link: `rounded-lg px-4 py-2 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-foreground-muted ${TRANSITION} ${FOCUS_RING} hover:text-primary`,
+  linkActive: 'text-primary',
   actions: 'flex items-center gap-2',
   mobileList: 'flex flex-col gap-1',
-  mobileLink: `rounded-md px-3 py-2.5 text-base font-medium text-foreground-muted ${TRANSITION} hover:bg-surface hover:text-foreground`,
-  brand: `flex items-center gap-2 text-base font-semibold text-foreground ${FOCUS_RING} rounded-md`,
-  brandSymbol: `flex h-8 w-8 items-center justify-center rounded-md text-sm font-bold ${TONE_SOFT.primary}`,
+  mobileLink: `rounded-lg px-3 py-3 font-mono text-sm uppercase tracking-[0.18em] text-foreground-muted ${TRANSITION} hover:bg-primary-soft hover:text-primary`,
+  brand: `flex items-center gap-3 ${FOCUS_RING} rounded-lg`,
+  brandSymbol: `flex h-9 w-9 items-center justify-center rounded-lg text-sm font-bold ${TONE_SOFT.primary}`,
+} as const
+
+/**
+ * Brand lockup styles
+ * @type {Object}
+ */
+
+export const BRAND_STYLES = {
+  // Sized like a team badge, the mark leads the bar
+  mark: 'h-11 w-auto shrink-0 text-foreground sm:h-14',
+  markCompact: 'h-9 w-auto shrink-0 text-foreground',
+  name: 'font-display text-2xl uppercase leading-none tracking-[0.05em] text-foreground sm:text-[1.75rem]',
+  bolt: 'text-primary',
 } as const
 
 /**
@@ -452,14 +477,14 @@ export const LANGUAGE_SWITCHER_STYLES = {
  */
 
 export const FOOTER_STYLES = {
-  frame: 'border-t border-border bg-surface',
-  grid: 'grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4',
-  columnTitle: 'text-xs font-semibold uppercase tracking-wider text-foreground-subtle',
-  list: 'mt-4 flex flex-col gap-2',
-  link: `text-sm text-foreground-muted ${TRANSITION} hover:text-foreground`,
+  frame: 'border-t border-border bg-surface/60',
+  grid: 'grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4',
+  columnTitle: 'mb-1 text-xs font-bold uppercase tracking-[0.2em] text-foreground-subtle',
+  list: 'mt-4 flex flex-col gap-2.5',
+  link: `text-sm text-foreground-muted ${TRANSITION} hover:text-primary`,
   bottom:
-    'flex flex-col gap-3 border-t border-border py-6 sm:flex-row sm:items-center sm:justify-between',
-  socials: 'flex gap-2',
+    'flex flex-col gap-3 border-t border-border py-7 sm:flex-row sm:items-center sm:justify-between',
+  socials: `flex gap-3 pt-1 text-foreground-muted`,
 } as const
 
 /**
@@ -480,8 +505,8 @@ export const TOAST_STYLES = {
 
 export const CARD_STYLES = {
   frame: `${SURFACES.card} ${TRANSITION_ALL} overflow-hidden`,
-  interactive: 'hover:border-border-strong hover:shadow-md',
-  body: 'flex flex-col gap-2 p-5',
+  interactive: 'hover:border-primary/45 hover:shadow-glow hover:-translate-y-1',
+  body: 'flex flex-col gap-3 p-6',
   media: 'relative aspect-[4/3] w-full overflow-hidden bg-surface-strong',
   mediaImage: `h-full w-full object-cover ${TRANSITION_ALL} group-hover:scale-105`,
 } as const
@@ -493,8 +518,9 @@ export const CARD_STYLES = {
 
 export const STAT_STYLES = {
   frame: `${SURFACES.card} flex flex-col gap-1 p-5`,
-  value: 'font-display text-3xl font-semibold tracking-tight text-foreground',
-  iconTile: `mb-2 flex h-10 w-10 items-center justify-center rounded-md`,
+  // Readouts are set in the data face, tabular so digits do not jump while counting
+  value: 'font-mono text-4xl font-medium tabular-nums tracking-tight text-foreground',
+  iconTile: `mb-2 flex h-11 w-11 items-center justify-center rounded-lg`,
 } as const
 
 /**
@@ -503,9 +529,9 @@ export const STAT_STYLES = {
  */
 
 export const SECTION_STYLES = {
-  header: 'flex flex-col gap-3',
+  header: 'flex flex-col gap-4',
   headerCentered: 'mx-auto max-w-narrow text-center',
-  body: 'mt-10',
+  body: 'mt-14',
 } as const
 
 /**
@@ -621,6 +647,168 @@ export const BOOKING_STYLES = {
   slotSelected: 'border-primary bg-primary text-primary-foreground hover:text-primary-foreground',
   summary:
     'border-b border-border pb-4 font-display text-lg font-medium capitalize text-foreground',
+} as const
+
+// Section title without a colour, so the filled block can set its own ink
+const BLOCK_TITLE_BASE =
+  'font-display text-[clamp(1.9rem,4.4vw,3.5rem)] uppercase leading-[0.92] tracking-[0.014em]'
+
+/**
+ * Filled title block, the identity's slash cutting its trailing edge
+ * @type {Object}
+ */
+
+export const BLOCK_STYLES = {
+  frame: 'slash-block inline-flex max-w-full items-center px-5 py-2 sm:px-8 sm:py-3',
+  tone: 'bg-foreground',
+  toneAccent: 'bg-primary',
+  // Colourless base, the block behind it decides the ink
+  title: `${BLOCK_TITLE_BASE} text-background`,
+  titleAccent: `${BLOCK_TITLE_BASE} text-primary-foreground`,
+  // Header stack, no eyebrow above the block
+  header: 'flex flex-col items-start gap-6',
+  headerCentered: 'items-center text-center',
+  description: `${TEXT_STYLES.lead} max-w-2xl`,
+  // Gap between a section heading and the block it introduces
+  stack: 'flex flex-col gap-12 sm:gap-16',
+} as const
+
+/**
+ * Photography treatment, cut on the slash angle and graded to the brand
+ * @type {Object}
+ */
+
+export const MEDIA_STYLES = {
+  frame: 'slash-media relative overflow-hidden',
+  frameReverse: 'slash-media-reverse relative overflow-hidden',
+  duotone: 'duotone',
+  image: `h-full w-full object-cover ${TRANSITION_ALL}`,
+  // Blue block offset behind a portrait, the mark's shadow
+  shadow: 'slash-media absolute -bottom-5 -right-5 -z-10 h-full w-full bg-primary/25',
+} as const
+
+/**
+ * Opening section styles
+ * @type {Object}
+ */
+
+export const HERO_STYLES = {
+  frame: 'relative flex min-h-[100svh] flex-col justify-end overflow-hidden',
+  // Sits under the sticky header so the bar rides over the picture
+  offset: '-mt-header pt-header',
+  plate: 'absolute inset-0',
+  plateImage: 'h-full w-full object-cover object-[68%_center]',
+  // Two washes, dark enough for the headline and light enough to keep the frame
+  scrim: 'absolute inset-0 bg-gradient-to-t from-background via-background/45 to-transparent',
+  scrimSide: 'absolute inset-0 bg-gradient-to-r from-background via-background/35 to-transparent',
+  content: 'relative flex flex-col items-start gap-7 pb-28 pt-44 sm:pb-36',
+  headline: `${TEXT_STYLES.heroTitle} max-w-4xl`,
+  lead: 'max-w-xl',
+  actions: 'flex flex-wrap items-center gap-4',
+  // Scroll invitation, held at the foot of the picture
+  cue: 'flex items-center gap-4 pt-6 text-foreground-subtle',
+  cueLine: 'h-12 w-px bg-gradient-to-b from-primary to-transparent',
+  cueLabel: 'text-xs font-bold uppercase tracking-[0.28em]',
+} as const
+
+/**
+ * Qualification card styles
+ * @type {Object}
+ */
+
+export const CREDENTIAL_STYLES = {
+  grid: 'grid gap-5 md:grid-cols-3',
+  card: `${SURFACES.card} ${TRANSITION_ALL} group relative flex flex-col gap-5 overflow-hidden p-7 hover:border-primary/45 hover:shadow-glow hover:-translate-y-1`,
+  head: 'flex items-start justify-between gap-4',
+  iconTile: 'flex h-12 w-12 items-center justify-center rounded-lg',
+  year: TEXT_STYLES.figure,
+  title: 'font-display text-2xl uppercase leading-none tracking-[0.02em] text-foreground',
+  issuer: 'text-xs font-semibold uppercase tracking-[0.16em] text-foreground-subtle',
+} as const
+
+/**
+ * Result card styles, a picture doing the talking
+ * @type {Object}
+ */
+
+export const OUTCOME_STYLES = {
+  grid: 'grid gap-8 md:grid-cols-3',
+  // Every other card drops, so the row reads as a slope
+  card: 'group flex flex-col gap-6 md:even:mt-14',
+  media: 'aspect-[4/5] w-full',
+  body: 'flex flex-col gap-3',
+  head: 'flex items-center gap-3',
+  iconTile: `flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${TONE_SOFT.primary}`,
+  title: 'font-display text-3xl uppercase leading-none tracking-[0.02em] text-foreground',
+} as const
+
+/**
+ * Track record rail styles
+ * @type {Object}
+ */
+
+export const READOUT_STYLES = {
+  rail: 'relative grid gap-11 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6',
+  line: 'pointer-events-none absolute inset-x-0 top-0 hidden h-px bg-gradient-to-r from-transparent via-border-strong to-transparent lg:block',
+  cell: 'relative flex flex-col gap-2 lg:pl-6 lg:pt-10',
+  tick: 'absolute left-0 top-0 hidden h-2.5 w-2.5 -translate-y-1/2 rotate-45 bg-primary shadow-beam lg:block',
+  value:
+    'font-display text-[clamp(3.25rem,6vw,5rem)] leading-[0.85] tracking-[0.02em] tabular-nums text-foreground',
+  label: 'text-sm font-semibold text-foreground',
+  note: 'text-xs uppercase tracking-[0.16em] text-foreground-subtle',
+} as const
+
+/**
+ * Tagged sequence styles, a chronology or an ordered protocol
+ * @type {Object}
+ */
+
+export const SEQUENCE_STYLES = {
+  // The portrait rides beside the rail once the column has room for it
+  split: 'grid items-start gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]',
+  portrait: 'relative order-first lg:order-none lg:sticky lg:top-32',
+  list: 'relative flex flex-col gap-10 pl-9 sm:gap-14 sm:pl-16',
+  rail: 'absolute bottom-2 left-[7px] top-2 w-px origin-top bg-gradient-to-b from-primary via-border-strong to-transparent sm:left-3',
+  item: 'group relative flex flex-col gap-2',
+  marker:
+    'absolute -left-9 top-1.5 flex h-4 w-4 rotate-45 items-center justify-center bg-background shadow-beam ring-1 ring-primary sm:-left-16',
+  markerFill: `h-2 w-2 bg-primary ${TRANSITION_ALL} group-hover:scale-125`,
+  stamp: `${TEXT_STYLES.figure} block`,
+  title:
+    'font-display text-2xl uppercase leading-none tracking-[0.02em] text-foreground sm:text-3xl',
+  body: `${TEXT_STYLES.description} max-w-2xl`,
+} as const
+
+/**
+ * Coaching format styles
+ * @type {Object}
+ */
+
+export const PROGRAM_STYLES = {
+  grid: 'grid gap-6 lg:grid-cols-3',
+  card: `${SURFACES.card} ${TRANSITION_ALL} relative flex flex-col gap-6 p-7 hover:border-primary/45 hover:shadow-glow hover:-translate-y-1 sm:p-9`,
+  cardFeatured: 'border-primary/45 shadow-glow lg:-translate-y-3',
+  head: 'flex flex-col gap-4',
+  iconTile: 'flex h-12 w-12 items-center justify-center rounded-lg',
+  title: 'font-display text-3xl uppercase leading-none tracking-[0.02em] text-foreground',
+  included: 'flex flex-1 flex-col gap-3 border-t border-border pt-6',
+  includedRow: 'flex items-start gap-3 text-sm text-foreground-muted',
+  includedIcon: 'mt-0.5 h-4 w-4 shrink-0 text-primary',
+  badge: 'absolute right-7 top-8 text-xs font-bold uppercase tracking-[0.16em] text-primary',
+} as const
+
+/**
+ * Closing band styles, a full-bleed picture behind the last ask
+ * @type {Object}
+ */
+
+export const CALL_TO_ACTION_STYLES = {
+  frame: 'relative isolate overflow-hidden',
+  plate: 'absolute inset-0 -z-10',
+  plateImage: 'h-full w-full object-cover',
+  scrim:
+    'absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/85 to-background/55',
+  body: 'flex flex-col items-start gap-6 py-24 sm:py-32',
 } as const
 
 /**
