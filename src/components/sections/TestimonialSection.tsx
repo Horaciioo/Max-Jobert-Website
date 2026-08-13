@@ -7,7 +7,9 @@ import { Icon } from '@/components/elements/media/Icon'
 import { Text } from '@/components/elements/typography/Text'
 import { Card } from '@/components/structures/layout/Card'
 import { Grid } from '@/components/structures/layout/Grid'
+import { SectionHeading } from '@/components/sections/SectionHeading'
 import { Section } from '@/components/structures/layout/Section'
+import { BLOCK_STYLES } from '@/declarations/ui/variants'
 import { TESTIMONIALS } from '@/declarations/content'
 import type { TestimonialItem } from '@/types/content'
 
@@ -28,42 +30,45 @@ export const TestimonialSection = ({ items = TESTIMONIALS }: TestimonialSectionP
   const t = useTranslations('sections.testimonials')
 
   return (
-    <Section anchor="testimonials" overline={t('overline')} title={t('title')} centered>
-      <Grid columns={3}>
-        {items.map((item) => {
-          const author = t(`items.${item.translationKey}.author`)
+    <Section anchor="testimonials">
+      <div className={BLOCK_STYLES.stack}>
+        <SectionHeading title={t('title')} />
+        <Grid columns={3}>
+          {items.map((item) => {
+            const author = t(`items.${item.translationKey}.author`)
 
-          return (
-            <Card key={item.id}>
-              <Icon name="quote" size="md" className="text-primary/60" />
-              <Text appearance="body">{t(`items.${item.translationKey}.quote`)}</Text>
-              {item.rating !== undefined && (
-                <span className="flex gap-0.5" aria-label={String(item.rating)}>
-                  {Array.from({ length: MAX_RATING }, (_, index) => (
-                    <Icon
-                      key={index}
-                      name="star"
-                      size="xs"
-                      className={index < item.rating! ? 'text-warning' : 'text-border-strong'}
-                    />
-                  ))}
-                </span>
-              )}
-              <div className="mt-2 flex items-center gap-3">
-                <Avatar name={author} src={item.avatar} size="sm" />
-                <div>
-                  <Text appearance="label" as="p">
-                    {author}
-                  </Text>
-                  <Text appearance="meta" as="p">
-                    {t(`items.${item.translationKey}.role`)}
-                  </Text>
+            return (
+              <Card key={item.id}>
+                <Icon name="quote" size="md" className="text-primary/60" />
+                <Text appearance="body">{t(`items.${item.translationKey}.quote`)}</Text>
+                {item.rating !== undefined && (
+                  <span className="flex gap-0.5" aria-label={String(item.rating)}>
+                    {Array.from({ length: MAX_RATING }, (_, index) => (
+                      <Icon
+                        key={index}
+                        name="star"
+                        size="xs"
+                        className={index < item.rating! ? 'text-warning' : 'text-border-strong'}
+                      />
+                    ))}
+                  </span>
+                )}
+                <div className="mt-2 flex items-center gap-3">
+                  <Avatar name={author} src={item.avatar} size="sm" />
+                  <div>
+                    <Text appearance="label" as="p">
+                      {author}
+                    </Text>
+                    <Text appearance="meta" as="p">
+                      {t(`items.${item.translationKey}.role`)}
+                    </Text>
+                  </div>
                 </div>
-              </div>
-            </Card>
-          )
-        })}
-      </Grid>
+              </Card>
+            )
+          })}
+        </Grid>
+      </div>
     </Section>
   )
 }

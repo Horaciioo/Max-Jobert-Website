@@ -8,7 +8,9 @@ import { Icon } from '@/components/elements/media/Icon'
 import { Text } from '@/components/elements/typography/Text'
 import { Card } from '@/components/structures/layout/Card'
 import { Grid } from '@/components/structures/layout/Grid'
+import { SectionHeading } from '@/components/sections/SectionHeading'
 import { Section } from '@/components/structures/layout/Section'
+import { BLOCK_STYLES } from '@/declarations/ui/variants'
 import { ConfigurationService } from '@/services/ConfigurationService'
 import { FormatService } from '@/services/FormatService'
 import { NavigationService } from '@/services/NavigationService'
@@ -32,61 +34,61 @@ export const PricingSection = ({ items = ConfigurationService.pricing }: Pricing
   const route = NavigationService.callToActionRoute()
 
   return (
-    <Section
-      anchor="pricing"
-      overline={t('overline')}
-      title={t('title')}
-      description={t('description')}
-      centered>
-      <Grid columns={3}>
-        {items.map((item) => {
-          const price = format.currencyParts(item.amountCents)
+    <Section anchor="pricing">
+      <div className={BLOCK_STYLES.stack}>
+        <SectionHeading title={t('title')} description={t('description')} />
+        <Grid columns={3}>
+          {items.map((item) => {
+            const price = format.currencyParts(item.amountCents)
 
-          return (
-            <Card
-              key={item.id}
-              className={cn('flex flex-col', item.featured && 'border-primary shadow-md')}>
-              <div className="flex items-center justify-between gap-2">
-                <Text appearance="blockTitle" as="h3">
-                  {t(`items.${item.translationKey}.name`)}
+            return (
+              <Card
+                key={item.id}
+                className={cn('flex flex-col', item.featured && 'border-primary shadow-md')}>
+                <div className="flex items-center justify-between gap-2">
+                  <Text appearance="blockTitle" as="h3">
+                    {t(`items.${item.translationKey}.name`)}
+                  </Text>
+                  {item.featured && (
+                    <Badge tone="primary" icon="star">
+                      {t('featured')}
+                    </Badge>
+                  )}
+                </div>
+                <Text appearance="description">
+                  {t(`items.${item.translationKey}.description`)}
                 </Text>
-                {item.featured && (
-                  <Badge tone="primary" icon="star">
-                    {t('featured')}
-                  </Badge>
-                )}
-              </div>
-              <Text appearance="description">{t(`items.${item.translationKey}.description`)}</Text>
-              <p className="flex items-baseline gap-1 pt-2">
-                <span className="font-display text-3xl font-semibold text-foreground">
-                  {price.amount}
-                </span>
-                <span className="text-sm text-foreground-muted">{price.symbol}</span>
-                {item.period && (
-                  <span className="text-sm text-foreground-subtle">
-                    {t(`periods.${item.period}`)}
+                <p className="flex items-baseline gap-1 pt-2">
+                  <span className="font-display text-3xl font-semibold text-foreground">
+                    {price.amount}
                   </span>
-                )}
-              </p>
-              <ul className="flex flex-col gap-2 py-4">
-                {item.includedKeys.map((key) => (
-                  <li key={key} className="flex items-start gap-2 text-sm text-foreground-muted">
-                    <Icon name="check" size="xs" className="mt-1 text-success" />
-                    {t(`included.${key}`)}
-                  </li>
-                ))}
-              </ul>
-              <ActionLink
-                route={route}
-                variant={item.featured ? 'primary' : 'secondary'}
-                fullWidth
-                className="mt-auto">
-                {actions(NavigationService.ctaActionOf(route))}
-              </ActionLink>
-            </Card>
-          )
-        })}
-      </Grid>
+                  <span className="text-sm text-foreground-muted">{price.symbol}</span>
+                  {item.period && (
+                    <span className="text-sm text-foreground-subtle">
+                      {t(`periods.${item.period}`)}
+                    </span>
+                  )}
+                </p>
+                <ul className="flex flex-col gap-2 py-4">
+                  {item.includedKeys.map((key) => (
+                    <li key={key} className="flex items-start gap-2 text-sm text-foreground-muted">
+                      <Icon name="check" size="xs" className="mt-1 text-success" />
+                      {t(`included.${key}`)}
+                    </li>
+                  ))}
+                </ul>
+                <ActionLink
+                  route={route}
+                  variant={item.featured ? 'primary' : 'secondary'}
+                  fullWidth
+                  className="mt-auto">
+                  {actions(NavigationService.ctaActionOf(route))}
+                </ActionLink>
+              </Card>
+            )
+          })}
+        </Grid>
+      </div>
     </Section>
   )
 }
