@@ -2,12 +2,12 @@
 
 import { useTranslations } from 'next-intl'
 
+import { BrandMark } from '@/components/layout/BrandMark'
 import { Icon } from '@/components/elements/media/Icon'
-import { Logo } from '@/components/elements/media/Logo'
 import { Text } from '@/components/elements/typography/Text'
 import { Container } from '@/components/structures/layout/Container'
 import type { IconName } from '@/declarations/ui/icons'
-import { FOOTER_STYLES } from '@/declarations/ui/variants'
+import { BRAND_STYLES, FOOTER_STYLES } from '@/declarations/ui/variants'
 import { Link, usePathname } from '@/i18n/routing'
 import { ConfigurationService } from '@/services/ConfigurationService'
 import { NavigationService } from '@/services/NavigationService'
@@ -30,8 +30,11 @@ export const SiteFooter = () => {
     <footer className={FOOTER_STYLES.frame}>
       <Container>
         <div className={FOOTER_STYLES.grid}>
-          <div className="flex flex-col gap-3">
-            <Logo />
+          <div className="flex flex-col gap-4">
+            <span className="flex items-center gap-3">
+              <BrandMark name="footer" className={BRAND_STYLES.markCompact} />
+              <span className={BRAND_STYLES.name}>{ConfigurationService.site.name}</span>
+            </span>
             <Text appearance="description">{navigation('tagline')}</Text>
             {socials.length > 0 && (
               <div className={FOOTER_STYLES.socials}>

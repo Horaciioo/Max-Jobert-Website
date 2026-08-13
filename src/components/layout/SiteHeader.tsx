@@ -5,14 +5,14 @@ import { useTranslations } from 'next-intl'
 
 import { ActionLink } from '@/components/elements/actions/ActionLink'
 import { IconButton } from '@/components/elements/actions/IconButton'
-import { Logo } from '@/components/elements/media/Logo'
+import { BrandMark } from '@/components/layout/BrandMark'
 import { Container } from '@/components/structures/layout/Container'
 import { LanguageSwitcher } from '@/components/structures/navigation/LanguageSwitcher'
 import { NavigationList } from '@/components/structures/navigation/NavigationList'
 import { ThemeSwitcher } from '@/components/structures/navigation/ThemeSwitcher'
 import { Drawer } from '@/components/structures/overlays/Drawer'
 import { LAYERS } from '@/declarations/ui/tokens'
-import { NAVIGATION_STYLES } from '@/declarations/ui/variants'
+import { BRAND_STYLES, NAVIGATION_STYLES } from '@/declarations/ui/variants'
 import { Link, usePathname } from '@/i18n/routing'
 import { ConfigurationService } from '@/services/ConfigurationService'
 import { NavigationService } from '@/services/NavigationService'
@@ -36,11 +36,17 @@ export const SiteHeader = () => {
   const callToAction = NavigationService.callToActionRoute()
 
   return (
-    <header className={cn(NAVIGATION_STYLES.header, LAYERS.header, isScrolled && 'shadow-sm')}>
+    <header
+      className={cn(
+        NAVIGATION_STYLES.header,
+        LAYERS.header,
+        isScrolled && NAVIGATION_STYLES.headerScrolled
+      )}>
       <Container>
         <div className={NAVIGATION_STYLES.bar}>
           <Link href={NavigationService.pathOf('home')} className={NAVIGATION_STYLES.brand}>
-            <Logo />
+            <BrandMark name="header" />
+            <span className={BRAND_STYLES.name}>{ConfigurationService.site.name}</span>
           </Link>
 
           <nav aria-label={navigation('primary')} className={NAVIGATION_STYLES.list}>
