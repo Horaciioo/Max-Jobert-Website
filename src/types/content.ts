@@ -133,3 +133,52 @@ export interface TimelineItem extends Identifiable {
   date: string
   icon?: IconName
 }
+
+/**
+ * Qualification held by the coach
+ * @typedef CredentialItem
+ * @property {TranslationKey} translationKey - Qualification key
+ * @property {string} year - Year obtained
+ * @property {IconName} icon - Display icon
+ * @property {Tone} [tone] - Icon tone
+ */
+
+export interface CredentialItem extends Identifiable {
+  translationKey: TranslationKey
+  // Year obtained
+  year: string
+  icon: IconName
+  tone?: Tone
+}
+
+/**
+ * Coaching format on offer
+ * @typedef ProgramItem
+ * @property {TranslationKey} translationKey - Format name key
+ * @property {IconName} icon - Display icon
+ * @property {TranslationKey[]} includedKeys - What the format covers
+ * @property {boolean} [featured] - Highlight flag
+ * @property {Tone} [tone] - Icon tone
+ */
+
+export interface ProgramItem extends Identifiable {
+  translationKey: TranslationKey
+  icon: IconName
+  includedKeys: TranslationKey[]
+  featured?: boolean
+  tone?: Tone
+}
+
+/**
+ * Result a client comes for, carried by its own picture
+ * @typedef OutcomeItem
+ * @property {TranslationKey} translationKey - Outcome key
+ * @property {IconName} icon - Display icon
+ * @property {string} image - Picture path
+ */
+
+export interface OutcomeItem extends Identifiable {
+  translationKey: TranslationKey
+  icon: IconName
+  image: string
+}

@@ -1,24 +1,24 @@
 [
   {
-    "id": "starter",
-    "translationKey": "starter",
-    "amountCents": 49000,
+    "id": "individual",
+    "translationKey": "individual",
+    "amountCents": 6000,
     "period": "once",
-    "includedKeys": ["scope", "revisions", "delivery"]
+    "includedKeys": ["assessment", "plan", "sessions", "adjustments"]
   },
   {
-    "id": "standard",
-    "translationKey": "standard",
-    "amountCents": 129000,
-    "period": "once",
+    "id": "football",
+    "translationKey": "football",
+    "amountCents": 24000,
+    "period": "month",
     "featured": true,
-    "includedKeys": ["scope", "revisions", "delivery", "support"]
+    "includedKeys": ["assessment", "plan", "sessions", "footage", "report"]
   },
   {
-    "id": "premium",
-    "translationKey": "premium",
-    "amountCents": 249000,
-    "period": "once",
-    "includedKeys": ["scope", "revisions", "delivery", "support", "training"]
+    "id": "remote",
+    "translationKey": "remote",
+    "amountCents": 12000,
+    "period": "month",
+    "includedKeys": ["assessment", "plan", "checkin", "adjustments"]
   }
 ]

@@ -79,9 +79,10 @@ export const FORMS = {
         required: true,
         icon: 'tag',
         options: [
-          { value: 'information', translationKey: 'information' },
-          { value: 'quote', translationKey: 'quote' },
-          { value: 'partnership', translationKey: 'partnership' },
+          { value: 'assessment', translationKey: 'assessment' },
+          { value: 'individual', translationKey: 'individual' },
+          { value: 'performance', translationKey: 'performance' },
+          { value: 'remote', translationKey: 'remote' },
           { value: 'other', translationKey: 'other' },
         ],
       },
@@ -147,6 +148,18 @@ export const FORMS = {
         maxLength: LIMITS.phone.max,
         icon: 'phone',
         autoComplete: 'tel',
+      },
+      {
+        name: 'goal',
+        type: 'select',
+        required: true,
+        icon: 'target',
+        options: [
+          { value: 'performance', translationKey: 'performance' },
+          { value: 'shape', translationKey: 'shape' },
+          { value: 'recovery', translationKey: 'recovery' },
+          { value: 'undecided', translationKey: 'undecided' },
+        ],
       },
       {
         name: 'note',

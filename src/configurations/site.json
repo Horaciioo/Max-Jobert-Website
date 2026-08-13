@@ -1,11 +1,11 @@
 {
-  "name": "Template Website",
-  "shortName": "Template",
-  "domain": "example.com",
+  "name": "Max Jobert",
+  "shortName": "Max Jobert",
+  "domain": "maxjobert.fr",
   "launchYear": 2026,
-  "themeColor": "#4f46e5",
+  "themeColor": "#2e90ff",
   "logo": {
-    "symbol": "TW",
-    "image": null
+    "symbol": "MJ",
+    "image": "/logos/monogram.svg"
   }
 }
