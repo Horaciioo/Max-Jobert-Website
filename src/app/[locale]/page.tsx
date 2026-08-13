@@ -2,17 +2,12 @@ import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
-import { BookingSection } from '@/components/sections/BookingSection'
 import { CallToActionSection } from '@/components/sections/CallToActionSection'
-import { ComparisonSection } from '@/components/sections/ComparisonSection'
-import { FaqSection } from '@/components/sections/FaqSection'
-import { FeatureSection } from '@/components/sections/FeatureSection'
-import { GallerySection } from '@/components/sections/GallerySection'
 import { HeroSection } from '@/components/sections/HeroSection'
-import { PricingSection } from '@/components/sections/PricingSection'
+import { OutcomeSection } from '@/components/sections/OutcomeSection'
+import { ProgramSection } from '@/components/sections/ProgramSection'
 import { StatsSection } from '@/components/sections/StatsSection'
 import { TestimonialSection } from '@/components/sections/TestimonialSection'
-import { ConfigurationService } from '@/services/ConfigurationService'
 import { Page } from '@/structures/Page'
 
 export interface HomePageProps {
@@ -27,15 +22,11 @@ class HomePage extends Page {
   render(): ReactNode {
     return (
       <>
-        <HeroSection secondaryRoute="showcase" />
+        <HeroSection secondaryRoute="story" />
         <StatsSection />
-        <FeatureSection />
-        <GallerySection />
-        <ComparisonSection />
-        <PricingSection />
-        {ConfigurationService.isEnabled('appointmentBooking') && <BookingSection />}
+        <OutcomeSection />
+        <ProgramSection />
         <TestimonialSection />
-        <FaqSection />
         <CallToActionSection />
       </>
     )
