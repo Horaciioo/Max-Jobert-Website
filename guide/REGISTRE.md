@@ -880,3 +880,55 @@ exemple) sans toucher au moteur de créneaux ni à la route API.
 
 Sans l'étape 3, le module reste fonctionnel : les créneaux se calculent sur les horaires d'ouverture
 seuls, la réservation part par courriel (`MailService`) sans écrire dans un agenda partagé.
+
+---
+
+## 38. Animations déclaratives (GSAP)
+
+|                 |                                                                                  |
+| --------------- | -------------------------------------------------------------------------------- |
+| **Service**     | `src/services/MotionService.ts`, seul fichier autorisé à importer `gsap`         |
+| **Déclaration** | `src/declarations/ui/motion.ts`                                                  |
+| **Composant**   | `src/components/layout/MotionStage.tsx`, monté une fois dans `SiteLayout`         |
+| **Styles**      | classes `.motion-ready [data-motion]` dans `globals.css`                          |
+
+**Principe** — un composant n'appelle jamais `gsap`. Il pose un attribut `data-motion="<effet>"` sur
+le nœud à animer, et `MotionStage` confie le reste à `MotionService` à chaque navigation.
+**Effets** — `MOTION_NAMES` : `rise`, `riseStagger` (enfants directs, décalés), `fade`, `slide`,
+`draw` (rail qui se trace), `count` (compteur), `float` (flottement continu), `parallax`,
+`curtainMedia`/`curtainOverlay`/`curtainFrame` (la photo d'ouverture qui s'efface au défilement).
+**Arguments** — `data-motion-value` porte la cible d'un compteur, le décalage d'un `float` ou la course
+d'une `parallax` ; `data-motion-format` (`count`/`percent`/`currency`) dit au compteur comment écrire
+sa valeur, la mise en forme passant par `FormatService`.
+**Durées et courbes** — `ENTER_EFFECTS`, `COUNT_EFFECT`, `FLOAT_EFFECT`, `PARALLAX_EFFECT`,
+`CURTAIN_EFFECT` dans `declarations/ui/motion.ts`. Rien n'est écrit en dur dans le service.
+**Mouvement réduit** — tout est enfermé dans un `gsap.matchMedia(MOTION_ALLOWED_QUERY)`. Le script
+`buildMotionBootScript()`, injecté dans `[locale]/layout.tsx`, pose la classe `motion-ready` avant le
+premier rendu : elle seule masque les blocs animés, si bien qu'en mouvement réduit, sans JavaScript ou
+si `gsap` échoue (`onError` retire la classe), toute la page reste visible.
+
+**Ajouter un effet** : une entrée dans `MOTION_NAMES` et son bloc de réglages, une branche dans
+`MotionService.applyTo`, et la règle de pré-masquage dans `globals.css` si l'effet part d'un état caché.
+
+---
+
+## 39. Identité de marque
+
+|                 |                                                                     |
+| --------------- | ------------------------------------------------------------------- |
+| **Déclaration** | `src/declarations/ui/brand.ts`                                      |
+| **Composant**   | `src/components/layout/BrandMark.tsx`                               |
+| **Styles**      | `BRAND_STYLES`, `BLOCK_STYLES`, `MEDIA_STYLES` (§15)                |
+| **Fichier**     | `public/logos/monogram.svg`, même géométrie, pour les métadonnées   |
+
+**Monogramme** — le tracé vit dans `BRAND_PATHS` et se rend en SVG inline : la lettre prend
+`currentColor` et suit donc le thème, l'éclair prend le dégradé `BRAND_GRADIENT_STOPS` lu directement
+sur les variables de thème. Un `<img>` ne pourrait faire ni l'un ni l'autre. La prop `name` préfixe
+l'identifiant du dégradé et du masque, un même lockup pouvant apparaître deux fois par page.
+**Le trait oblique** — l'éclair du logo réduit à un angle, réutilisé partout : `.slash-block` coupe le
+bloc plein des titres de section, `.slash-media` et `.slash-media-reverse` découpent les photographies.
+**Traitement des photographies** — `.duotone` désature l'image et la teinte en `--color-primary` par
+`mix-blend-mode`, puis lui rend ses couleurs au survol et au focus.
+
+**Changer de marque** : les tracés de `brand.ts`, le fichier de `public/logos/` et la palette de
+`theme.json`. Aucun composant ne change.

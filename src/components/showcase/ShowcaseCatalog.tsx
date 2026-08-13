@@ -30,6 +30,7 @@ import { Stack } from '@/components/structures/layout/Stack'
 import { DataTable } from '@/components/structures/data/DataTable'
 import { FilterBar } from '@/components/structures/data/FilterBar'
 import { IconGrid } from '@/components/showcase/IconGrid'
+import { MotionGrid } from '@/components/showcase/MotionGrid'
 import { ShowcaseBlock } from '@/components/showcase/ShowcaseBlock'
 import { ThemePalette } from '@/components/showcase/ThemePalette'
 import { TypographyScale } from '@/components/showcase/TypographyScale'
@@ -80,6 +81,10 @@ export const ShowcaseCatalog = () => {
 
       <ShowcaseBlock title={t('blocks.icons')} path="src/declarations/ui/icons.ts">
         <IconGrid />
+      </ShowcaseBlock>
+
+      <ShowcaseBlock title={t('blocks.motion')} path="src/declarations/ui/motion.ts">
+        <MotionGrid />
       </ShowcaseBlock>
 
       <ShowcaseBlock

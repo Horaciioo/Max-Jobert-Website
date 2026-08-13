@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 
+import { MotionStage } from '@/components/layout/MotionStage'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { NotificationRegion } from '@/components/structures/feedback/NotificationRegion'
@@ -29,5 +30,6 @@ export const SiteLayout = ({ children }: SiteLayoutProps) => (
     {ConfigurationService.isEnabled('scrollToTop') && <ScrollToTop />}
     {ConfigurationService.isEnabled('notifications') && <NotificationRegion />}
     {hasStickyActionBar && <StickyActionBar />}
+    <MotionStage />
   </div>
 )

@@ -8,6 +8,7 @@ import { AnalyticsGate } from '@/components/layout/AnalyticsGate'
 import { SiteLayout } from '@/components/layout/SiteLayout'
 import { ConsentManager } from '@/components/structures/feedback/ConsentManager'
 import { FONT_VARIABLES } from '@/declarations/ui/fonts'
+import { buildMotionBootScript } from '@/declarations/ui/motion'
 import { ConfigurationService } from '@/services/ConfigurationService'
 import { I18nService } from '@/services/I18nService'
 import { SeoService } from '@/services/SeoService'
@@ -53,6 +54,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       <head>
         <style dangerouslySetInnerHTML={{ __html: ThemeService.buildStyleSheet() }} />
         <script dangerouslySetInnerHTML={{ __html: ThemeService.buildBootScript() }} />
+        <script dangerouslySetInnerHTML={{ __html: buildMotionBootScript() }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
