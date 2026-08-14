@@ -2,22 +2,25 @@
 
 import { useTranslations } from 'next-intl'
 
-import { Badge } from '@/components/elements/data/Badge'
+import { ActionLink } from '@/components/elements/actions/ActionLink'
 import { FormRenderer } from '@/components/elements/forms/FormRenderer'
 import { Icon } from '@/components/elements/media/Icon'
-import { Text } from '@/components/elements/typography/Text'
-import { LocationMap } from '@/components/structures/layout/LocationMap'
+import { Picture } from '@/components/elements/media/Picture'
 import { SectionHeading } from '@/components/sections/SectionHeading'
+import { LocationMap } from '@/components/structures/layout/LocationMap'
 import { Section } from '@/components/structures/layout/Section'
-import { PROMISES } from '@/declarations/content'
+import { PHOTOS } from '@/declarations/content'
 import type { IconName } from '@/declarations/ui/icons'
-import { BLOCK_STYLES, FOOTER_STYLES } from '@/declarations/ui/variants'
+import { MOTION_ATTRIBUTE, MOTION_NAMES } from '@/declarations/ui/motion'
+import { BLOCK_STYLES, CONTACT_STYLES, MEDIA_STYLES } from '@/declarations/ui/variants'
 import { ConfigurationService } from '@/services/ConfigurationService'
 import { NavigationService } from '@/services/NavigationService'
+import { cn } from '@/utils/classnames'
 
 const { identity } = ConfigurationService
+const { address } = identity
 
-// Contact channels
+// Reachable channels, each one a single tap away
 const CHANNELS: { id: string; icon: IconName; value: string; href: string }[] = [
   {
     id: 'email',
@@ -31,16 +34,10 @@ const CHANNELS: { id: string; icon: IconName; value: string; href: string }[] = 
     value: identity.phone,
     href: NavigationService.telOf(identity.phone),
   },
-  {
-    id: 'address',
-    icon: 'location',
-    value: `${identity.address.street}, ${identity.address.postalCode} ${identity.address.city}`,
-    href: '',
-  },
 ]
 
 /**
- * Contact section
+ * Contact section, the venue facing the form
  * @return {JSX.Element} - Rendered section
  */
 
@@ -52,41 +49,62 @@ export const ContactSection = () => {
     <Section>
       <div className={BLOCK_STYLES.stack}>
         <SectionHeading title={t('title')} description={t('description')} />
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr]">
-          <div className="flex flex-col gap-6">
-            <ul className="flex flex-col gap-4">
+
+        <div className={CONTACT_STYLES.grid}>
+          <div className={CONTACT_STYLES.aside}>
+            <div
+              className={cn(MEDIA_STYLES.frame, CONTACT_STYLES.venue)}
+              {...{ [MOTION_ATTRIBUTE]: MOTION_NAMES.rise }}>
+              <Picture
+                src={PHOTOS.venue}
+                alt={t('venue.imageAlt')}
+                stretch
+                shadow={false}
+                reveal={false}
+                sizes="(max-width: 1024px) 100vw, 26rem"
+                className={CONTACT_STYLES.venueImage}
+              />
+              <span aria-hidden="true" className={CONTACT_STYLES.venueScrim} />
+
+              <p className={CONTACT_STYLES.venueName}>{address.venue}</p>
+              <p className={CONTACT_STYLES.venueAddress}>
+                {address.street}
+                <br />
+                {`${address.postalCode} ${address.city}`}
+              </p>
+              <div className={CONTACT_STYLES.venueActions}>
+                <ActionLink href={NavigationService.mapDirectionsUrlOf(address)} icon="location">
+                  {actions('getDirections')}
+                </ActionLink>
+              </div>
+            </div>
+
+            <ul className={CONTACT_STYLES.channels} {...{ [MOTION_ATTRIBUTE]: MOTION_NAMES.fade }}>
               {CHANNELS.map((channel) => (
-                <li key={channel.id} className="flex items-start gap-3">
-                  <Icon name={channel.icon} size="sm" className="mt-0.5 text-primary" />
-                  <div>
-                    <Text appearance="label" as="p">
-                      {t(`channels.${channel.id}`)}
-                    </Text>
-                    {channel.href ? (
-                      <a href={channel.href} className={FOOTER_STYLES.link}>
-                        {channel.value}
-                      </a>
-                    ) : (
-                      <Text appearance="description">{channel.value}</Text>
-                    )}
-                  </div>
+                <li key={channel.id}>
+                  <a href={channel.href} className={cn('group', CONTACT_STYLES.channel)}>
+                    <span className={CONTACT_STYLES.channelIcon}>
+                      <Icon name={channel.icon} size="sm" />
+                    </span>
+                    <span className={CONTACT_STYLES.channelBody}>
+                      <span className={CONTACT_STYLES.channelLabel}>
+                        {t(`channels.${channel.id}`)}
+                      </span>
+                      <span className={CONTACT_STYLES.channelValue}>{channel.value}</span>
+                    </span>
+                  </a>
                 </li>
               ))}
             </ul>
 
-            <div className="flex flex-wrap gap-2">
-              {PROMISES.map((item) => (
-                <Badge key={item.id} icon={item.icon} tone={item.tone}>
-                  {t(`promises.${item.translationKey}.label`)}
-                </Badge>
-              ))}
-            </div>
-
             {ConfigurationService.isEnabled('locationMap') && (
-              <LocationMap title={t('map.title')} directionsLabel={actions('getDirections')} />
+              <LocationMap title={t('map.title')} />
             )}
           </div>
-          <FormRenderer id="contact" />
+
+          <div className={CONTACT_STYLES.form} {...{ [MOTION_ATTRIBUTE]: MOTION_NAMES.rise }}>
+            <FormRenderer id="contact" />
+          </div>
         </div>
       </div>
     </Section>

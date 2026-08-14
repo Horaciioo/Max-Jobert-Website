@@ -8,7 +8,8 @@ import { cn } from '@/utils/classnames'
 export interface LocationMapProps extends Styleable {
   // Iframe accessible title
   title: string
-  directionsLabel: string
+  // Directions button, dropped when the page already carries one
+  directionsLabel?: string
 }
 
 const { address } = ConfigurationService.identity
@@ -28,11 +29,13 @@ export const LocationMap = ({ title, directionsLabel, className }: LocationMapPr
       referrerPolicy="no-referrer-when-downgrade"
       className={cn('h-64 w-full overflow-hidden', SURFACES.outline)}
     />
-    <ActionLink
-      href={NavigationService.mapDirectionsUrlOf(address)}
-      variant="secondary"
-      icon="location">
-      {directionsLabel}
-    </ActionLink>
+    {directionsLabel && (
+      <ActionLink
+        href={NavigationService.mapDirectionsUrlOf(address)}
+        variant="secondary"
+        icon="location">
+        {directionsLabel}
+      </ActionLink>
+    )}
   </div>
 )
