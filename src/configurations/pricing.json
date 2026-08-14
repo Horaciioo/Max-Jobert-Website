@@ -7,12 +7,12 @@
     "includedKeys": ["assessment", "plan", "sessions", "adjustments"]
   },
   {
-    "id": "football",
-    "translationKey": "football",
+    "id": "performance",
+    "translationKey": "performance",
     "amountCents": 24000,
     "period": "month",
     "featured": true,
-    "includedKeys": ["assessment", "plan", "sessions", "footage", "report"]
+    "includedKeys": ["assessment", "plan", "sessions", "testing", "report"]
   },
   {
     "id": "remote",

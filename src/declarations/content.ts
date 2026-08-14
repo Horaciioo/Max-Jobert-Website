@@ -1,11 +1,15 @@
 import type {
   ComparisonItem,
   CredentialItem,
+  FactorItem,
   FaqItem,
   FeatureItem,
   MediaItem,
   OutcomeItem,
+  ModeItem,
   ProgramItem,
+  ScreenItem,
+  ServiceItem,
   StatItem,
   TestimonialItem,
   TimelineItem,
@@ -25,12 +29,35 @@ export const PLACEHOLDER_IMAGE = '/images/placeholder.svg'
 
 export const PHOTOS = {
   hero: '/images/training-hero.jpg',
+  // First frame of the opening clip, held while the footage buffers
+  heroPoster: '/images/hero-poster.jpg',
   strength: '/images/strength.jpg',
   conditioning: '/images/conditioning.jpg',
   coaching: '/images/coaching.jpg',
   portrait: '/images/portrait.jpg',
-  floor: '/images/floor.jpg',
+  floor: '/images/training-hero.jpg',
+  venue: '/images/basic-fit-pic.jpg',
 } as const
+
+/**
+ * Page backdrops
+ * @type {Object}
+ */
+
+export const BACKDROPS = {
+  main: '/images/background/main.png',
+} as const
+
+/**
+ * Opening footage, played one clip after another
+ * @type {MediaItem[]}
+ */
+
+export const HERO_SEQUENCE: MediaItem[] = [
+  { id: 'opening', src: '/videos/home/second-slide.mp4', translationKey: 'opening', kind: 'video' },
+  { id: 'still', src: PHOTOS.strength, translationKey: 'still', kind: 'image' },
+  { id: 'closing', src: '/videos/home/latest-slide.mp4', translationKey: 'closing', kind: 'video' },
+]
 
 /**
  * Qualifications held
@@ -121,12 +148,30 @@ export const PROGRAMS: ProgramItem[] = [
  */
 
 export const MILESTONES: TimelineItem[] = [
-  { id: 'sport', translationKey: 'sport', date: '2014', icon: 'target' },
-  { id: 'fitness', translationKey: 'fitness', date: '2018', icon: 'certificate' },
-  { id: 'science', translationKey: 'science', date: '2020', icon: 'medal' },
-  { id: 'analysis', translationKey: 'analysis', date: '2021', icon: 'video' },
-  { id: 'strength', translationKey: 'strength', date: '2022', icon: 'strength' },
-  { id: 'studio', translationKey: 'studio', date: '2024', icon: 'intensity' },
+  {
+    id: 'sport',
+    translationKey: 'sport',
+    date: '2014',
+    icon: 'target',
+    image: PHOTOS.conditioning,
+  },
+  {
+    id: 'fitness',
+    translationKey: 'fitness',
+    date: '2018',
+    icon: 'certificate',
+    image: PHOTOS.coaching,
+  },
+  { id: 'science', translationKey: 'science', date: '2020', icon: 'medal', image: PHOTOS.portrait },
+  { id: 'analysis', translationKey: 'analysis', date: '2021', icon: 'video', image: PHOTOS.hero },
+  {
+    id: 'strength',
+    translationKey: 'strength',
+    date: '2022',
+    icon: 'strength',
+    image: PHOTOS.strength,
+  },
+  { id: 'studio', translationKey: 'studio', date: '2024', icon: 'intensity', image: PHOTOS.venue },
 ]
 
 /**
@@ -167,13 +212,106 @@ export const FAQ: FaqItem[] = [
 ]
 
 /**
- * Response and delivery promises
- * @type {FeatureItem[]}
+ * Ways of being followed
+ * @type {ModeItem[]}
  */
 
-export const PROMISES: FeatureItem[] = [
-  { id: 'response', translationKey: 'response', icon: 'clock', tone: 'primary' },
-  { id: 'delivery', translationKey: 'delivery', icon: 'send', tone: 'accent' },
+export const SERVICE_MODES: ModeItem[] = [
+  { id: 'online', translationKey: 'online', icon: 'path', image: PHOTOS.heroPoster },
+  { id: 'onsite', translationKey: 'onsite', icon: 'strength', image: PHOTOS.strength },
+  { id: 'hybrid', translationKey: 'hybrid', icon: 'conditioning', image: PHOTOS.conditioning },
+]
+
+/**
+ * Services on offer
+ * @type {ServiceItem[]}
+ */
+
+export const SERVICES: ServiceItem[] = [
+  { id: 'session', translationKey: 'session', icon: 'strength', image: PHOTOS.coaching },
+  { id: 'nutrition', translationKey: 'nutrition', icon: 'chart', image: PHOTOS.portrait },
+  { id: 'athletic', translationKey: 'athletic', icon: 'medal', image: PHOTOS.hero },
+]
+
+/**
+ * What makes a quoted amount move
+ * @type {FactorItem[]}
+ */
+
+export const RATE_FACTORS: FactorItem[] = [
+  { id: 'rhythm', translationKey: 'rhythm', icon: 'timer' },
+  { id: 'format', translationKey: 'format', icon: 'target' },
+  { id: 'duration', translationKey: 'duration', icon: 'calendar' },
+  { id: 'goal', translationKey: 'goal', icon: 'chart' },
+  { id: 'follow', translationKey: 'follow', icon: 'path' },
+  { id: 'place', translationKey: 'place', icon: 'location' },
+]
+
+/**
+ * Rotating end of the opening claim
+ * @type {string[]}
+ */
+
+export const HERO_CLAIMS: string[] = [
+  'program',
+  'attention',
+  'schedule',
+  'nutrition',
+  'remote',
+  'session',
+]
+
+/**
+ * Tracking sheets, shown as handset screens
+ * @type {ScreenItem[]}
+ */
+
+export const METHOD_SCREENS: ScreenItem[] = [
+  {
+    id: 'roadmap',
+    translationKey: 'roadmap',
+    icon: 'path',
+    blocks: [
+      { id: 'profile', columnKeys: ['firstName', 'startedOn', 'age'], rows: 1 },
+      { id: 'goals', columnKeys: ['goal'], rows: 4 },
+      {
+        id: 'roadmap',
+        columnKeys: ['date', 'weight', 'phase', 'training', 'nutrition'],
+        rows: 13,
+        labelled: true,
+      },
+    ],
+  },
+  {
+    id: 'training',
+    translationKey: 'training',
+    icon: 'strength',
+    blocks: [
+      {
+        id: 'volume',
+        columnKeys: ['muscle', 'direct', 'indirect', 'total'],
+        rows: 7,
+        labelled: true,
+      },
+      { id: 'session', columnKeys: ['order', 'exercise', 'sets', 'reps', 'rest'], rows: 7 },
+      { id: 'correction', columnKeys: ['reps', 'load', 'note'], rows: 4 },
+    ],
+  },
+  {
+    id: 'nutrition',
+    translationKey: 'nutrition',
+    icon: 'chart',
+    blocks: [
+      {
+        id: 'intake',
+        columnKeys: ['day', 'protein', 'carbs', 'fat', 'calories'],
+        rows: 7,
+        labelled: true,
+      },
+      { id: 'biofeedback', columnKeys: ['stress', 'sleep', 'digestion', 'hunger'], rows: 7 },
+      { id: 'measures', columnKeys: ['weight', 'waist', 'hip', 'arm'], rows: 3 },
+    ],
+  },
 ]
 
 /**

@@ -32,9 +32,14 @@
       "metaDescription": "Ten years of sport, three qualifications and a job chosen on purpose. The path behind the method."
     },
     "programs": {
-      "label": "Programs",
-      "metaTitle": "Programs",
-      "metaDescription": "One-to-one coaching, performance conditioning and remote follow-up. Three formats, all starting with the same free assessment."
+      "label": "Services",
+      "metaTitle": "Services",
+      "metaDescription": "Remote coaching, in-person coaching or both. Gym session, nutrition tracking, athletic preparation: what each service covers and what moves the rate."
+    },
+    "method": {
+      "label": "Method",
+      "metaTitle": "The method",
+      "metaDescription": "How a programme is built, measured and adjusted, step by step."
     },
     "bookAppointment": {
       "label": "Free assessment",
@@ -65,12 +70,18 @@
       "label": "Components",
       "metaTitle": "Components",
       "metaDescription": "The visual atlas of the design system: colours, type, icons and components."
+    },
+    "faq": {
+      "label": "FAQ",
+      "metaTitle": "Frequently asked questions",
+      "metaDescription": "The assessment, the level required, the place, the pace, nutrition and cancelling. Answers to what comes up most."
     }
   },
   "navigation": {
     "primary": "Main navigation",
     "language": "Change language",
     "breadcrumb": "Breadcrumb",
+    "socials": "Social networks",
     "tagline": "Certified strength coach. Measure it, plan it, adjust it.",
     "copyright": "© {years} {name}. All rights reserved.",
     "theme": {
@@ -82,15 +93,33 @@
       "site": "Site",
       "legal": "Legal",
       "contact": "Reach me"
+    },
+    "groups": {
+      "infos": "Info"
     }
   },
   "sections": {
     "hero": {
-      "title": "Your body follows a plan, not a mood",
-      "description": "Triple-certified strength coach. I build programs around your real life: your level, your time, your injuries. Then I stay close enough that they actually get done.",
+      "title": "Change starts now",
+      "description": "Based at <venue>Basic-Fit Hœnheim</venue>, I coach the people who want to turn their life around: ",
       "secondaryAction": "My story",
-      "cue": "Scroll",
-      "imageAlt": "Athlete training in a dark gym"
+      "imageAlt": "Athlete training in a dark gym",
+      "position": "{position} of {total}",
+      "items": {
+        "still": "Strength session in the gym"
+      },
+      "claims": {
+        "program": "a program built around you",
+        "attention": "close, meticulous follow-up",
+        "schedule": "training that fits your week",
+        "nutrition": "nutrition tracking",
+        "remote": "remote coaching",
+        "session": "in-person sessions"
+      }
+    },
+    "development": {
+      "title": "Page under development",
+      "description": "This page is still being written. The final content is coming very soon."
     },
     "credentials": {
       "title": "Three certifications, one method",
@@ -198,30 +227,35 @@
       "items": {
         "sport": {
           "title": "Sport first",
-          "description": "Ten years competing in a club. That is where I learned what a body absorbs over a season, and when it gives out."
+          "description": "Ten years competing in a club. That is where I learned what a body absorbs over a season, and when it gives out.",
+          "imageAlt": "Conditioning session in the gym"
         },
         "fitness": {
           "title": "The first qualification",
-          "description": "BPJEPS Fitness Activities. I stop advising on instinct and start coaching properly."
+          "description": "BPJEPS Fitness Activities — weightlifting, strength training, group classes. I stop advising on instinct: I can build a safe session, correct it live, and adapt it to the person in front of me.",
+          "imageAlt": "Correcting a movement during a session"
         },
         "science": {
           "title": "The theory behind it",
-          "description": "Sport science degree. Physiology and planning: I finally understand why some things worked and others did not."
+          "description": "BSc Sport Science, coaching — physiology, biomechanics, planning. I finally understand why a load works, and above all when it stops working.",
+          "imageAlt": "Max Jobert in his training gym"
         },
         "analysis": {
           "title": "A hobby on the side",
-          "description": "I start analysing football matches for fun, camera and notebook. A pastime that taught me to read a movement in detail."
+          "description": "I start analysing football matches for fun, camera and notebook. A pastime that taught me to read a movement in detail.",
+          "imageAlt": "Athlete training in a dark gym"
         },
         "strength": {
           "title": "The specialism",
-          "description": "Strength and conditioning certification. Strength, power and endurance stop being three separate subjects."
+          "description": "Strength and conditioning certification. Building strength and power without breaking the mechanics: strength, speed and endurance stop being three separate subjects.",
+          "imageAlt": "Deadlift during a strength session"
         },
         "studio": {
           "title": "Coaching full time",
-          "description": "This becomes my main job. Beginners, seasoned athletes, people coming back from injury: the method applies to all of them."
+          "description": "This becomes my main job, at Basic-Fit Hœnheim. Beginners, seasoned athletes, people coming back from injury: the method applies to all of them.",
+          "imageAlt": "The Basic-Fit gym in Hœnheim"
         }
-      },
-      "imageAlt": "Max Jobert in his training gym"
+      }
     },
     "protocol": {
       "title": "What happens in the hour",
@@ -243,40 +277,8 @@
           "title": "We map it out",
           "description": "The three priorities for the next eight weeks, written down. What comes next is your call."
         }
-      }
-    },
-    "pricing": {
-      "title": "What each format costs",
-      "description": "Amounts are indicative and get confirmed at the assessment, once the session volume is set.",
-      "featured": "Most requested",
-      "periods": {
-        "once": "per session",
-        "month": "per month",
-        "year": "per year"
       },
-      "included": {
-        "assessment": "Full initial assessment",
-        "plan": "Training plan built for you",
-        "sessions": "Coached sessions in person",
-        "adjustments": "Adjustments every three weeks",
-        "testing": "Strength and conditioning testing",
-        "report": "Written review at the end of each block",
-        "checkin": "Weekly video check-in"
-      },
-      "items": {
-        "individual": {
-          "name": "One-to-one coaching",
-          "description": "In the gym or outdoors, with me next to you. The fastest way to fix a movement and hold a rhythm."
-        },
-        "performance": {
-          "name": "Performance conditioning",
-          "description": "Strength, power and endurance planned across a full block. For anyone with a dated goal."
-        },
-        "remote": {
-          "name": "Remote follow-up",
-          "description": "Your plan, your feedback, my corrections every week. For those already training alone but without direction."
-        }
-      }
+      "imageAlt": "Max Jobert in his training gym"
     },
     "gallery": {
       "title": "The work, unfiltered",
@@ -374,8 +376,7 @@
     },
     "callToAction": {
       "title": "The first appointment costs nothing",
-      "description": "One hour to find out where you stand and what should change. You decide the rest afterwards.",
-      "reassurance": "No commitment · No card details · Answered within 24h",
+      "description": "One hour to find out where you stand, and to leave with three written priorities.",
       "imageAlt": "Training floor at the end of a session"
     },
     "contact": {
@@ -383,19 +384,13 @@
       "description": "Describe your situation in a few lines. I answer within twenty-four working hours.",
       "channels": {
         "email": "Email address",
-        "phone": "Phone",
-        "address": "Address"
-      },
-      "promises": {
-        "response": {
-          "label": "Answer within 24 working hours"
-        },
-        "delivery": {
-          "label": "Plan delivered within 5 days"
-        }
+        "phone": "Phone"
       },
       "map": {
         "title": "Location map"
+      },
+      "venue": {
+        "imageAlt": "The Basic-Fit gym in Hœnheim, where sessions take place"
       }
     },
     "outcomes": {
@@ -418,6 +413,151 @@
           "imageAlt": "Coach correcting a client’s movement"
         }
       }
+    },
+    "rates": {
+      "title": "The rate follows what you need",
+      "description": "There is no single price, because there is no single kind of coaching. Six things move the amount, and they are settled together at the assessment.",
+      "items": {
+        "rhythm": {
+          "title": "The pace",
+          "description": "One session a week or four is neither the same preparation work nor the same amount."
+        },
+        "format": {
+          "title": "The format",
+          "description": "Coached in the gym, planned conditioning or remote follow-up: each format has its own running cost."
+        },
+        "duration": {
+          "title": "The length",
+          "description": "An eight-week block and a year-long partnership are not billed the same way."
+        },
+        "goal": {
+          "title": "The goal",
+          "description": "Getting back in shape needs less testing and planning than a build-up with a date on it."
+        },
+        "follow": {
+          "title": "The follow-up",
+          "description": "Weekly corrections, nutrition tracking, answers between sessions: what happens outside the session counts too."
+        },
+        "place": {
+          "title": "The place",
+          "description": "In the gym or outdoors, depending on what you have access to and what the session calls for."
+        }
+      }
+    },
+    "method": {
+      "title": "How I work",
+      "description": "Everyone I coach leaves with three tracking sheets, kept up to date every week. Here is how they are laid out, exactly as they land on your phone.",
+      "items": {
+        "roadmap": {
+          "title": "The roadmap",
+          "description": "The heading over several months: phase, weight, load and adjustments, week after week.",
+          "blocks": {
+            "profile": "Your intake",
+            "goals": "Goals",
+            "roadmap": "Roadmap"
+          },
+          "columns": {
+            "firstName": "First name",
+            "startedOn": "Start",
+            "age": "Age",
+            "goal": "Goal",
+            "date": "Date",
+            "weight": "Weight",
+            "phase": "Phase",
+            "training": "Training",
+            "nutrition": "Nutrition"
+          }
+        },
+        "training": {
+          "title": "The training plan",
+          "description": "Every session written in advance, volume per muscle, and your corrections from one week to the next.",
+          "blocks": {
+            "volume": "Weekly volume",
+            "session": "Session",
+            "correction": "Correction"
+          },
+          "columns": {
+            "muscle": "Muscle",
+            "direct": "Direct",
+            "indirect": "Indirect",
+            "total": "Total",
+            "order": "Order",
+            "exercise": "Exercise",
+            "sets": "Sets",
+            "reps": "Reps",
+            "rest": "Rest",
+            "load": "Load",
+            "note": "Note"
+          }
+        },
+        "nutrition": {
+          "title": "Nutrition tracking",
+          "description": "Intake, sleep, stress and measurements logged daily. That is what explains a plateau.",
+          "blocks": {
+            "intake": "Intake",
+            "biofeedback": "Biofeedback",
+            "measures": "Measurements"
+          },
+          "columns": {
+            "day": "Day",
+            "protein": "Protein",
+            "carbs": "Carbs",
+            "fat": "Fat",
+            "calories": "Calories",
+            "stress": "Stress",
+            "sleep": "Sleep",
+            "digestion": "Digestion",
+            "hunger": "Hunger",
+            "weight": "Weight",
+            "waist": "Waist",
+            "hip": "Hip",
+            "arm": "Arm"
+          }
+        }
+      }
+    },
+    "modes": {
+      "title": "Three kinds of follow-up",
+      "description": "We pick the one that fits your week together. Nothing is fixed: we switch mid-course if your life changes.",
+      "items": {
+        "online": {
+          "title": "Remote follow-up",
+          "description": "I coach you at a distance, track your goals and we adjust every week.",
+          "imageAlt": "A session followed remotely from the gym"
+        },
+        "onsite": {
+          "title": "In-person follow-up",
+          "description": "We run the session of your choice, or the one I recommend.",
+          "imageAlt": "Coached strength session in the gym"
+        },
+        "hybrid": {
+          "title": "Both",
+          "description": "In-person sessions mixed with remote follow-up.",
+          "imageAlt": "Conditioning work in the gym"
+        }
+      }
+    },
+    "services": {
+      "title": "The services",
+      "description": "Three services, taken on their own or combined, depending on the kind of follow-up you choose.",
+      "items": {
+        "session": {
+          "title": "Gym session",
+          "description": "For an hour, we run the session of your choice, or the one I recommend. You get advice fitted to your build, your goals, or simply what you feel like doing.",
+          "imageAlt": "Correcting a movement during a gym session"
+        },
+        "nutrition": {
+          "title": "Nutrition tracking",
+          "description": "Whether you are losing weight, building mass, or simply discovering a healthier way of eating, I will put forward what I believe suits you best.",
+          "imageAlt": "Max Jobert in his training gym"
+        },
+        "athletic": {
+          "title": "Athletic preparation",
+          "description": "A competition coming up? A physically demanding job? Then let us adapt your goals, without making them unmanageable.",
+          "imageAlt": "Athlete training in a dark gym"
+        }
+      },
+      "discuss": "Shall we talk it through?"
     }
   },
   "forms": {
@@ -564,7 +704,8 @@
     },
     "descriptions": {
       "buttons": "Variants come from the registry, adding one makes it appear here without touching this page.",
-      "forms": "This form is rendered from its declaration alone, no field is written in markup."
+      "forms": "This form is rendered from its declaration alone, no field is written in markup.",
+      "device": "The sheet is rendered from its declaration alone: translated headers, values replaced by skeletons."
     },
     "blocks": {
       "palette": "Palette and tokens",
@@ -583,7 +724,10 @@
       "collections": "Collections",
       "placeholders": "Waiting states",
       "forms": "Forms",
-      "motion": "Motion"
+      "motion": "Motion",
+      "socials": "Social banner",
+      "development": "Page under development",
+      "device": "Phone screen"
     }
   },
   "legal": {
