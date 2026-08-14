@@ -3,11 +3,10 @@ import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 import { CallToActionSection } from '@/components/sections/CallToActionSection'
-import { CredentialSection } from '@/components/sections/CredentialSection'
-import { SequenceSection } from '@/components/sections/SequenceSection'
+import { ZigzagSection } from '@/components/sections/ZigzagSection'
 import { PageHeader } from '@/components/structures/layout/PageHeader'
 import { Breadcrumb } from '@/components/structures/navigation/Breadcrumb'
-import { MILESTONES, PHOTOS } from '@/declarations/content'
+import { MILESTONES } from '@/declarations/content'
 import { NavigationService } from '@/services/NavigationService'
 import { Page } from '@/structures/Page'
 import type { PageRenderContext } from '@/structures/Page'
@@ -29,8 +28,7 @@ class StoryPage extends Page {
           description={translate('metaDescription')}
           breadcrumb={breadcrumb}
         />
-        <SequenceSection namespace="milestones" items={MILESTONES} image={PHOTOS.portrait} />
-        <CredentialSection />
+        <ZigzagSection namespace="milestones" items={MILESTONES} />
         <CallToActionSection />
       </>
     )
