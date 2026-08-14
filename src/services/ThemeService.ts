@@ -12,6 +12,9 @@ const { darkScheme } = ConfigurationService.viewport.mediaQueries
 // Theme attribute
 const THEME_ATTRIBUTE = 'data-theme'
 
+// Flag off locks the site on its default scheme
+const canSwitch = ConfigurationService.isEnabled('themeSwitcher')
+
 const declare = (group: string, entries: Record<string, string>): string =>
   Object.entries(entries)
     .map(([name, value]) => `${NamingService.toCssVariable(group, name)}:${value}`)
@@ -20,6 +23,7 @@ const declare = (group: string, entries: Record<string, string>): string =>
 class ThemeServiceClass extends Service {
   modes = ['light', 'dark', 'system'] as ThemeMode[]
   defaultMode = defaultMode as ThemeMode
+  canSwitch = canSwitch
 
   /**
    * Theme stylesheet
@@ -27,13 +31,18 @@ class ThemeServiceClass extends Service {
    */
 
   buildStyleSheet = (): string => {
+    const scheme = this.resolveScheme(this.defaultMode)
     const base = [
-      declare('color', colors.light),
+      declare('color', canSwitch ? colors.light : colors[scheme]),
       declare('radius', radii),
       declare('shadow', shadows),
       declare('duration', durations),
       declare('layout', layout),
     ].join(';')
+
+    // Locked down, the single palette above is the whole sheet
+    if (!canSwitch) return `:root{${base}}`
+
     const dark = declare('color', colors.dark)
 
     return [
@@ -50,6 +59,10 @@ class ThemeServiceClass extends Service {
 
   buildBootScript = (): string => {
     const key = StorageService.buildKey(STORAGE_KEYS.themeMode)
+
+    // Locked down, the attribute never leaves the default scheme
+    if (!canSwitch)
+      return `document.documentElement.setAttribute('${THEME_ATTRIBUTE}','${this.resolveScheme(this.defaultMode)}')`
 
     return `try{var m=JSON.parse(localStorage.getItem('${key}'))||'${defaultMode}';var d=m==='dark'||(m==='system'&&matchMedia('${darkScheme}').matches);document.documentElement.setAttribute('${THEME_ATTRIBUTE}',d?'dark':'light')}catch(e){}`
   }
@@ -73,6 +86,8 @@ class ThemeServiceClass extends Service {
    */
 
   readMode = (): ThemeMode => {
+    if (!canSwitch) return this.defaultMode
+
     const stored = StorageService.read<ThemeMode>(STORAGE_KEYS.themeMode)
 
     return stored && this.modes.includes(stored) ? stored : (defaultMode as ThemeMode)

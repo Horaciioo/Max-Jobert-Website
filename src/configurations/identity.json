@@ -1,20 +1,22 @@
 {
-  "legalName": "Template Company",
-  "tradeName": "Template Website",
-  "email": "contact@example.com",
-  "phone": "+33000000000",
+  "legalName": "Max Jobert",
+  "tradeName": "Max Jobert Performance",
+  "email": "contact@maxjobert.fr",
+  "phone": "+33600000000",
   "address": {
-    "street": "1 rue de l'Exemple",
-    "postalCode": "00000",
-    "city": "Paris",
+    "venue": "Basic-Fit Hœnheim",
+    "street": "11 Route de La Wantzenau",
+    "postalCode": "67800",
+    "city": "Hœnheim",
     "country": "FR"
   },
   "openingHours": [
-    { "day": 1, "opensAt": "09:00", "closesAt": "18:00" },
-    { "day": 2, "opensAt": "09:00", "closesAt": "18:00" },
-    { "day": 3, "opensAt": "09:00", "closesAt": "18:00" },
-    { "day": 4, "opensAt": "09:00", "closesAt": "18:00" },
-    { "day": 5, "opensAt": "09:00", "closesAt": "18:00" }
+    { "day": 1, "opensAt": "07:00", "closesAt": "20:00" },
+    { "day": 2, "opensAt": "07:00", "closesAt": "20:00" },
+    { "day": 3, "opensAt": "07:00", "closesAt": "20:00" },
+    { "day": 4, "opensAt": "07:00", "closesAt": "20:00" },
+    { "day": 5, "opensAt": "07:00", "closesAt": "20:00" },
+    { "day": 6, "opensAt": "09:00", "closesAt": "13:00" }
   ],
   "registration": {
     "number": "000 000 000 00000",
@@ -27,7 +29,7 @@
     "url": "https://vercel.com"
   },
   "publisher": {
-    "name": "Template Company",
-    "email": "legal@example.com"
+    "name": "Max Jobert",
+    "email": "contact@maxjobert.fr"
   }
 }

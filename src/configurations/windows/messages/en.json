@@ -1,61 +1,88 @@
 {
   "actions": {
     "contact": "Get in touch",
-    "showcase": "Browse the components",
+    "bookAppointment": "Free assessment",
+    "showcase": "View components",
     "subscribeNewsletter": "Subscribe",
     "submit": "Send",
     "cancel": "Cancel",
     "confirm": "Confirm",
     "retry": "Try again",
     "close": "Close",
-    "open": "Open the menu",
+    "open": "Open menu",
     "next": "Next",
     "previous": "Previous",
     "search": "Search",
     "share": "Share",
     "scrollToTop": "Back to top",
-    "getDirections": "Get directions",
+    "getDirections": "Directions",
     "accept": "Accept",
     "decline": "Decline",
-    "manageCookies": "Cookie preferences"
+    "manageCookies": "Cookie settings"
   },
   "routes": {
     "home": {
       "label": "Home",
-      "metaTitle": "Home",
-      "metaDescription": "A ready to use website base, built to be reused from one project to the next."
+      "metaTitle": "Certified strength coach",
+      "metaDescription": "Triple-certified strength coach. Free assessment, a training plan built for you, and follow-up that keeps it on track, in the gym or remotely."
     },
-    "showcase": {
-      "label": "Components",
-      "metaTitle": "Components",
-      "metaDescription": "The visual atlas of the design system: colours, type scale, icons and components."
+    "story": {
+      "label": "My story",
+      "metaTitle": "My story",
+      "metaDescription": "Ten years of sport, three qualifications and a job chosen on purpose. The path behind the method."
+    },
+    "programs": {
+      "label": "Services",
+      "metaTitle": "Services",
+      "metaDescription": "Remote coaching, in-person coaching or both. Gym session, nutrition tracking, athletic preparation: what each service covers and what moves the rate."
+    },
+    "method": {
+      "label": "Method",
+      "metaTitle": "The method",
+      "metaDescription": "How a programme is built, measured and adjusted, step by step."
+    },
+    "bookAppointment": {
+      "label": "Free assessment",
+      "metaTitle": "Book the free assessment",
+      "metaDescription": "One hour to measure where you stand and leave with three written priorities. No commitment."
     },
     "contact": {
       "label": "Contact",
       "metaTitle": "Contact",
-      "metaDescription": "Write to us, we answer within one working day."
+      "metaDescription": "A question about formats, rates or how sessions run. Answered within twenty-four working hours."
     },
     "thankYou": {
       "label": "Thank you",
       "metaTitle": "Thank you",
-      "metaDescription": "Your message is on its way to us, we will come back to you shortly."
+      "metaDescription": "Your message came through. I will come back to you shortly."
     },
     "legalNotice": {
       "label": "Legal notice",
       "metaTitle": "Legal notice",
-      "metaDescription": "Publisher, host and terms of use of the website."
+      "metaDescription": "Publisher, host and terms of use for this site."
     },
     "privacyPolicy": {
       "label": "Privacy",
       "metaTitle": "Privacy policy",
-      "metaDescription": "Collected data, purposes, retention periods and visitor rights."
+      "metaDescription": "Data collected, purposes, retention periods and visitor rights."
+    },
+    "showcase": {
+      "label": "Components",
+      "metaTitle": "Components",
+      "metaDescription": "The visual atlas of the design system: colours, type, icons and components."
+    },
+    "faq": {
+      "label": "FAQ",
+      "metaTitle": "Frequently asked questions",
+      "metaDescription": "The assessment, the level required, the place, the pace, nutrition and cancelling. Answers to what comes up most."
     }
   },
   "navigation": {
     "primary": "Main navigation",
     "language": "Change language",
     "breadcrumb": "Breadcrumb",
-    "tagline": "A generic website base, ready to become your next project.",
+    "socials": "Social networks",
+    "tagline": "Certified strength coach. Measure it, plan it, adjust it.",
     "copyright": "© {years} {name}. All rights reserved.",
     "theme": {
       "light": "Light theme",
@@ -63,209 +90,479 @@
       "system": "System theme"
     },
     "footer": {
-      "site": "The site",
-      "legal": "Legal information",
-      "contact": "Contact"
+      "site": "Site",
+      "legal": "Legal",
+      "contact": "Reach me"
+    },
+    "groups": {
+      "infos": "Info"
     }
   },
   "sections": {
     "hero": {
-      "overline": "Project base",
-      "title": "The generic foundation of your next websites",
-      "description": "Components, services, theming and translations are already wired. All that is left is the content.",
-      "imageAlt": "Preview of the design system"
-    },
-    "features": {
-      "overline": "Already in place",
-      "title": "Systems, never copies",
-      "description": "Every brick is declared once and then reused across the whole project.",
+      "title": "Change starts now",
+      "description": "Based at <venue>Basic-Fit Hœnheim</venue>, I coach the people who want to turn their life around: ",
+      "secondaryAction": "My story",
+      "imageAlt": "Athlete training in a dark gym",
+      "position": "{position} of {total}",
       "items": {
-        "quality": {
-          "title": "Unified design system",
-          "description": "Colours, shadows and radii come from a single theme file that Tailwind reads."
+        "still": "Strength session in the gym"
+      },
+      "claims": {
+        "program": "a program built around you",
+        "attention": "close, meticulous follow-up",
+        "schedule": "training that fits your week",
+        "nutrition": "nutrition tracking",
+        "remote": "remote coaching",
+        "session": "in-person sessions"
+      }
+    },
+    "development": {
+      "title": "Page under development",
+      "description": "This page is still being written. The final content is coming very soon."
+    },
+    "credentials": {
+      "title": "Three certifications, one method",
+      "description": "Coaching is not a personal opinion. Every call I make in a session rests on training I have done and can account for.",
+      "items": {
+        "fitness": {
+          "title": "BPJEPS Fitness Activities",
+          "issuer": "Weightlifting · Strength training · Group classes",
+          "description": "The foundation: build a safe session, correct it live, and adapt it to the person in front of me."
         },
-        "speed": {
-          "title": "Immediate start",
-          "description": "Routes, metadata, sitemap and robots are generated from the route registry."
+        "science": {
+          "title": "BSc Sport Science, Coaching",
+          "issuer": "Physiology · Biomechanics · Planning",
+          "description": "Understanding why a load works, and above all when it stops working."
         },
-        "support": {
-          "title": "Multilingual by default",
-          "description": "Two languages shipped, and not a single sentence written inside a component."
-        },
-        "security": {
-          "title": "Shared validation",
-          "description": "The same rules validate the form on the visitor side and on the server."
-        },
-        "flexibility": {
-          "title": "Reusable sections",
-          "description": "Nine generic sections compose freely into a full page."
-        },
-        "transparency": {
-          "title": "Written conventions",
-          "description": "Naming, structure and registries are documented in the structure folder."
+        "strength": {
+          "title": "Strength and conditioning",
+          "issuer": "Specialist certification",
+          "description": "Building strength and power without breaking the mechanics. That is where performance is decided."
         }
       }
     },
     "stats": {
-      "title": "The base in numbers",
-      "description": "The values below only demonstrate the formatting layer.",
+      "title": "What that adds up to",
       "items": {
-        "clients": { "label": "Components shipped" },
-        "projects": { "label": "Declaration files" },
-        "satisfaction": { "label": "Text coverage" },
-        "experience": { "label": "Core services" }
-      }
-    },
-    "gallery": {
-      "overline": "Gallery",
-      "title": "A consistent media rendering",
-      "items": {
-        "item1": "Demonstration visual number one",
-        "item2": "Demonstration visual number two",
-        "item3": "Demonstration visual number three",
-        "item4": "Demonstration visual number four",
-        "item5": "Demonstration visual number five",
-        "item6": "Demonstration visual number six"
-      }
-    },
-    "pricing": {
-      "overline": "Offers",
-      "title": "Three sample plans",
-      "description": "Amounts are stored in cents and rendered by the formatting service.",
-      "featured": "Recommended",
-      "periods": {
-        "once": "one time",
-        "month": "per month",
-        "year": "per year"
-      },
-      "included": {
-        "scope": "Scoping and sitemap",
-        "revisions": "Two rounds of feedback",
-        "delivery": "Assisted go live",
-        "support": "Three months of follow up",
-        "training": "Hands on training"
-      },
-      "items": {
-        "starter": {
-          "name": "Essential",
-          "description": "One page, the main sections and the go live."
+        "athletes": {
+          "label": "Athletes coached",
+          "note": "Amateurs and competitors"
         },
-        "standard": {
-          "name": "Complete",
-          "description": "Several pages, a contact form and post delivery follow up."
+        "sessions": {
+          "label": "Sessions delivered",
+          "note": "In the gym, outdoors, remotely"
         },
-        "premium": {
-          "name": "Tailored",
-          "description": "Dedicated design, written content and team training."
+        "retention": {
+          "label": "Continue past the first block",
+          "note": "Over the last twelve months"
+        },
+        "seasons": {
+          "label": "Years in the job",
+          "note": "Without a break"
         }
       }
     },
-    "booking": {
-      "title": "Book an appointment",
-      "description": "The calendar only shows slots that are still free. Once confirmed, the appointment is set.",
-      "pickDate": "Start by choosing a date in the calendar.",
-      "noSlot": "Nothing left that day. Try another one.",
-      "contactPrompt": "Got a question? Contact us",
-      "success": {
-        "title": "Appointment confirmed",
-        "description": "See you on {date} at {slot}. You will receive a confirmation by email."
+    "features": {
+      "title": "Six rules that never move",
+      "description": "They do not depend on your level or your goal. They decide everything else.",
+      "items": {
+        "assessment": {
+          "title": "Measure before you program",
+          "description": "No plan starts from a hunch. The first appointment exists to set a starting point in numbers."
+        },
+        "individual": {
+          "title": "One plan per athlete",
+          "description": "Two people with the same goal do not follow the same program. Their history is not the same."
+        },
+        "load": {
+          "title": "Load is steered, not endured",
+          "description": "We push when the indicators allow it and back off the moment they stop allowing it."
+        },
+        "progression": {
+          "title": "Progress gets proven",
+          "description": "Same tests, same conditions, every six weeks. Numbers settle it, not impressions."
+        },
+        "longevity": {
+          "title": "Last before you shine",
+          "description": "An injury costs more time than any strength block will ever win back."
+        },
+        "technique": {
+          "title": "Technique before load",
+          "description": "Adding weight to a badly placed movement only makes the problem worse. Fix it first, then load it."
+        }
+      }
+    },
+    "programs": {
+      "title": "Three ways to work together",
+      "description": "All of them start with the same free assessment. The format gets chosen afterwards, once we know where you stand.",
+      "featured": "Most requested",
+      "included": {
+        "assessment": "Full initial assessment",
+        "plan": "Training plan built for you",
+        "sessions": "Coached sessions in person",
+        "adjustments": "Adjustments every three weeks",
+        "testing": "Strength and conditioning testing",
+        "report": "Written review at the end of each block",
+        "checkin": "Weekly video check-in"
       },
-      "failure": "The booking failed, the slot may have just been taken. Please try again.",
-      "disabled": "Online booking is not enabled yet, please contact us directly."
+      "items": {
+        "individual": {
+          "name": "One-to-one coaching",
+          "description": "In the gym or outdoors, with me next to you. The fastest way to fix a movement and hold a rhythm."
+        },
+        "performance": {
+          "name": "Performance conditioning",
+          "description": "Strength, power and endurance planned across a full block. For anyone with a dated goal."
+        },
+        "remote": {
+          "name": "Remote follow-up",
+          "description": "Your plan, your feedback, my corrections every week. For those already training alone but without direction."
+        }
+      }
+    },
+    "milestones": {
+      "title": "How I got here",
+      "description": "Nothing spectacular, just a run of decisions that all pointed the same way.",
+      "items": {
+        "sport": {
+          "title": "Sport first",
+          "description": "Ten years competing in a club. That is where I learned what a body absorbs over a season, and when it gives out.",
+          "imageAlt": "Conditioning session in the gym"
+        },
+        "fitness": {
+          "title": "The first qualification",
+          "description": "BPJEPS Fitness Activities — weightlifting, strength training, group classes. I stop advising on instinct: I can build a safe session, correct it live, and adapt it to the person in front of me.",
+          "imageAlt": "Correcting a movement during a session"
+        },
+        "science": {
+          "title": "The theory behind it",
+          "description": "BSc Sport Science, coaching — physiology, biomechanics, planning. I finally understand why a load works, and above all when it stops working.",
+          "imageAlt": "Max Jobert in his training gym"
+        },
+        "analysis": {
+          "title": "A hobby on the side",
+          "description": "I start analysing football matches for fun, camera and notebook. A pastime that taught me to read a movement in detail.",
+          "imageAlt": "Athlete training in a dark gym"
+        },
+        "strength": {
+          "title": "The specialism",
+          "description": "Strength and conditioning certification. Building strength and power without breaking the mechanics: strength, speed and endurance stop being three separate subjects.",
+          "imageAlt": "Deadlift during a strength session"
+        },
+        "studio": {
+          "title": "Coaching full time",
+          "description": "This becomes my main job, at Basic-Fit Hœnheim. Beginners, seasoned athletes, people coming back from injury: the method applies to all of them.",
+          "imageAlt": "The Basic-Fit gym in Hœnheim"
+        }
+      }
+    },
+    "protocol": {
+      "title": "What happens in the hour",
+      "description": "One appointment, no commitment. You leave with a written starting point, whether we work together afterwards or not.",
+      "items": {
+        "intake": {
+          "title": "We talk",
+          "description": "Your sport, your injury history, the time you actually have. Twenty minutes."
+        },
+        "measure": {
+          "title": "We measure",
+          "description": "Composition, mobility, strength on three basic movements. The day-zero numbers."
+        },
+        "movement": {
+          "title": "We test",
+          "description": "Three basic movements, watched and corrected. That is where what is really blocking you shows up."
+        },
+        "plan": {
+          "title": "We map it out",
+          "description": "The three priorities for the next eight weeks, written down. What comes next is your call."
+        }
+      },
+      "imageAlt": "Max Jobert in his training gym"
+    },
+    "gallery": {
+      "title": "The work, unfiltered",
+      "items": {
+        "strength": "Strength session in the gym",
+        "conditioning": "Conditioning work",
+        "coaching": "Movement corrected during a session",
+        "portrait": "Max Jobert in the gym",
+        "floor": "Training floor",
+        "hero": "Athlete training"
+      }
     },
     "comparisons": {
       "title": "Before / after",
-      "description": "A sample result, shown as a pair. Swap in your own pictures once they are ready.",
+      "description": "Two movements, recorded at the first assessment then eight weeks later.",
       "before": "Before",
       "after": "After",
       "position": "{position} of {total}",
       "items": {
-        "first": {
-          "title": "First example",
-          "description": "Describe the starting point and the result here.",
-          "beforeAlt": "Placeholder picture, before",
-          "afterAlt": "Placeholder picture, after"
+        "posture": {
+          "title": "Starting position",
+          "description": "Torso collapsing at the first assessment, braced eight weeks later.",
+          "beforeAlt": "Position before correction",
+          "afterAlt": "Position after correction"
         },
-        "second": {
-          "title": "Second example",
-          "description": "A second case, to show the result holds up.",
-          "beforeAlt": "Placeholder picture, before",
-          "afterAlt": "Placeholder picture, after"
+        "endurance": {
+          "title": "End of session",
+          "description": "Same circuit, same load: the difference shows on the last few reps.",
+          "beforeAlt": "End of session in the first block",
+          "afterAlt": "End of session in the third block"
         }
       }
     },
+    "booking": {
+      "title": "Book the assessment",
+      "description": "The calendar only shows slots that are still free. Once confirmed, the appointment is set and emailed to you.",
+      "pickDate": "Pick a date in the calendar first.",
+      "noSlot": "No slots left that day. Try another one.",
+      "contactPrompt": "No slot works for you? Write to me",
+      "success": {
+        "title": "Appointment confirmed",
+        "description": "See you on {date} at {slot}. The confirmation is on its way by email."
+      },
+      "failure": "The booking did not go through, the slot may have just been taken. Try again.",
+      "disabled": "Online booking is closed for now, contact me directly."
+    },
     "testimonials": {
-      "overline": "Feedback",
-      "title": "What the teams say",
+      "title": "What the athletes say",
       "items": {
-        "first": {
-          "quote": "A project starts already structured, we write content instead of rewiring a base.",
-          "author": "Camille Rivière",
-          "role": "Art direction"
+        "beginner": {
+          "quote": "I had not set foot in a gym in ten years. What convinced me was that he showed me my day-one numbers before offering me anything.",
+          "author": "Sarah L.",
+          "role": "Back to training"
         },
-        "second": {
-          "quote": "Changing the theme means editing one file, and the whole site follows without exception.",
-          "author": "Noah Berthier",
-          "role": "Front-end development"
+        "competitor": {
+          "quote": "I had been stuck on the same loads for two years. Three blocks later my tests were above anything I had done before.",
+          "author": "Théo M.",
+          "role": "Powerlifting"
         },
-        "third": {
-          "quote": "The written conventions end the naming debates at the start of every project.",
-          "author": "Inès Fontaine",
-          "role": "Project management"
+        "returning": {
+          "quote": "Coming back from an ACL rupture. Max was the only one who held me back when I wanted to rush it. I have been playing again since January.",
+          "author": "Karim B.",
+          "role": "Return from injury"
         }
       }
     },
     "faq": {
-      "overline": "Questions",
-      "title": "The usual questions",
+      "title": "What I get asked most",
       "items": {
-        "delay": {
-          "question": "What has to be changed to start a project?",
-          "answer": "The files of the configurations folder, the translations and the pictures of the public folder. The rest of the code is meant to stay as it is."
+        "assessment": {
+          "question": "Is the assessment really free?",
+          "answer": "Yes. One hour, no commitment and no card details. You leave with your measurements and your three priorities, even if we do not work together afterwards."
         },
-        "price": {
-          "question": "How do I add a page?",
-          "answer": "One entry in the route registry, a matching folder under app and a block of translations. Navigation, sitemap and metadata follow on their own."
+        "level": {
+          "question": "Do I need to be fit already?",
+          "answer": "No. I coach competitors and people who have not trained in ten years alike. The plan starts where you are, not at an assumed level."
         },
-        "process": {
-          "question": "How do I add a form?",
-          "answer": "One declaration in the form registry and a block of translations. Rendering, validation and submission go through the existing bricks."
+        "place": {
+          "question": "Where do sessions happen?",
+          "answer": "In a gym or outdoors depending on what the day calls for. The venue gets set at the assessment, around what you have access to."
         },
-        "support": {
-          "question": "How do I change the visual identity?",
-          "answer": "The palette, radii and shadows live in the theme file. Tailwind reads that same file, so no colour is ever written inside a component."
+        "rhythm": {
+          "question": "How often should I train?",
+          "answer": "Two to four sessions a week depending on the format. We start from the time you actually have, not the time you wish you had."
+        },
+        "nutrition": {
+          "question": "Do you cover nutrition too?",
+          "answer": "I give simple guidance that fits your plan. For proper dietary follow-up I point you to a professional who does that for a living."
         },
         "cancel": {
-          "question": "How do I add a language?",
-          "answer": "Add the language code to the localisation file and create the matching message file. Routing and the switcher adapt automatically."
+          "question": "Can I stop partway through?",
+          "answer": "Yes. Sessions can be cancelled up to twenty-four hours ahead, and no format commits you beyond the block under way."
         }
       }
     },
     "callToAction": {
-      "title": "Ready to start a new project?",
-      "description": "Clone the repository, edit the configurations and write your content."
+      "title": "The first appointment costs nothing",
+      "description": "One hour to find out where you stand, and to leave with three written priorities.",
+      "imageAlt": "Training floor at the end of a session"
     },
     "contact": {
-      "overline": "Write to us",
-      "title": "Let us talk about your project",
-      "description": "Describe your need in a few lines and we will come back to you quickly.",
+      "title": "A question before booking?",
+      "description": "Describe your situation in a few lines. I answer within twenty-four working hours.",
       "channels": {
         "email": "Email address",
-        "phone": "Phone",
-        "address": "Address"
-      },
-      "promises": {
-        "response": { "label": "We reply within 1 business day" },
-        "delivery": { "label": "Delivery within 5 days" }
+        "phone": "Phone"
       },
       "map": {
         "title": "Location map"
+      },
+      "venue": {
+        "imageAlt": "The Basic-Fit gym in Hœnheim, where sessions take place"
       }
+    },
+    "outcomes": {
+      "title": "What you actually came for",
+      "description": "Three reasons come up almost every time. The plan changes, the way it gets built does not.",
+      "items": {
+        "strength": {
+          "title": "Get stronger",
+          "description": "Build muscle and strength without paying for it with your joints. We progress in blocks, measure, and adjust.",
+          "imageAlt": "Deadlift during a strength session"
+        },
+        "conditioning": {
+          "title": "Last longer",
+          "description": "Get your breath and your energy back. Conditioning is dosed like strength, not run to exhaustion.",
+          "imageAlt": "Conditioning session in the gym"
+        },
+        "technique": {
+          "title": "Move properly",
+          "description": "Fix the movements that hurt or hold you back. That is usually what unlocks everything else.",
+          "imageAlt": "Coach correcting a client’s movement"
+        }
+      }
+    },
+    "rates": {
+      "title": "The rate follows what you need",
+      "description": "There is no single price, because there is no single kind of coaching. Six things move the amount, and they are settled together at the assessment.",
+      "items": {
+        "rhythm": {
+          "title": "The pace",
+          "description": "One session a week or four is neither the same preparation work nor the same amount."
+        },
+        "format": {
+          "title": "The format",
+          "description": "Coached in the gym, planned conditioning or remote follow-up: each format has its own running cost."
+        },
+        "duration": {
+          "title": "The length",
+          "description": "An eight-week block and a year-long partnership are not billed the same way."
+        },
+        "goal": {
+          "title": "The goal",
+          "description": "Getting back in shape needs less testing and planning than a build-up with a date on it."
+        },
+        "follow": {
+          "title": "The follow-up",
+          "description": "Weekly corrections, nutrition tracking, answers between sessions: what happens outside the session counts too."
+        },
+        "place": {
+          "title": "The place",
+          "description": "In the gym or outdoors, depending on what you have access to and what the session calls for."
+        }
+      }
+    },
+    "method": {
+      "title": "How I work",
+      "description": "Everyone I coach leaves with three tracking sheets, kept up to date every week. Here is how they are laid out, exactly as they land on your phone.",
+      "items": {
+        "roadmap": {
+          "title": "The roadmap",
+          "description": "The heading over several months: phase, weight, load and adjustments, week after week.",
+          "blocks": {
+            "profile": "Your intake",
+            "goals": "Goals",
+            "roadmap": "Roadmap"
+          },
+          "columns": {
+            "firstName": "First name",
+            "startedOn": "Start",
+            "age": "Age",
+            "goal": "Goal",
+            "date": "Date",
+            "weight": "Weight",
+            "phase": "Phase",
+            "training": "Training",
+            "nutrition": "Nutrition"
+          }
+        },
+        "training": {
+          "title": "The training plan",
+          "description": "Every session written in advance, volume per muscle, and your corrections from one week to the next.",
+          "blocks": {
+            "volume": "Weekly volume",
+            "session": "Session",
+            "correction": "Correction"
+          },
+          "columns": {
+            "muscle": "Muscle",
+            "direct": "Direct",
+            "indirect": "Indirect",
+            "total": "Total",
+            "order": "Order",
+            "exercise": "Exercise",
+            "sets": "Sets",
+            "reps": "Reps",
+            "rest": "Rest",
+            "load": "Load",
+            "note": "Note"
+          }
+        },
+        "nutrition": {
+          "title": "Nutrition tracking",
+          "description": "Intake, sleep, stress and measurements logged daily. That is what explains a plateau.",
+          "blocks": {
+            "intake": "Intake",
+            "biofeedback": "Biofeedback",
+            "measures": "Measurements"
+          },
+          "columns": {
+            "day": "Day",
+            "protein": "Protein",
+            "carbs": "Carbs",
+            "fat": "Fat",
+            "calories": "Calories",
+            "stress": "Stress",
+            "sleep": "Sleep",
+            "digestion": "Digestion",
+            "hunger": "Hunger",
+            "weight": "Weight",
+            "waist": "Waist",
+            "hip": "Hip",
+            "arm": "Arm"
+          }
+        }
+      }
+    },
+    "modes": {
+      "title": "Three kinds of follow-up",
+      "description": "We pick the one that fits your week together. Nothing is fixed: we switch mid-course if your life changes.",
+      "items": {
+        "online": {
+          "title": "Remote follow-up",
+          "description": "I coach you at a distance, track your goals and we adjust every week.",
+          "imageAlt": "A session followed remotely from the gym"
+        },
+        "onsite": {
+          "title": "In-person follow-up",
+          "description": "We run the session of your choice, or the one I recommend.",
+          "imageAlt": "Coached strength session in the gym"
+        },
+        "hybrid": {
+          "title": "Both",
+          "description": "In-person sessions mixed with remote follow-up.",
+          "imageAlt": "Conditioning work in the gym"
+        }
+      }
+    },
+    "services": {
+      "title": "The services",
+      "description": "Three services, taken on their own or combined, depending on the kind of follow-up you choose.",
+      "items": {
+        "session": {
+          "title": "Gym session",
+          "description": "For an hour, we run the session of your choice, or the one I recommend. You get advice fitted to your build, your goals, or simply what you feel like doing.",
+          "imageAlt": "Correcting a movement during a gym session"
+        },
+        "nutrition": {
+          "title": "Nutrition tracking",
+          "description": "Whether you are losing weight, building mass, or simply discovering a healthier way of eating, I will put forward what I believe suits you best.",
+          "imageAlt": "Max Jobert in his training gym"
+        },
+        "athletic": {
+          "title": "Athletic preparation",
+          "description": "A competition coming up? A physically demanding job? Then let us adapt your goals, without making them unmanageable.",
+          "imageAlt": "Athlete training in a dark gym"
+        }
+      },
+      "discuss": "Shall we talk it through?"
     }
   },
   "forms": {
     "contact": {
-      "success": "Message sent, we will come back to you shortly.",
+      "success": "Message sent. I will come back to you shortly.",
       "fields": {
         "fullName": {
           "label": "Full name",
@@ -278,31 +575,32 @@
         "phone": {
           "label": "Phone",
           "placeholder": "+33 6 00 00 00 00",
-          "hint": "Optional, only if you would rather be called."
+          "hint": "Optional, only if you would rather have a call."
         },
         "subject": {
           "label": "Subject",
           "placeholder": "Pick a subject",
           "options": {
-            "information": "Information request",
-            "quote": "Quote request",
-            "partnership": "Partnership",
+            "assessment": "Free assessment",
+            "individual": "One-to-one coaching",
+            "performance": "Performance conditioning",
+            "remote": "Remote follow-up",
             "other": "Something else"
           }
         },
         "message": {
           "label": "Message",
-          "placeholder": "Describe your project in a few lines.",
+          "placeholder": "Your goal, your current level, the time you have available.",
           "hint": "Twenty characters minimum."
         },
         "consent": {
           "label": "Consent",
-          "choice": "I agree that my details may be used to contact me back."
+          "choice": "I agree to my details being used to get back to me."
         }
       }
     },
     "newsletter": {
-      "success": "Subscription saved, thank you.",
+      "success": "You are subscribed, thank you.",
       "fields": {
         "email": {
           "label": "Email address",
@@ -322,11 +620,21 @@
         },
         "phone": {
           "label": "Phone",
-          "placeholder": "+1 555 000 0000"
+          "placeholder": "+33 6 00 00 00 00"
+        },
+        "goal": {
+          "label": "Main goal",
+          "placeholder": "Pick a goal",
+          "options": {
+            "performance": "Sport performance",
+            "shape": "Getting back in shape",
+            "recovery": "Return from injury",
+            "undecided": "Not sure yet"
+          }
         },
         "note": {
           "label": "Message",
-          "placeholder": "Anything to add?",
+          "placeholder": "An injury, a scheduling constraint, anything else?",
           "hint": "Optional."
         }
       }
@@ -338,7 +646,7 @@
     "maxLength": "This field cannot exceed {count} characters.",
     "min": "The minimum value is {count}.",
     "max": "The maximum value is {count}.",
-    "pattern": "The format entered is not valid.",
+    "pattern": "This format is not valid.",
     "mismatch": "The two values do not match."
   },
   "errors": {
@@ -352,22 +660,22 @@
     "tooManyRequests": "Too many requests sent, try again in a moment.",
     "serverError": "The server ran into a problem.",
     "network": "The connection to the server failed.",
-    "timeout": "The server took too long to answer.",
+    "timeout": "The server took too long to respond.",
     "unknown": "An unexpected error occurred.",
-    "retryHint": "Render the page again, the incident may be temporary."
+    "retryHint": "Reload the view, the incident may be temporary."
   },
   "feedback": {
     "loading": "Loading",
     "saved": "Change saved.",
     "pagination": "Page {page} of {totalPages}, {total} results",
     "empty": {
-      "title": "No result",
-      "description": "Widen the search or remove a filter to see more items."
+      "title": "No results",
+      "description": "Broaden the search or remove a filter to see more items."
     }
   },
   "consent": {
-    "title": "We respect your privacy",
-    "description": "This site uses audience measurement cookies to understand its traffic. Choose what you accept, and change your mind at any time.",
+    "title": "Your data stays yours",
+    "description": "This site uses audience measurement cookies to understand its traffic. Choose what you accept, and change your mind whenever you like.",
     "privacyLink": "Read the privacy policy",
     "required": "Always on",
     "actions": {
@@ -382,21 +690,22 @@
       },
       "analytics": {
         "label": "Audience measurement",
-        "description": "Anonymous traffic statistics, to understand which pages are useful. Nothing is stored without your agreement."
+        "description": "Anonymous traffic statistics, to understand which pages are useful. Nothing is stored without your consent."
       }
     }
   },
   "showcase": {
     "title": "Design system atlas",
-    "description": "Every block reads the registries of the project directly, so what is shown here is exactly what exists in the code.",
+    "description": "Every block reads the project registries directly, so what is shown here is exactly what exists in the code.",
     "sample": "The quick brown fox jumps over the lazy dog.",
     "columns": {
       "label": "Label",
       "value": "Value"
     },
     "descriptions": {
-      "buttons": "Variants come from the registry, adding one makes it appear here without editing this page.",
-      "forms": "This form is rendered from its declaration alone, no field is written in markup."
+      "buttons": "Variants come from the registry, adding one makes it appear here without touching this page.",
+      "forms": "This form is rendered from its declaration alone, no field is written in markup.",
+      "device": "The sheet is rendered from its declaration alone: translated headers, values replaced by skeletons."
     },
     "blocks": {
       "palette": "Palette and tokens",
@@ -407,46 +716,50 @@
       "alerts": "Messages",
       "data": "Data",
       "overlays": "Floating layers",
-      "modal": "Modal dialog",
-      "drawer": "Side panel",
+      "modal": "Modal",
+      "drawer": "Drawer",
       "tooltip": "Tooltip",
       "notification": "Notification",
       "navigation": "Navigation",
       "collections": "Collections",
       "placeholders": "Waiting states",
-      "forms": "Forms"
+      "forms": "Forms",
+      "motion": "Motion",
+      "socials": "Social banner",
+      "development": "Page under development",
+      "device": "Phone screen"
     }
   },
   "legal": {
     "legalNotice": {
       "sections": {
         "publisher": {
-          "title": "Publisher",
-          "body": "This website is published by {legalName}, registered under number {registration}, whose office is located at {address}. The publication director is {publisherName}, reachable at {publisherEmail}."
+          "title": "Site publisher",
+          "body": "This site is published by {legalName}, registered under number {registration}, with its registered office at {address}. The publication director is {publisherName}, reachable at {publisherEmail}."
         },
         "hosting": {
           "title": "Hosting",
-          "body": "This website is hosted by {hostingName}, {hostingAddress}."
+          "body": "This site is hosted by {hostingName}, {hostingAddress}."
         },
         "property": {
           "title": "Intellectual property",
-          "body": "All content published on this website, texts, pictures and code, remains the property of {legalName} unless stated otherwise. Any reproduction without written consent is forbidden."
+          "body": "All content on this site, text, images, video clips and code, remains the property of {legalName} unless stated otherwise. Reproduction without written permission is prohibited."
         },
         "liability": {
           "title": "Liability",
-          "body": "The published information is given for guidance and may change. For any question, write to {email}."
+          "body": "The information published here is indicative and does not replace medical advice. For any question, write to {email}."
         }
       }
     },
     "privacyPolicy": {
       "sections": {
         "collection": {
-          "title": "Collected data",
-          "body": "Only the information voluntarily sent through the contact form is collected: name, email address, optional phone number and message."
+          "title": "Data collected",
+          "body": "Only the information you volunteer through the contact or booking form is collected: name, email address, phone, goal and message."
         },
         "purpose": {
-          "title": "Purpose",
-          "body": "This information is only used to answer the request sent to {legalName}. It is never sold nor passed to third parties for commercial purposes."
+          "title": "Purpose of processing",
+          "body": "This information is used solely to answer the request sent to {legalName} and to arrange appointments. It is never sold or passed to third parties for commercial purposes."
         },
         "retention": {
           "title": "Retention period",
@@ -454,15 +767,15 @@
         },
         "rights": {
           "title": "Your rights",
-          "body": "You may access, correct and delete your data. To do so, write to {email}."
+          "body": "You have the right to access, correct and delete your data. To exercise it, write to {email}."
         },
         "cookies": {
           "title": "Cookies",
-          "body": "The website keeps the theme preference in the local storage of the browser. When audience measurement is enabled, analytics cookies are only set after you give consent through the banner shown at the bottom of the page. You can change your mind at any time from the \"Cookie preferences\" link in the footer."
+          "body": "The site stores your theme preference in the browser's local storage. If audience measurement is enabled, its cookies are only set after you consent through the banner shown at the bottom of the page. You can change your mind at any time from the “Cookie settings” link in the footer."
         },
         "contact": {
           "title": "Contact",
-          "body": "For any question about this data, contact {legalName} at {email} or by phone at {phone}."
+          "body": "For any question about this data, contact {legalName} at {email} or by phone on {phone}."
         }
       }
     }

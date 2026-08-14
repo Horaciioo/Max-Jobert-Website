@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { MOTION } from '@/declarations/ui/tokens'
 import { ConfigurationService } from '@/services/ConfigurationService'
 import type { Styleable } from '@/types/common'
 import { cn } from '@/utils/classnames'
@@ -27,6 +28,10 @@ export interface PictureProps extends Styleable {
   priority?: boolean
   // Image widths
   sizes?: string
+  // Cast shadow beneath the frame
+  shadow?: boolean
+  // Scroll-linked reveal as it enters view
+  reveal?: boolean
 }
 
 /**
@@ -42,12 +47,16 @@ export const Picture = ({
   stretch = false,
   priority = false,
   sizes = `(max-width: ${md}px) 100vw, 33vw`,
+  shadow = true,
+  reveal = true,
   className,
 }: PictureProps) => (
   <div
     className={cn(
       'relative w-full overflow-hidden bg-surface-strong',
       stretch ? 'h-full' : ASPECT_RATIOS[ratio],
+      shadow && 'shadow-image',
+      reveal && MOTION.revealPicture,
       className
     )}>
     <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />

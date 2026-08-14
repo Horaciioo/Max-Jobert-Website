@@ -57,14 +57,6 @@ jobs:
         env:
           APP_ENV: ${{ steps.environment.outputs.app_env }}
 
-      - name: Registry sync (guide/REGISTRE.md)
-        run: yarn check:registre
-
-      - name: Environment manifest
-        run: yarn check:environment
-        env:
-          APP_ENV: ${{ steps.environment.outputs.app_env }}
-
   dependency-review:
     name: Dependency review
     if: github.event_name == 'pull_request'

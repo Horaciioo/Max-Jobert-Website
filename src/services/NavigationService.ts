@@ -4,10 +4,13 @@ import { NamingService } from '@/services/NamingService'
 import { Service } from '@/structures/Service'
 import type {
   BreadcrumbEntry,
+  HeaderEntryDeclaration,
   NavigationEntry,
+  NavigationGroupDeclaration,
   PostalAddress,
   RouteDeclaration,
   RouteId,
+  RouteNavigationEntry,
 } from '@/types/navigation'
 
 // Translation function
@@ -19,9 +22,14 @@ const declarationOf = (id: RouteId): RouteDeclaration => ROUTES[id]
 const isActivePath = (pathname: string, path: string): boolean =>
   path === '/' ? pathname === '/' : pathname === path || pathname.startsWith(`${path}/`)
 
-// Single-line query text
+const isGroup = (entry: HeaderEntryDeclaration): entry is NavigationGroupDeclaration =>
+  typeof entry !== 'string'
+
+// Single-line query text, the place name leading when there is one
 const addressQueryOf = (address: PostalAddress): string =>
-  `${address.street}, ${address.postalCode} ${address.city}, ${address.country}`
+  [address.venue, `${address.street}, ${address.postalCode} ${address.city}, ${address.country}`]
+    .filter(Boolean)
+    .join(', ')
 
 class NavigationServiceClass extends Service {
   /**
@@ -78,13 +86,13 @@ class NavigationServiceClass extends Service {
    * @param {Object} context - Context
    * @param {string} context.pathname - Pathname
    * @param {Translate} context.translate - Translate
-   * @return {NavigationEntry[]} - Entries
+   * @return {RouteNavigationEntry[]} - Entries
    */
 
   buildEntries = (
     ids: readonly RouteId[],
     context: { pathname: string; translate: Translate }
-  ): NavigationEntry[] =>
+  ): RouteNavigationEntry[] =>
     ids.map((id) => ({
       id,
       href: declarationOf(id).path,
@@ -102,7 +110,21 @@ class NavigationServiceClass extends Service {
    */
 
   headerEntries = (context: { pathname: string; translate: Translate }): NavigationEntry[] =>
-    this.buildEntries(this.config.navigation.header as RouteId[], context)
+    (this.config.navigation.header as HeaderEntryDeclaration[]).flatMap<NavigationEntry>((slot) => {
+      if (!isGroup(slot)) return this.buildEntries([slot], context)
+
+      // A group carries no path of its own, it opens onto the routes it holds
+      const children = this.buildEntries(slot.routes, context)
+
+      return [
+        {
+          id: slot.id,
+          label: context.translate(NamingService.toTranslationKey('navigation', 'groups', slot.id)),
+          isActive: children.some((child) => child.isActive),
+          children,
+        },
+      ]
+    })
 
   /**
    * Footer columns
@@ -115,7 +137,7 @@ class NavigationServiceClass extends Service {
   footerColumns = (context: {
     pathname: string
     translate: Translate
-  }): { id: string; entries: NavigationEntry[] }[] =>
+  }): { id: string; entries: RouteNavigationEntry[] }[] =>
     Object.entries(this.config.navigation.footer).map(([id, ids]) => ({
       id,
       entries: this.buildEntries(ids as RouteId[], context),

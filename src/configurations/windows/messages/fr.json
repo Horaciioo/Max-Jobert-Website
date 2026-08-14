@@ -1,6 +1,7 @@
 {
   "actions": {
-    "contact": "Nous contacter",
+    "contact": "Me contacter",
+    "bookAppointment": "Bilan gratuit",
     "showcase": "Voir les composants",
     "subscribeNewsletter": "S'inscrire",
     "submit": "Envoyer",
@@ -22,23 +23,38 @@
   "routes": {
     "home": {
       "label": "Accueil",
-      "metaTitle": "Accueil",
-      "metaDescription": "Une base de site prête à l'emploi, pensée pour être reprise projet après projet."
+      "metaTitle": "Max Jobert • Website",
+      "metaDescription": "Coach sportif diplômé. Bilan gratuit, programme d'entraînement personnalisé et suivi régulier, en salle comme à distance."
     },
-    "showcase": {
-      "label": "Composants",
-      "metaTitle": "Composants",
-      "metaDescription": "L'atlas visuel du design system : couleurs, typographies, icônes et composants."
+    "story": {
+      "label": "Mon histoire",
+      "metaTitle": "Mon histoire",
+      "metaDescription": "Dix ans de sport, trois diplômes et un métier choisi."
+    },
+    "programs": {
+      "label": "Prestations",
+      "metaTitle": "Prestations",
+      "metaDescription": "Suivi en ligne, suivi physique ou bien les deux. Séance en salle, suivi nutritionnel, suivi athlétique : ce que couvre chaque prestation et ce qui fait varier le tarif."
+    },
+    "method": {
+      "label": "Méthode",
+      "metaTitle": "Ma méthode",
+      "metaDescription": "Comment un programme se construit, se mesure et s'ajuste, étape par étape."
+    },
+    "bookAppointment": {
+      "label": "Bilan gratuit",
+      "metaTitle": "Réserver le bilan gratuit",
+      "metaDescription": "Une heure pour faire un point sur toi, tes objectifs et comment les atteindre ! C'est sans engagement."
     },
     "contact": {
       "label": "Contact",
       "metaTitle": "Contact",
-      "metaDescription": "Écrivez-nous, nous répondons sous vingt-quatre heures ouvrées."
+      "metaDescription": "Une question sur les formats, les tarifs ou le déroulé des séances. Je répondrai le plus vite que possible."
     },
     "thankYou": {
       "label": "Merci",
       "metaTitle": "Merci",
-      "metaDescription": "Votre message est bien arrivé, nous revenons vers vous très vite."
+      "metaDescription": "Ton message est bien arrivé. Je reviens vers toi très vite."
     },
     "legalNotice": {
       "label": "Mentions légales",
@@ -49,13 +65,24 @@
       "label": "Confidentialité",
       "metaTitle": "Politique de confidentialité",
       "metaDescription": "Données collectées, finalités, durées de conservation et droits des visiteurs."
+    },
+    "showcase": {
+      "label": "Composants",
+      "metaTitle": "Composants",
+      "metaDescription": "L'atlas visuel du design system : couleurs, typographies, icônes et composants."
+    },
+    "faq": {
+      "label": "FAQ",
+      "metaTitle": "Questions fréquentes",
+      "metaDescription": "Le bilan, le niveau requis, le lieu, le rythme, l'alimentation et l'annulation. Les réponses aux questions qui reviennent le plus souvent."
     }
   },
   "navigation": {
     "primary": "Navigation principale",
     "language": "Changer de langue",
     "breadcrumb": "Fil d'Ariane",
-    "tagline": "Une base de site générique, prête à devenir votre prochain projet.",
+    "socials": "Réseaux sociaux",
+    "tagline": "Coach sportif diplômé, je suis la pour t'écouter afin de mettre en place l'accompagnement qui TE correspond, à tes objectifs, tes envies !",
     "copyright": "© {years} {name}. Tous droits réservés.",
     "theme": {
       "light": "Thème clair",
@@ -65,234 +92,505 @@
     "footer": {
       "site": "Le site",
       "legal": "Informations légales",
-      "contact": "Contact"
+      "contact": "Me joindre"
+    },
+    "groups": {
+      "infos": "Infos"
     }
   },
   "sections": {
     "hero": {
-      "overline": "Base de projet",
-      "title": "Le socle générique de vos prochains sites",
-      "description": "Composants, services, thème et internationalisation sont déjà en place. Il ne reste qu'à écrire le contenu.",
-      "imageAlt": "Aperçu du design system"
-    },
-    "features": {
-      "overline": "Ce qui est déjà là",
-      "title": "Des systèmes, pas des copies",
-      "description": "Chaque brique est déclarée une seule fois puis réutilisée partout dans le projet.",
+      "title": "Le changement, c'est maintenant !",
+      "description": "Situé au <venue>Basic-Fit d'Hœnheim</venue>, j'aide ceux qui veulent transformer leur vie : ",
+      "secondaryAction": "Mon parcours",
+      "imageAlt": "Athlète à l'entraînement dans une salle sombre",
+      "position": "{position} sur {total}",
       "items": {
-        "quality": {
-          "title": "Design system unifié",
-          "description": "Couleurs, ombres et rayons viennent d'un seul fichier de thème lu par Tailwind."
+        "still": "Séance de force en salle"
+      },
+      "claims": {
+        "program": "construction d'un programme personnalisé",
+        "attention": "accompagnement attentif et pointilleux",
+        "schedule": "adaptation selon l'emploi du temps",
+        "nutrition": "suivi nutritionnel",
+        "remote": "suivi à distance",
+        "session": "séance à la salle"
+      }
+    },
+    "development": {
+      "title": "Page en développement",
+      "description": "Cette page est en cours d'écriture. Nous serons bientôt prêts à sublimer vos yeux, promis !."
+    },
+    "credentials": {
+      "title": "Trois formations, une seule méthode",
+      "description": "Afin de mieux accompagner, j'effectue aujourd'hui encore des formations spécifiques. Toutes réalisées pour croître sans limite mes connaissances.",
+      "items": {
+        "fitness": {
+          "title": "BPJEPS Activités de la Forme",
+          "issuer": "Haltérophilie · Musculation · Cours collectifs",
+          "description": "Construire une séance sûre, la corriger en direct et l'adapter à la personne qui l'a en face."
         },
-        "speed": {
-          "title": "Mise en route immédiate",
-          "description": "Routes, métadonnées, sitemap et robots se génèrent depuis le registre de routes."
+        "science": {
+          "title": "Licence STAPS Entraînement",
+          "issuer": "Physiologie · Biomécanique · Planification",
+          "description": "Comprendre pourquoi une charge fonctionne, et surtout à quel moment elle cesse de fonctionner."
         },
-        "support": {
-          "title": "Multilingue natif",
-          "description": "Deux langues livrées, aucune phrase écrite en dur dans un composant."
-        },
-        "security": {
-          "title": "Validation partagée",
-          "description": "Les mêmes règles valident le formulaire côté visiteur et côté serveur."
-        },
-        "flexibility": {
-          "title": "Sections réutilisables",
-          "description": "Neuf sections génériques se composent librement pour former une page."
-        },
-        "transparency": {
-          "title": "Conventions écrites",
-          "description": "Nommage, structure et registres sont documentés dans le dossier structure."
+        "strength": {
+          "title": "Mastère Préparation physique",
+          "issuer": "Certification spécialisée",
+          "description": "Un socle obligatoire, pour un suivi qualitatif."
         }
       }
     },
     "stats": {
-      "title": "Le socle en chiffres",
-      "description": "Les valeurs ci-dessous ne sont que des exemples de formatage.",
+      "title": "Ce que ça donne en chiffres",
       "items": {
-        "clients": { "label": "Composants livrés" },
-        "projects": { "label": "Fichiers déclaratifs" },
-        "satisfaction": { "label": "Couverture des textes" },
-        "experience": { "label": "Services centraux" }
-      }
-    },
-    "gallery": {
-      "overline": "Galerie",
-      "title": "Un rendu média cohérent",
-      "items": {
-        "item1": "Visuel de démonstration numéro un",
-        "item2": "Visuel de démonstration numéro deux",
-        "item3": "Visuel de démonstration numéro trois",
-        "item4": "Visuel de démonstration numéro quatre",
-        "item5": "Visuel de démonstration numéro cinq",
-        "item6": "Visuel de démonstration numéro six"
-      }
-    },
-    "pricing": {
-      "overline": "Offres",
-      "title": "Trois formules d'exemple",
-      "description": "Les montants sont stockés en centimes et mis en forme par le service de formatage.",
-      "featured": "Recommandé",
-      "periods": {
-        "once": "une fois",
-        "month": "par mois",
-        "year": "par an"
-      },
-      "included": {
-        "scope": "Cadrage et arborescence",
-        "revisions": "Deux séries de retours",
-        "delivery": "Mise en ligne accompagnée",
-        "support": "Trois mois de suivi",
-        "training": "Formation à la prise en main"
-      },
-      "items": {
-        "starter": {
-          "name": "Essentiel",
-          "description": "Une page, les sections principales et la mise en ligne."
+        "athletes": {
+          "label": "Athlètes accompagnés",
+          "note": "Amateurs et compétiteurs"
         },
-        "standard": {
-          "name": "Complet",
-          "description": "Plusieurs pages, formulaire de contact et suivi après livraison."
+        "sessions": {
+          "label": "Séances menées",
+          "note": "En salle, pendant 1 bonne heure."
         },
-        "premium": {
-          "name": "Sur mesure",
-          "description": "Design dédié, contenus rédigés et formation de l'équipe."
+        "retention": {
+          "label": "Poursuivent après le premier cycle",
+          "note": "Sur les douze derniers mois"
+        },
+        "seasons": {
+          "label": "Années de pratique",
+          "note": "Sans interruption"
         }
       }
     },
-    "booking": {
-      "title": "Prendre rendez-vous",
-      "description": "Le calendrier n'affiche que les créneaux encore libres. Une fois validé, le rendez-vous est confirmé.",
-      "pickDate": "Choisissez d'abord une date dans le calendrier.",
-      "noSlot": "Plus aucun créneau libre ce jour-là. Essayez un autre jour.",
-      "contactPrompt": "Une question ? Contactez-nous",
-      "success": {
-        "title": "Rendez-vous confirmé",
-        "description": "Rendez-vous le {date} à {slot}. Vous recevrez une confirmation par e-mail."
+    "features": {
+      "title": "Six règles qui ne bougent pas",
+      "description": "Elles ne dépendent ni de votre niveau, ni de votre objectif. Elles décident de tout le reste.",
+      "items": {
+        "assessment": {
+          "title": "On mesure avant de programmer",
+          "description": "Aucun plan ne part d'une intuition. Le premier rendez-vous sert à poser un point de départ chiffré."
+        },
+        "individual": {
+          "title": "Un plan par athlète",
+          "description": "Deux personnes avec le même objectif ne suivent pas le même programme. Leur histoire n'est pas la même."
+        },
+        "load": {
+          "title": "La charge se pilote",
+          "description": "On monte quand les indicateurs le permettent, on lève le pied quand ils ne le permettent plus."
+        },
+        "progression": {
+          "title": "Le progrès se prouve",
+          "description": "Mêmes tests, mêmes conditions, toutes les six semaines. Les chiffres tranchent, pas les impressions."
+        },
+        "longevity": {
+          "title": "Durer avant de briller",
+          "description": "Une blessure coûte plus de temps que n'importe quel cycle de force n'en fait gagner."
+        },
+        "technique": {
+          "title": "La technique avant la charge",
+          "description": "Ajouter du poids sur un geste mal placé ne fait qu'aggraver le problème. On corrige, puis on charge."
+        }
+      }
+    },
+    "programs": {
+      "title": "Trois façons de travailler ensemble",
+      "description": "Toutes commencent par le même bilan gratuit. Le format se choisit après, une fois qu'on sait où vous en êtes.",
+      "featured": "Le plus demandé",
+      "included": {
+        "assessment": "Bilan initial complet",
+        "plan": "Plan d'entraînement personnalisé",
+        "sessions": "Séances encadrées en présentiel",
+        "adjustments": "Ajustements toutes les trois semaines",
+        "testing": "Tests de force et de condition",
+        "report": "Bilan écrit à la fin de chaque cycle",
+        "checkin": "Point hebdomadaire en visio"
       },
-      "failure": "La réservation a échoué, le créneau vient peut-être d'être pris. Réessayez.",
-      "disabled": "La prise de rendez-vous en ligne n'est pas activée pour le moment, contactez-nous directement."
+      "items": {
+        "individual": {
+          "name": "Coaching individuel",
+          "description": "En salle ou en extérieur, avec moi à côté de vous. Le format le plus rapide pour corriger un geste et tenir le rythme."
+        },
+        "performance": {
+          "name": "Préparation physique",
+          "description": "Force, explosivité et endurance planifiées sur un cycle complet. Pour ceux qui ont un objectif daté."
+        },
+        "remote": {
+          "name": "Suivi à distance",
+          "description": "Votre plan, vos retours, mes corrections chaque semaine. Pour ceux qui s'entraînent déjà seuls mais sans cap."
+        }
+      }
+    },
+    "milestones": {
+      "title": "Comment j'en suis arrivé là",
+      "description": "Rien de spectaculaire, juste une suite de décisions qui allaient toutes dans la même direction.",
+      "items": {
+        "sport": {
+          "title": "Le sport avant tout",
+          "description": "Dix ans de compétition en club. J'y apprends ce qu'un corps encaisse sur une saison, et à quel moment il lâche.",
+          "imageAlt": "Séance de conditionnement physique en salle"
+        },
+        "fitness": {
+          "title": "Le premier diplôme",
+          "description": "BPJEPS Activités de la Forme — haltérophilie, musculation, cours collectifs. J'arrête de conseiller à l'instinct : je sais construire une séance sûre, la corriger en direct et l'adapter à la personne que j'ai en face.",
+          "imageAlt": "Correction du mouvement pendant une séance"
+        },
+        "science": {
+          "title": "La théorie derrière",
+          "description": "Licence STAPS Entraînement — physiologie, biomécanique, planification. Je comprends enfin pourquoi une charge fonctionne, et surtout à quel moment elle cesse de fonctionner.",
+          "imageAlt": "Max Jobert dans sa salle d'entraînement"
+        },
+        "analysis": {
+          "title": "Une passion en parallèle",
+          "description": "Je me mets à analyser des matchs de foot pour le plaisir, caméra et carnet de notes. Un passe-temps qui m'a appris à regarder un mouvement en détail.",
+          "imageAlt": "Athlète à l'entraînement dans une salle sombre"
+        },
+        "strength": {
+          "title": "La spécialisation",
+          "description": "Certification en préparation physique. Développer la force et l'explosivité sans casser la mécanique : force, vitesse et endurance cessent d'être trois sujets séparés.",
+          "imageAlt": "Soulevé de terre lors d'une séance de force"
+        },
+        "studio": {
+          "title": "Coach à plein temps",
+          "description": "L'activité devient mon métier principal, au Basic-Fit d'Hœnheim. Débutants, sportifs confirmés, retours de blessure : la méthode s'applique à tous.",
+          "imageAlt": "La salle Basic-Fit d'Hœnheim"
+        }
+      }
+    },
+    "protocol": {
+      "title": "Ce qui se passe pendant l'heure",
+      "description": "Un rendez-vous, aucun engagement. À la fin, vous repartez avec un point de départ écrit, que l'on travaille ensemble ou non.",
+      "items": {
+        "intake": {
+          "title": "On parle",
+          "description": "Votre sport, votre historique de blessures, le temps dont vous disposez réellement. Vingt minutes."
+        },
+        "measure": {
+          "title": "On mesure",
+          "description": "Composition, mobilité, force sur trois mouvements de base. Les chiffres du jour zéro."
+        },
+        "movement": {
+          "title": "On teste",
+          "description": "Trois mouvements de base, observés et corrigés. C'est là qu'on voit ce qui bloque vraiment."
+        },
+        "plan": {
+          "title": "On trace",
+          "description": "Les trois priorités des huit prochaines semaines, écrites noir sur blanc. La suite vous appartient."
+        }
+      },
+      "imageAlt": "Max Jobert dans sa salle d'entraînement"
+    },
+    "gallery": {
+      "title": "Le travail, sans filtre",
+      "items": {
+        "strength": "Séance de force en salle",
+        "conditioning": "Travail de conditionnement physique",
+        "coaching": "Correction du mouvement pendant une séance",
+        "portrait": "Max Jobert en salle",
+        "floor": "Plateau d'entraînement",
+        "hero": "Athlète à l'entraînement"
+      }
     },
     "comparisons": {
       "title": "Avant / après",
-      "description": "Un exemple de résultat, présenté par paire. Remplacez les visuels par les vôtres quand ils sont prêts.",
+      "description": "Deux mouvements, filmés au premier bilan puis huit semaines plus tard.",
       "before": "Avant",
       "after": "Après",
       "position": "{position} sur {total}",
       "items": {
-        "first": {
-          "title": "Premier exemple",
-          "description": "Décrivez ici le point de départ et le résultat obtenu.",
-          "beforeAlt": "Visuel de démonstration, avant",
-          "afterAlt": "Visuel de démonstration, après"
+        "posture": {
+          "title": "Position de départ",
+          "description": "Buste effondré au premier bilan, gainage tenu huit semaines plus tard.",
+          "beforeAlt": "Position avant correction",
+          "afterAlt": "Position après correction"
         },
-        "second": {
-          "title": "Second exemple",
-          "description": "Un deuxième cas, pour montrer que le résultat se répète.",
-          "beforeAlt": "Visuel de démonstration, avant",
-          "afterAlt": "Visuel de démonstration, après"
+        "endurance": {
+          "title": "Fin de séance",
+          "description": "Même circuit, même charge : la différence se voit sur les dernières répétitions.",
+          "beforeAlt": "Fin de séance au premier cycle",
+          "afterAlt": "Fin de séance au troisième cycle"
         }
       }
     },
+    "booking": {
+      "title": "Réserver le bilan",
+      "description": "Le calendrier n'affiche que les créneaux encore libres. Une fois validé, le rendez-vous est confirmé par e-mail.",
+      "pickDate": "Choisissez d'abord une date dans le calendrier.",
+      "noSlot": "Plus aucun créneau libre ce jour-là. Essayez un autre jour.",
+      "contactPrompt": "Aucun créneau ne convient ? Écrivez-moi",
+      "success": {
+        "title": "Rendez-vous confirmé",
+        "description": "Rendez-vous le {date} à {slot}. Vous recevez la confirmation par e-mail."
+      },
+      "failure": "La réservation n'a pas abouti, le créneau vient peut-être d'être pris. Réessayez.",
+      "disabled": "La réservation en ligne est fermée pour le moment, contactez-moi directement."
+    },
     "testimonials": {
-      "overline": "Retours",
-      "title": "Ce qu'en disent les équipes",
+      "title": "Ce qu'en disent les athlètes",
       "items": {
-        "first": {
-          "quote": "Le projet démarre déjà structuré, on écrit du contenu au lieu de recâbler une base.",
-          "author": "Camille Rivière",
-          "role": "Direction artistique"
+        "beginner": {
+          "quote": "Je n'avais pas mis les pieds dans une salle depuis dix ans. Ce qui m'a convaincu, c'est qu'il m'a montré mes chiffres du premier jour avant de me proposer quoi que ce soit.",
+          "author": "Sarah L.",
+          "role": "Reprise du sport"
         },
-        "second": {
-          "quote": "Changer le thème revient à modifier un fichier, tout le site suit sans exception.",
-          "author": "Noah Berthier",
-          "role": "Développement front"
+        "competitor": {
+          "quote": "Je stagnais depuis deux ans sur mes charges. Trois cycles plus tard, mes tests sont passés au-dessus de tout ce que j'avais fait avant.",
+          "author": "Théo M.",
+          "role": "Force athlétique"
         },
-        "third": {
-          "quote": "Les conventions écrites évitent les débats de nommage à chaque nouveau projet.",
-          "author": "Inès Fontaine",
-          "role": "Gestion de projet"
+        "returning": {
+          "quote": "Retour après une rupture des ligaments croisés. Max a été le seul à me freiner quand je voulais aller trop vite. Je rejoue depuis janvier.",
+          "author": "Karim B.",
+          "role": "Retour de blessure"
         }
       }
     },
     "faq": {
-      "overline": "Questions",
-      "title": "Les points souvent demandés",
+      "title": "Ce qu'on me demande le plus",
       "items": {
-        "delay": {
-          "question": "Que faut-il modifier pour démarrer un projet ?",
-          "answer": "Les fichiers du dossier configurations, les traductions et les visuels du dossier public. Le reste du code est prévu pour rester tel quel."
+        "assessment": {
+          "question": "Le bilan est vraiment gratuit ?",
+          "answer": "Oui. Une heure, sans engagement et sans carte bancaire. Vous repartez avec vos mesures et vos trois priorités, même si on ne travaille pas ensemble ensuite."
         },
-        "price": {
-          "question": "Comment ajouter une page ?",
-          "answer": "Une entrée dans le registre de routes, un dossier correspondant sous app et un bloc de traductions. La navigation, le sitemap et les métadonnées suivent seuls."
+        "level": {
+          "question": "Il faut déjà être sportif ?",
+          "answer": "Non. J'accompagne aussi bien des compétiteurs que des personnes qui n'ont pas fait de sport depuis dix ans. Le plan part de là où vous êtes, pas d'un niveau supposé."
         },
-        "process": {
-          "question": "Comment ajouter un formulaire ?",
-          "answer": "Une déclaration dans le registre de formulaires et un bloc de traductions. Le rendu, la validation et l'envoi passent par les briques existantes."
+        "place": {
+          "question": "Où se passent les séances ?",
+          "answer": "En salle ou en extérieur selon le contenu du jour. Le lieu se fixe au bilan, en fonction de ce dont vous disposez."
         },
-        "support": {
-          "question": "Comment changer la charte graphique ?",
-          "answer": "La palette, les rayons et les ombres vivent dans le fichier de thème. Tailwind lit ce même fichier, aucune couleur n'est écrite dans un composant."
+        "rhythm": {
+          "question": "À quelle fréquence faut-il s'entraîner ?",
+          "answer": "Deux à quatre séances par semaine selon le format. On part du temps dont vous disposez vraiment, pas de celui que vous aimeriez avoir."
+        },
+        "nutrition": {
+          "question": "Est-ce que vous suivez aussi l'alimentation ?",
+          "answer": "Je donne des repères simples et cohérents avec votre plan. Pour un vrai suivi diététique, je vous oriente vers un professionnel dont c'est le métier."
         },
         "cancel": {
-          "question": "Comment ajouter une langue ?",
-          "answer": "Ajouter le code de langue dans la localisation et créer le fichier de messages correspondant. Le routage et le sélecteur s'adaptent automatiquement."
+          "question": "Je peux arrêter en cours de route ?",
+          "answer": "Oui. Les séances s'annulent jusqu'à vingt-quatre heures avant, et aucun format ne vous engage au-delà du cycle en cours."
         }
       }
     },
     "callToAction": {
-      "title": "Prêt à démarrer un nouveau projet ?",
-      "description": "Clonez le dépôt, changez les configurations et écrivez votre contenu."
+      "title": "Le premier rendez-vous ne coûte rien",
+      "description": "Une heure pour savoir où vous en êtes, et repartir avec trois priorités écrites.",
+      "imageAlt": "Salle d'entraînement en fin de séance"
     },
     "contact": {
-      "overline": "Écrivez-nous",
-      "title": "Parlons de votre projet",
-      "description": "Décrivez votre besoin en quelques lignes, nous revenons vers vous rapidement.",
+      "title": "Une question avant de réserver ?",
+      "description": "Décrivez votre situation en quelques lignes. Je réponds sous vingt-quatre heures ouvrées.",
       "channels": {
         "email": "Adresse e-mail",
-        "phone": "Téléphone",
-        "address": "Adresse"
-      },
-      "promises": {
-        "response": { "label": "Réponse sous 24h ouvrées" },
-        "delivery": { "label": "Livraison sous 5 jours" }
+        "phone": "Téléphone"
       },
       "map": {
         "title": "Carte de localisation"
+      },
+      "venue": {
+        "imageAlt": "La salle Basic-Fit d'Hœnheim, où se déroulent les séances"
       }
+    },
+    "outcomes": {
+      "title": "Ce que vous venez chercher",
+      "description": "Trois raisons reviennent presque toujours. Le plan change, la manière de le construire non.",
+      "items": {
+        "strength": {
+          "title": "Devenir plus fort",
+          "description": "Prendre de la masse et de la force sans y laisser vos articulations. On progresse par cycles, on mesure, on ajuste.",
+          "imageAlt": "Soulevé de terre lors d’une séance de force"
+        },
+        "conditioning": {
+          "title": "Tenir la distance",
+          "description": "Retrouver du souffle et de l'énergie au quotidien. Le cardio se dose comme la force, pas à l'épuisement.",
+          "imageAlt": "Séance de conditionnement physique en salle"
+        },
+        "technique": {
+          "title": "Bouger correctement",
+          "description": "Corriger les gestes qui vous font mal ou vous freinent. C'est souvent ce qui débloque tout le reste.",
+          "imageAlt": "Coach corrigeant le mouvement d’un client"
+        }
+      }
+    },
+    "rates": {
+      "title": "Le tarif s'adapte en fonction",
+      "description": "Il n'y a pas un prix unique, parce qu'il n'y a pas un accompagnement unique. Six éléments font bouger le montant, et ils se fixent ensemble au bilan.",
+      "items": {
+        "rhythm": {
+          "title": "Le rythme",
+          "description": "Une séance par semaine ou quatre, ce n'est ni le même travail de préparation, ni le même montant."
+        },
+        "format": {
+          "title": "Le format",
+          "description": "Encadré en salle, préparation physique planifiée ou suivi à distance : chaque format a son coût de fonctionnement."
+        },
+        "duration": {
+          "title": "La durée",
+          "description": "Un cycle de huit semaines et un accompagnement à l'année ne se facturent pas de la même façon."
+        },
+        "goal": {
+          "title": "L'objectif",
+          "description": "Une remise en forme demande moins de tests et de planification qu'une préparation avec une date en face."
+        },
+        "follow": {
+          "title": "Le suivi",
+          "description": "Corrections hebdomadaires, suivi nutritionnel, réponses entre les séances : ce qui se passe hors séance compte aussi."
+        },
+        "place": {
+          "title": "Le lieu",
+          "description": "En salle ou en extérieur, selon ce dont vous disposez et ce que la séance du jour demande."
+        }
+      }
+    },
+    "method": {
+      "title": "Ma méthode de travail",
+      "description": "3 types d'accompagnement, pour 3 envies & objectifs différents.",
+      "items": {
+        "roadmap": {
+          "title": "La roadmap",
+          "description": "Le cap de plusieurs mois : Ton objectif sera notre roadmap.",
+          "blocks": {
+            "profile": "Ton bilan",
+            "goals": "Objectifs",
+            "roadmap": "Roadmap"
+          },
+          "columns": {
+            "firstName": "Prénom",
+            "startedOn": "Démarrage",
+            "age": "Âge",
+            "goal": "Objectif",
+            "date": "Date",
+            "weight": "Poids",
+            "phase": "Phase",
+            "training": "Training",
+            "nutrition": "Nutrition"
+          }
+        },
+        "training": {
+          "title": "Le plan d'entraînement",
+          "description": "Chaque séance écrite à l'avance, le volume par muscle, et tes corrections d'une semaine sur l'autre.",
+          "blocks": {
+            "volume": "Volume par semaine",
+            "session": "Séance",
+            "correction": "Correction"
+          },
+          "columns": {
+            "muscle": "Muscle",
+            "direct": "Direct",
+            "indirect": "Indirect",
+            "total": "Total",
+            "order": "Ordre",
+            "exercise": "Exercice",
+            "sets": "Série",
+            "reps": "Reps",
+            "rest": "Repos",
+            "load": "Poids",
+            "note": "Remarque"
+          }
+        },
+        "nutrition": {
+          "title": "Le suivi nutritionnel",
+          "description": "Apports, sommeil, stress et mensurations relevés chaque semaine.",
+          "blocks": {
+            "intake": "Alimentation",
+            "biofeedback": "Biofeedback",
+            "measures": "Mensurations"
+          },
+          "columns": {
+            "day": "Jour",
+            "protein": "Protéines",
+            "carbs": "Glucides",
+            "fat": "Lipides",
+            "calories": "Calories",
+            "stress": "Stress",
+            "sleep": "Sommeil",
+            "digestion": "Digestion",
+            "hunger": "Faim",
+            "weight": "Poids",
+            "waist": "Taille",
+            "hip": "Hanche",
+            "arm": "Bras"
+          }
+        }
+      }
+    },
+    "modes": {
+      "title": "Trois types de suivi",
+      "description": "On choisit ensemble celui qui te convient dans ta semaine. A savoir que rien n'est figé, si tes besoins changent, l'accompagnement change.",
+      "items": {
+        "online": {
+          "title": "Suivi en ligne",
+          "description": "Je t'accompagne à distance, on suit tes objectifs et on avise chaque semaine.",
+          "imageAlt": "Séance suivie à distance depuis la salle"
+        },
+        "onsite": {
+          "title": "Suivi physique",
+          "description": "On effectue la séance de ton choix, ou celle que je te recommande.",
+          "imageAlt": "Séance de force encadrée en salle"
+        },
+        "hybrid": {
+          "title": "Les deux",
+          "description": "On mêle le physique, du distanciel selon tes besoins.",
+          "imageAlt": "Travail de conditionnement physique en salle"
+        }
+      }
+    },
+    "services": {
+      "title": "Les prestations",
+      "description": "Trois prestations, à prendre seules ou à combiner selon le type de suivi de ton choix.",
+      "items": {
+        "session": {
+          "title": "Séance en salle",
+          "description": "Pendant 1 heure, nous effectuons la séance de ton choix, ou celle que je te recommande. Tu bénéficieras alors de conseils adaptés à ta morphologie, tes objectifs, ou tes envies.",
+          "imageAlt": "Correction du mouvement pendant une séance en salle"
+        },
+        "nutrition": {
+          "title": "Suivi nutritionnel",
+          "description": "Que tu sois en perte de poids, en prise de masse, ou simplement en découverte d'une alimentation plus saine, je te proposerai ce que je considère être le mieux pour toi.",
+          "imageAlt": "Max Jobert dans sa salle d'entraînement"
+        },
+        "athletic": {
+          "title": "Suivi athlétique",
+          "description": "Une compétition en vue ? Un métier sportif physique ? Dans ce cas, adaptons tes objectifs, sans les rendre indigestes !",
+          "imageAlt": "Athlète à l'entraînement dans une salle sombre"
+        }
+      },
+      "discuss": "On en discute ensemble ?"
     }
   },
   "forms": {
     "contact": {
-      "success": "Message envoyé, nous revenons vers vous très vite.",
+      "success": "Message envoyé avec **succès**. Je reviens vers toi très vite.",
       "fields": {
         "fullName": {
           "label": "Nom complet",
-          "placeholder": "Camille Rivière"
+          "placeholder": "John Doe"
         },
         "email": {
           "label": "Adresse e-mail",
-          "placeholder": "camille@exemple.fr"
+          "placeholder": "john.doe@exemple.fr"
         },
         "phone": {
           "label": "Téléphone",
           "placeholder": "+33 6 00 00 00 00",
-          "hint": "Facultatif, seulement si vous préférez un appel."
+          "hint": "Facultatif, seulement si tu préfères un appel."
         },
         "subject": {
           "label": "Sujet",
-          "placeholder": "Choisissez un sujet",
+          "placeholder": "Choisis un sujet",
           "options": {
-            "information": "Demande d'information",
-            "quote": "Demande de devis",
-            "partnership": "Partenariat",
+            "assessment": "Bilan gratuit",
+            "individual": "Coaching individuel",
+            "performance": "Préparation physique",
+            "remote": "Suivi à distance",
             "other": "Autre sujet"
           }
         },
         "message": {
           "label": "Message",
-          "placeholder": "Décrivez votre projet en quelques lignes.",
+          "placeholder": "Factulatif, ça peut concerner : ton objectif, ton niveau actuel, le temps dont tu disposes. Plus j'en sais, plus je serai efficace dans mes propositions.",
           "hint": "Vingt caractères minimum."
         },
         "consent": {
@@ -302,11 +600,11 @@
       }
     },
     "newsletter": {
-      "success": "Inscription enregistrée, merci.",
+      "success": "Inscription enregistrée, merci !",
       "fields": {
         "email": {
           "label": "Adresse e-mail",
-          "placeholder": "camille@exemple.fr"
+          "placeholder": "john.doe@exemple.fr"
         }
       }
     },
@@ -314,19 +612,29 @@
       "fields": {
         "fullName": {
           "label": "Nom complet",
-          "placeholder": "Camille Rivière"
+          "placeholder": "John Doe"
         },
         "email": {
           "label": "Adresse e-mail",
-          "placeholder": "camille@exemple.fr"
+          "placeholder": "john.doe@exemple.fr"
         },
         "phone": {
           "label": "Téléphone",
           "placeholder": "+33 6 00 00 00 00"
         },
+        "goal": {
+          "label": "Objectif principal",
+          "placeholder": "Choisis un objectif",
+          "options": {
+            "performance": "Performance sportive",
+            "shape": "Remise en forme",
+            "recovery": "Retour après blessure",
+            "undecided": "Je ne sais pas encore"
+          }
+        },
         "note": {
           "label": "Message",
-          "placeholder": "Une précision à ajouter ?",
+          "placeholder": "Une blessure, une contrainte d'horaire, une précision ?",
           "hint": "Facultatif."
         }
       }
@@ -334,7 +642,7 @@
   },
   "validation": {
     "required": "Ce champ est obligatoire.",
-    "minLength": "Au moins {count} caractères sont attendus.",
+    "minLength": "Au moins {count} caractères sont requis !",
     "maxLength": "Ce champ ne peut pas dépasser {count} caractères.",
     "min": "La valeur minimale est {count}.",
     "max": "La valeur maximale est {count}.",
@@ -349,12 +657,12 @@
     "notFoundHint": "Le lien est peut-être ancien ou mal recopié.",
     "conflict": "Cette action entre en conflit avec un état existant.",
     "unprocessable": "Certaines informations sont incomplètes.",
-    "tooManyRequests": "Trop de demandes envoyées, réessayez dans un instant.",
+    "tooManyRequests": "Trop de demandes envoyées, réessaie dans un instant.",
     "serverError": "Le serveur a rencontré un problème.",
     "network": "La connexion au serveur a échoué.",
     "timeout": "Le serveur a mis trop de temps à répondre.",
     "unknown": "Une erreur inattendue s'est produite.",
-    "retryHint": "Relancez l'affichage, l'incident est peut-être passager."
+    "retryHint": "Relance l'affichage, l'incident est peut-être passager."
   },
   "feedback": {
     "loading": "Chargement en cours",
@@ -362,12 +670,12 @@
     "pagination": "Page {page} sur {totalPages}, {total} résultats",
     "empty": {
       "title": "Aucun résultat",
-      "description": "Élargissez la recherche ou retirez un filtre pour voir davantage d'éléments."
+      "description": "Élargis la recherche ou retire un filtre pour voir davantage d'éléments."
     }
   },
   "consent": {
-    "title": "Nous respectons votre vie privée",
-    "description": "Ce site utilise des cookies de mesure d'audience pour comprendre sa fréquentation. Choisissez ce que vous acceptez, et changez d'avis à tout moment.",
+    "title": "Tes données restent les tiennes",
+    "description": "Ce site utilise des cookies de mesure d'audience pour comprendre sa fréquentation. Choisis ce que vous acceptes de partager. Tu peux changer d'avis à tout moment.",
     "privacyLink": "Lire la politique de confidentialité",
     "required": "Toujours actif",
     "actions": {
@@ -396,7 +704,8 @@
     },
     "descriptions": {
       "buttons": "Les variantes viennent du registre, en ajouter une la fait apparaître ici sans modifier cette page.",
-      "forms": "Ce formulaire est rendu depuis sa seule déclaration, aucun champ n'est écrit en markup."
+      "forms": "Ce formulaire est rendu depuis sa seule déclaration, aucun champ n'est écrit en markup.",
+      "device": "Le tableur est rendu depuis sa seule déclaration : en-têtes traduits, valeurs remplacées par des squelettes."
     },
     "blocks": {
       "palette": "Palette et tokens",
@@ -414,7 +723,11 @@
       "navigation": "Navigation",
       "collections": "Collections",
       "placeholders": "États d'attente",
-      "forms": "Formulaires"
+      "forms": "Formulaires",
+      "motion": "Animations",
+      "socials": "Bandeau réseaux",
+      "development": "Page en développement",
+      "device": "Écran de téléphone"
     }
   },
   "legal": {
@@ -422,7 +735,7 @@
       "sections": {
         "publisher": {
           "title": "Éditeur du site",
-          "body": "Le site est édité par {legalName}, immatriculée sous le numéro {registration}, dont le siège est situé {address}. Le directeur de la publication est {publisherName}, joignable à l'adresse {publisherEmail}."
+          "body": "Le site est édité par {legalName}, immatriculé sous le numéro {registration}, dont le siège est situé {address}. Le directeur de la publication est {publisherName}, joignable à l'adresse {publisherEmail}."
         },
         "hosting": {
           "title": "Hébergement",
@@ -430,11 +743,11 @@
         },
         "property": {
           "title": "Propriété intellectuelle",
-          "body": "L'ensemble des contenus présents sur le site, textes, visuels et code, reste la propriété de {legalName}, sauf mention contraire. Toute reproduction sans autorisation écrite est interdite."
+          "body": "L'ensemble des contenus présents sur le site, textes, visuels, séquences vidéo et code, reste la propriété de {legalName}, sauf mention contraire. Toute reproduction sans autorisation écrite est interdite et peut être passive de poursuite judiciaire."
         },
         "liability": {
           "title": "Responsabilité",
-          "body": "Les informations publiées sont fournies à titre indicatif et peuvent évoluer. Pour toute question, écrivez à {email}."
+          "body": "Les informations publiées sont fournies à titre indicatif et ne remplaceront **jamais** un avis médical. Pour toute question, écris à {email}."
         }
       }
     },
@@ -442,11 +755,11 @@
       "sections": {
         "collection": {
           "title": "Données collectées",
-          "body": "Seules les informations transmises volontairement par le formulaire de contact sont collectées : nom, adresse e-mail, téléphone facultatif et message."
+          "body": "Seules les informations transmises volontairement par le formulaire de contact ou de prise de rendez-vous sont collectées : nom, adresse e-mail, téléphone, objectif et message."
         },
         "purpose": {
           "title": "Finalité du traitement",
-          "body": "Ces informations servent uniquement à répondre à la demande envoyée à {legalName}. Elles ne sont ni revendues ni transmises à des tiers à des fins commerciales."
+          "body": "Ces informations servent uniquement à répondre à la demande envoyée à {legalName} et à organiser les rendez-vous. Elles ne sont ni revendues ni transmises à des tiers à des fins commerciales."
         },
         "retention": {
           "title": "Durée de conservation",
@@ -454,15 +767,15 @@
         },
         "rights": {
           "title": "Vos droits",
-          "body": "Vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, écrivez à {email}."
+          "body": "Vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, écris à {email}."
         },
         "cookies": {
           "title": "Cookies",
-          "body": "Le site conserve la préférence de thème dans le stockage local du navigateur. Si la mesure d'audience est activée, des cookies de mesure d'audience ne sont déposés qu'après votre consentement, donné via le bandeau affiché en bas de page. Vous pouvez changer d'avis à tout moment depuis le lien « Préférences cookies » du pied de page."
+          "body": "Le site conserve la préférence de thème dans le stockage local du navigateur. Si la mesure d'audience est activée, des cookies de mesure d'audience ne sont déposés qu'après votre consentement, donné via le bandeau affiché en bas de page. Tu peux changer d'avis à tout moment depuis le lien « Préférences cookies » du pied de page."
         },
         "contact": {
           "title": "Contact",
-          "body": "Pour toute question relative à ces données, contactez {legalName} à l'adresse {email} ou par téléphone au {phone}."
+          "body": "Pour toute question relative à ces données, contacte {legalName} à l'adresse {email} ou par téléphone au {phone}."
         }
       }
     }

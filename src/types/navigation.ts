@@ -30,21 +30,53 @@ export interface RouteDeclaration {
 }
 
 /**
+ * Navigation group declaration
+ * @typedef NavigationGroupDeclaration
+ * @property {string} id - Group ID
+ * @property {RouteId[]} routes - Grouped routes
+ */
+
+export interface NavigationGroupDeclaration {
+  id: string
+  routes: RouteId[]
+}
+
+/**
+ * Header slot, a route or a group of routes
+ * @typedef {RouteId | NavigationGroupDeclaration} HeaderEntryDeclaration
+ */
+
+export type HeaderEntryDeclaration = RouteId | NavigationGroupDeclaration
+
+/**
  * Navigation entry
  * @typedef NavigationEntry
- * @property {RouteId} id - Route ID
- * @property {string} href - Pathname
+ * @property {string} id - Route or group ID
+ * @property {string} [href] - Pathname
  * @property {string} label - Display label
  * @property {IconName} [icon] - Navigation icon
  * @property {boolean} isActive - Current route flag
+ * @property {NavigationEntry[]} [children] - Grouped entries
  */
 
 export interface NavigationEntry {
-  id: RouteId
-  href: string
+  id: string
+  // Absent on a group, which opens instead of navigating
+  href?: string
   label: string
   icon?: IconName
   isActive: boolean
+  children?: RouteNavigationEntry[]
+}
+
+/**
+ * Navigation entry standing for a route, so always navigable
+ * @typedef RouteNavigationEntry
+ * @property {string} href - Pathname
+ */
+
+export interface RouteNavigationEntry extends NavigationEntry {
+  href: string
 }
 
 /**
@@ -66,6 +98,7 @@ export interface BreadcrumbEntry {
  * @property {string} postalCode - Postal code
  * @property {string} city - City
  * @property {string} country - Country code
+ * @property {string} [venue] - Place name
  */
 
 export interface PostalAddress {
@@ -73,4 +106,6 @@ export interface PostalAddress {
   postalCode: string
   city: string
   country: string
+  // Named place at that address, put first in a map query
+  venue?: string
 }

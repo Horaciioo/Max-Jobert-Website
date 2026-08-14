@@ -16,6 +16,10 @@ import { PageSkeleton } from '@/components/elements/feedback/PageSkeleton'
 import { Skeleton } from '@/components/elements/feedback/Skeleton'
 import { Spinner } from '@/components/elements/feedback/Spinner'
 import { FormRenderer } from '@/components/elements/forms/FormRenderer'
+import { SocialBanner } from '@/components/layout/SocialBanner'
+import { DevelopmentSection } from '@/components/sections/DevelopmentSection'
+import { SkeletonSheet } from '@/components/structures/data/SkeletonSheet'
+import { DeviceFrame } from '@/components/structures/layout/DeviceFrame'
 import { Breadcrumb } from '@/components/structures/navigation/Breadcrumb'
 import { Pagination } from '@/components/structures/navigation/Pagination'
 import { Tabs } from '@/components/structures/navigation/Tabs'
@@ -30,17 +34,22 @@ import { Stack } from '@/components/structures/layout/Stack'
 import { DataTable } from '@/components/structures/data/DataTable'
 import { FilterBar } from '@/components/structures/data/FilterBar'
 import { IconGrid } from '@/components/showcase/IconGrid'
+import { MotionGrid } from '@/components/showcase/MotionGrid'
 import { ShowcaseBlock } from '@/components/showcase/ShowcaseBlock'
 import { ThemePalette } from '@/components/showcase/ThemePalette'
 import { TypographyScale } from '@/components/showcase/TypographyScale'
-import { FAQ, PLACEHOLDER_IMAGE, STATS } from '@/declarations/content'
+import { FAQ, METHOD_SCREENS, PLACEHOLDER_IMAGE, STATS } from '@/declarations/content'
 import { SIZES, TONES } from '@/declarations/ui/tokens'
 import { BUTTON_VARIANTS } from '@/declarations/ui/variants'
 import type { ButtonVariant } from '@/declarations/ui/variants'
 import { FormatService } from '@/services/FormatService'
 import { NavigationService } from '@/services/NavigationService'
 import { NotificationService } from '@/services/NotificationService'
+import type { ScreenItem } from '@/types/content'
 import { buildPaginationMeta } from '@/utils/array'
+
+// First declared screen, enough to show the shell and the sheet inside it
+const screen = METHOD_SCREENS[0] as ScreenItem
 
 // Table demo rows
 const TABLE_ROWS = STATS.map((stat) => ({
@@ -60,6 +69,7 @@ export const ShowcaseCatalog = () => {
   const feedback = useTranslations('feedback')
   const stats = useTranslations('sections.stats')
   const faq = useTranslations('sections.faq')
+  const method = useTranslations('sections.method')
   const format = FormatService.for(useLocale())
 
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -80,6 +90,10 @@ export const ShowcaseCatalog = () => {
 
       <ShowcaseBlock title={t('blocks.icons')} path="src/declarations/ui/icons.ts">
         <IconGrid />
+      </ShowcaseBlock>
+
+      <ShowcaseBlock title={t('blocks.motion')} path="src/declarations/ui/motion.ts">
+        <MotionGrid />
       </ShowcaseBlock>
 
       <ShowcaseBlock
@@ -285,6 +299,28 @@ export const ShowcaseCatalog = () => {
         path="src/components/elements/forms/FormRenderer.tsx"
         description={t('descriptions.forms')}>
         <FormRenderer id="newsletter" className="w-full" />
+      </ShowcaseBlock>
+
+      <ShowcaseBlock
+        title={t('blocks.device')}
+        path="src/components/structures/layout/DeviceFrame.tsx"
+        description={t('descriptions.device')}>
+        <DeviceFrame label={method(`items.${screen.translationKey}.title`)}>
+          <SkeletonSheet
+            blocks={screen.blocks}
+            translate={(key) => method(`items.${screen.translationKey}.${key}`)}
+          />
+        </DeviceFrame>
+      </ShowcaseBlock>
+
+      <ShowcaseBlock title={t('blocks.socials')} path="src/components/layout/SocialBanner.tsx">
+        <SocialBanner className="w-full" />
+      </ShowcaseBlock>
+
+      <ShowcaseBlock
+        title={t('blocks.development')}
+        path="src/components/sections/DevelopmentSection.tsx">
+        <DevelopmentSection compact className="w-full" />
       </ShowcaseBlock>
     </div>
   )

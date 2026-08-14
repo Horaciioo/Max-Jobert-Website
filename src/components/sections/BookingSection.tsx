@@ -11,8 +11,9 @@ import { Spinner } from '@/components/elements/feedback/Spinner'
 import { Field } from '@/components/elements/forms/Field'
 import { FieldControl } from '@/components/elements/forms/FieldControl'
 import { Text } from '@/components/elements/typography/Text'
+import { SectionHeading } from '@/components/sections/SectionHeading'
 import { Section } from '@/components/structures/layout/Section'
-import { BOOKING_STYLES, FIELD_STYLES } from '@/declarations/ui/variants'
+import { BLOCK_STYLES, BOOKING_STYLES, FIELD_STYLES } from '@/declarations/ui/variants'
 import { AnalyticsService } from '@/services/AnalyticsService'
 import { AppointmentService } from '@/services/AppointmentService'
 import { ConfigurationService } from '@/services/ConfigurationService'
@@ -143,175 +144,181 @@ export const BookingSection = () => {
   // Booking off falls back to the contact form, the project may not run a shared diary
   if (!ConfigurationService.isEnabled('appointmentBooking')) {
     return (
-      <Section anchor="booking" title={t('title')}>
-        <Alert tone="info" icon="phone" title={t('disabled')} />
+      <Section anchor="booking">
+        <div className={BLOCK_STYLES.stack}>
+          <SectionHeading title={t('title')} />
+          <Alert tone="info" icon="phone" title={t('disabled')} />
+        </div>
       </Section>
     )
   }
 
   return (
-    <Section anchor="booking" title={t('title')} description={t('description')}>
-      <div className={BOOKING_STYLES.frame}>
-        <div className={BOOKING_STYLES.calendar}>
-          <div className={BOOKING_STYLES.panel}>
-            <div className={BOOKING_STYLES.monthBar}>
-              <IconButton
-                icon="chevronLeft"
-                variant="ghost"
-                size="sm"
-                label={actions('previous')}
-                disabled={isFirstMonth}
-                onClick={() => setCursor((current) => shiftMonth(current, -1))}
-              />
-              <p className={BOOKING_STYLES.monthLabel}>{format.date(monthStart, 'monthYear')}</p>
-              <IconButton
-                icon="chevronRight"
-                variant="ghost"
-                size="sm"
-                label={actions('next')}
-                disabled={isLastMonth}
-                onClick={() => setCursor((current) => shiftMonth(current, 1))}
-              />
-            </div>
+    <Section anchor="booking">
+      <div className={BLOCK_STYLES.stack}>
+        <SectionHeading title={t('title')} description={t('description')} />
+        <div className={BOOKING_STYLES.frame}>
+          <div className={BOOKING_STYLES.calendar}>
+            <div className={BOOKING_STYLES.panel}>
+              <div className={BOOKING_STYLES.monthBar}>
+                <IconButton
+                  icon="chevronLeft"
+                  variant="ghost"
+                  size="sm"
+                  label={actions('previous')}
+                  disabled={isFirstMonth}
+                  onClick={() => setCursor((current) => shiftMonth(current, -1))}
+                />
+                <p className={BOOKING_STYLES.monthLabel}>{format.date(monthStart, 'monthYear')}</p>
+                <IconButton
+                  icon="chevronRight"
+                  variant="ghost"
+                  size="sm"
+                  label={actions('next')}
+                  disabled={isLastMonth}
+                  onClick={() => setCursor((current) => shiftMonth(current, 1))}
+                />
+              </div>
 
-            <div className={BOOKING_STYLES.weekdays} aria-hidden="true">
-              {format.weekdays('narrow').map((name, index) => (
-                <span key={index} className={BOOKING_STYLES.weekday}>
-                  {name}
-                </span>
-              ))}
-            </div>
+              <div className={BOOKING_STYLES.weekdays} aria-hidden="true">
+                {format.weekdays('narrow').map((name, index) => (
+                  <span key={index} className={BOOKING_STYLES.weekday}>
+                    {name}
+                  </span>
+                ))}
+              </div>
 
-            <div className={BOOKING_STYLES.days}>
-              {AppointmentService.monthGridOf(cursor.year, cursor.month).map((date, index) => {
-                if (!date) return <span key={`blank-${index}`} />
+              <div className={BOOKING_STYLES.days}>
+                {AppointmentService.monthGridOf(cursor.year, cursor.month).map((date, index) => {
+                  if (!date) return <span key={`blank-${index}`} />
 
-                const isOpen = AppointmentService.isBookable(date)
-
-                return (
-                  <button
-                    key={date}
-                    type="button"
-                    disabled={!isOpen}
-                    aria-pressed={date === selectedDate}
-                    aria-label={format.date(date, 'weekday')}
-                    className={cn(
-                      BOOKING_STYLES.day,
-                      !isOpen && BOOKING_STYLES.dayClosed,
-                      date === today && BOOKING_STYLES.dayToday,
-                      date === selectedDate && BOOKING_STYLES.daySelected
-                    )}
-                    onClick={() => selectDate(date)}>
-                    {Number(date.slice(8))}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-
-          <ActionLink
-            route="contact"
-            variant="outline"
-            size="md"
-            icon="mail"
-            className="self-center">
-            {t('contactPrompt')}
-          </ActionLink>
-        </div>
-
-        <div className="flex flex-col gap-6">
-          {!selectedDate && <Text appearance="description">{t('pickDate')}</Text>}
-
-          {selectedDate && (
-            <div className="flex flex-col gap-3">
-              <p className={BOOKING_STYLES.summary}>{format.date(selectedDate, 'weekday')}</p>
-
-              {isLoadingSlots && <Spinner label={feedback('loading')} />}
-
-              {!isLoadingSlots && slots.length === 0 && (
-                <Text appearance="description">{t('noSlot')}</Text>
-              )}
-
-              {!isLoadingSlots && slots.length > 0 && (
-                <div className={BOOKING_STYLES.slots}>
-                  {slots.map((slot) => (
-                    <button
-                      key={slot}
-                      type="button"
-                      aria-pressed={slot === selectedSlot}
-                      className={cn(
-                        BOOKING_STYLES.slot,
-                        slot === selectedSlot && BOOKING_STYLES.slotSelected
-                      )}
-                      onClick={() => setSelectedSlot(slot)}>
-                      {slot}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-
-          {confirmation && (
-            <Alert
-              tone="success"
-              title={t('success.title')}
-              description={t('success.description', {
-                date: format.date(confirmation.date, 'weekday'),
-                slot: confirmation.slot,
-              })}
-            />
-          )}
-
-          {hasFailed && <Alert tone="danger" title={t('failure')} />}
-
-          {selectedSlot && (
-            <form noValidate onSubmit={submit} className="flex flex-col gap-5">
-              <div className={FIELD_STYLES.grid}>
-                {form.fields.map((field) => {
-                  const fieldId = NamingService.toDomId(FORM_ID, field.name)
-                  const base = `fields.${field.name}`
-                  const error = state.errors[field.name]
+                  const isOpen = AppointmentService.isBookable(date)
 
                   return (
-                    <Field
-                      key={field.name}
-                      id={fieldId}
-                      label={forms(`${base}.label`)}
-                      required={field.required}
-                      hint={optional(`${base}.hint`)}
-                      error={error ? validation(error.rule, error.params) : undefined}
-                      className={cn(field.wide && FIELD_STYLES.wide)}>
-                      <FieldControl
-                        id={fieldId}
-                        field={field}
-                        value={state.values[field.name] ?? null}
-                        invalid={Boolean(error)}
-                        placeholder={optional(`${base}.placeholder`)}
-                        choiceLabel={optional(`${base}.choice`) ?? forms(`${base}.label`)}
-                        optionLabels={Object.fromEntries(
-                          (field.options ?? []).map((option) => [
-                            option.value,
-                            forms(`${base}.options.${option.translationKey}`),
-                          ])
-                        )}
-                        onChange={(value) => change(field.name, value)}
-                        onBlur={() => blur(field.name)}
-                      />
-                    </Field>
+                    <button
+                      key={date}
+                      type="button"
+                      disabled={!isOpen}
+                      aria-pressed={date === selectedDate}
+                      aria-label={format.date(date, 'weekday')}
+                      className={cn(
+                        BOOKING_STYLES.day,
+                        !isOpen && BOOKING_STYLES.dayClosed,
+                        date === today && BOOKING_STYLES.dayToday,
+                        date === selectedDate && BOOKING_STYLES.daySelected
+                      )}
+                      onClick={() => selectDate(date)}>
+                      {Number(date.slice(8))}
+                    </button>
                   )
                 })}
               </div>
+            </div>
 
-              <Button
-                type="submit"
-                icon="calendar"
-                loading={state.status === FormStatuses.Submitting}
-                disabled={state.status === FormStatuses.Submitting}>
-                {actions(form.submitAction)}
-              </Button>
-            </form>
-          )}
+            <ActionLink
+              route="contact"
+              variant="outline"
+              size="md"
+              icon="mail"
+              className="self-center">
+              {t('contactPrompt')}
+            </ActionLink>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            {!selectedDate && <Text appearance="description">{t('pickDate')}</Text>}
+
+            {selectedDate && (
+              <div className="flex flex-col gap-3">
+                <p className={BOOKING_STYLES.summary}>{format.date(selectedDate, 'weekday')}</p>
+
+                {isLoadingSlots && <Spinner label={feedback('loading')} />}
+
+                {!isLoadingSlots && slots.length === 0 && (
+                  <Text appearance="description">{t('noSlot')}</Text>
+                )}
+
+                {!isLoadingSlots && slots.length > 0 && (
+                  <div className={BOOKING_STYLES.slots}>
+                    {slots.map((slot) => (
+                      <button
+                        key={slot}
+                        type="button"
+                        aria-pressed={slot === selectedSlot}
+                        className={cn(
+                          BOOKING_STYLES.slot,
+                          slot === selectedSlot && BOOKING_STYLES.slotSelected
+                        )}
+                        onClick={() => setSelectedSlot(slot)}>
+                        {slot}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {confirmation && (
+              <Alert
+                tone="success"
+                title={t('success.title')}
+                description={t('success.description', {
+                  date: format.date(confirmation.date, 'weekday'),
+                  slot: confirmation.slot,
+                })}
+              />
+            )}
+
+            {hasFailed && <Alert tone="danger" title={t('failure')} />}
+
+            {selectedSlot && (
+              <form noValidate onSubmit={submit} className="flex flex-col gap-5">
+                <div className={FIELD_STYLES.grid}>
+                  {form.fields.map((field) => {
+                    const fieldId = NamingService.toDomId(FORM_ID, field.name)
+                    const base = `fields.${field.name}`
+                    const error = state.errors[field.name]
+
+                    return (
+                      <Field
+                        key={field.name}
+                        id={fieldId}
+                        label={forms(`${base}.label`)}
+                        required={field.required}
+                        hint={optional(`${base}.hint`)}
+                        error={error ? validation(error.rule, error.params) : undefined}
+                        className={cn(field.wide && FIELD_STYLES.wide)}>
+                        <FieldControl
+                          id={fieldId}
+                          field={field}
+                          value={state.values[field.name] ?? null}
+                          invalid={Boolean(error)}
+                          placeholder={optional(`${base}.placeholder`)}
+                          choiceLabel={optional(`${base}.choice`) ?? forms(`${base}.label`)}
+                          optionLabels={Object.fromEntries(
+                            (field.options ?? []).map((option) => [
+                              option.value,
+                              forms(`${base}.options.${option.translationKey}`),
+                            ])
+                          )}
+                          onChange={(value) => change(field.name, value)}
+                          onBlur={() => blur(field.name)}
+                        />
+                      </Field>
+                    )
+                  })}
+                </div>
+
+                <Button
+                  type="submit"
+                  icon="calendar"
+                  loading={state.status === FormStatuses.Submitting}
+                  disabled={state.status === FormStatuses.Submitting}>
+                  {actions(form.submitAction)}
+                </Button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </Section>

@@ -13,10 +13,12 @@
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--layout-header) + 3rem);
     -webkit-text-size-adjust: 100%;
+    /* Hidden so ScrollBar can float over the page without reserving a gutter */
+    scrollbar-width: none;
   }
 
   body {
-    @apply bg-background font-sans text-foreground antialiased;
+    @apply bg-surface-strong font-sans text-foreground antialiased;
     position: relative;
   }
 
@@ -28,39 +30,43 @@
     @apply bg-primary/30;
   }
 
+  /* The family is chosen per level by HEADING_STYLES, only balancing is global */
   h1,
   h2,
   h3,
   h4 {
-    @apply text-balance font-display;
+    @apply text-balance;
   }
 
   p {
     @apply text-pretty;
   }
 
-  ::-webkit-scrollbar {
-    width: 9px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: rgb(var(--color-surface-strong));
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border: 3px solid rgb(var(--color-surface-strong));
-    background-color: rgb(var(--color-border-strong));
+  html::-webkit-scrollbar {
+    display: none;
   }
 }
 
 @layer components {
   /* Project SVG, rasterised once by the browser and cached like any other bitmap */
+  /* Flat page colour, the layer the visual is dosed against */
   .texture-frame {
     position: fixed;
     inset: 0;
     z-index: -2;
     pointer-events: none;
     background-color: rgb(var(--color-background));
+  }
+
+  /* Held faint on purpose, page content has to read over it */
+  .texture-image {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    opacity: 0.22;
+    /* Never tiled: one copy scaled to the viewport, its ratio kept */
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
   }
@@ -73,6 +79,45 @@
     pointer-events: none;
     opacity: 0.04;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)'/%3E%3C/svg%3E");
+  }
+
+  /* The mark's bolt, reduced to one angle and reused as a cut */
+  .slash-block {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 0.9rem) 100%, 0 100%);
+  }
+
+  .slash-media {
+    clip-path: polygon(0 0, 100% 4%, 100% 100%, 0 96%);
+  }
+
+  .slash-media-reverse {
+    clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+  }
+
+  /* Photographs are graded to the brand blue, and give their colour back on hover */
+  .duotone img {
+    filter: grayscale(1) contrast(1.06) brightness(0.92);
+    transition: filter var(--duration-slow) ease-out;
+  }
+
+  .duotone::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgb(var(--color-primary));
+    mix-blend-mode: color;
+    opacity: 0.45;
+    transition: opacity var(--duration-slow) ease-out;
+  }
+
+  .duotone:hover img,
+  .duotone:focus-within img {
+    filter: none;
+  }
+
+  .duotone:hover::after,
+  .duotone:focus-within::after {
+    opacity: 0;
   }
 
   .surface-shimmer {
@@ -116,6 +161,37 @@
 /* Own stacking context, so content layers above a fixed negative z-index backdrop */
 main > section {
   position: relative;
+}
+
+/*
+  Held out of sight until MotionService plays them in. `motion-ready` is only set by the
+  boot script when motion is wanted, so reduced motion and no-script keep everything visible.
+
+  `motion-armed` is set by MotionService once every effect is wired, and drops these rules
+  for good: from that point GSAP owns each state inline. It is the safety net — a node React
+  re-creates on its own carries no inline style, and would otherwise stay stuck at zero
+  opacity with no trigger attached to it, leaving the page blank until a full reload.
+*/
+html.motion-ready:not(.motion-armed) [data-motion='rise'],
+html.motion-ready:not(.motion-armed) [data-motion='fade'],
+html.motion-ready:not(.motion-armed) [data-motion='slide'],
+html.motion-ready:not(.motion-armed) [data-motion='slideReverse'],
+html.motion-ready:not(.motion-armed) [data-motion='sweep'],
+html.motion-ready:not(.motion-armed) [data-motion='riseStagger'] > * {
+  opacity: 0;
+}
+
+html.motion-ready:not(.motion-armed) [data-motion='sweep'] {
+  clip-path: inset(0 100% 0 0);
+}
+
+html.motion-ready:not(.motion-armed) [data-motion='draw'] {
+  transform: scaleY(0);
+  transform-origin: top center;
+}
+
+html.motion-ready:not(.motion-armed) [data-motion='trace'] {
+  height: 0;
 }
 
 @keyframes reveal-rise {

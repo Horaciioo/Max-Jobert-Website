@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { Heading } from '@/components/elements/typography/Heading'
 import { Text } from '@/components/elements/typography/Text'
 import { Container } from '@/components/structures/layout/Container'
+import { MOTION_ATTRIBUTE, MOTION_NAMES } from '@/declarations/ui/motion'
 import { SECTION_SPACING } from '@/declarations/ui/tokens'
 import type { Styleable } from '@/types/common'
 import { cn } from '@/utils/classnames'
@@ -31,7 +32,9 @@ export const PageHeader = ({
     <Container>
       <div className="flex flex-col gap-3">
         {breadcrumb}
-        <Heading level={1}>{title}</Heading>
+        <Heading level={1} {...{ [MOTION_ATTRIBUTE]: MOTION_NAMES.sweep }}>
+          {title}
+        </Heading>
         {description && <Text appearance="lead">{description}</Text>}
         {actions && <div className="flex flex-wrap gap-3 pt-2">{actions}</div>}
       </div>

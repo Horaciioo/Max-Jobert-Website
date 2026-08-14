@@ -1,11 +1,13 @@
 {
-  "themeSwitcher": true,
+  "themeSwitcher": false,
   "languageSwitcher": true,
   "scrollToTop": true,
+  "scrollBar": true,
+  "socialBanner": true,
   "notifications": true,
   "analytics": false,
   "contactForm": true,
   "stickyActionBar": true,
   "locationMap": true,
-  "appointmentBooking": false
+  "appointmentBooking": true
 }

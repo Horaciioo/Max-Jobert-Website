@@ -37,6 +37,8 @@ const config: Config = {
       maxWidth: layout,
       height: layout,
       minHeight: layout,
+      margin: layout,
+      padding: layout,
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         display: ['var(--font-display)', 'var(--font-sans)', 'sans-serif'],
@@ -71,10 +73,20 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(-0.35rem)' },
           '50%': { transform: 'translateY(0.35rem)' },
         },
+        // A still slide is never quite motionless, it closes in over its dwell
+        'slow-zoom': {
+          from: { transform: 'scale(1)' },
+          to: { transform: 'scale(1.12)' },
+        },
         // The track holds the list twice, half a turn loops it seamlessly
         marquee: {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-50%)' },
+        },
+        // Text cursor of the claim that keeps rewriting itself
+        blink: {
+          '0%, 45%': { opacity: '1' },
+          '55%, 100%': { opacity: '0' },
         },
       },
       animation: {
@@ -86,6 +98,8 @@ const config: Config = {
         shine: `shine ${timings.shineDurationMs}ms ease-in-out infinite`,
         drift: `drift ${timings.driftDurationMs}ms ease-in-out infinite`,
         marquee: `marquee ${timings.marqueeDurationMs}ms linear infinite`,
+        'slow-zoom': `slow-zoom ${timings.heroStillMs}ms ease-out both`,
+        blink: `blink ${timings.caretBlinkMs}ms steps(1, end) infinite`,
       },
     },
   },

@@ -57,15 +57,18 @@ export const Accordion = ({ entries, name, exclusive = true, className }: Accord
               <Icon
                 name="chevronDown"
                 size="sm"
-                className={ACCORDION_STYLES.indicator}
-                data-open={isOpen}
+                className={cn(ACCORDION_STYLES.indicator, isOpen && ACCORDION_STYLES.indicatorOpen)}
               />
             </button>
-            {isOpen && (
-              <div id={panelId} className={ACCORDION_STYLES.panel}>
-                {entry.content}
+            <div
+              id={panelId}
+              data-open={isOpen}
+              inert={!isOpen}
+              className={cn('group/panel', ACCORDION_STYLES.panel)}>
+              <div className={ACCORDION_STYLES.panelClip}>
+                <div className={ACCORDION_STYLES.panelBody}>{entry.content}</div>
               </div>
-            )}
+            </div>
           </div>
         )
       })}

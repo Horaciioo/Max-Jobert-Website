@@ -8,14 +8,28 @@ export interface ScrollState {
   // Scroll threshold flag
   isScrolled: boolean
   direction: 'up' | 'down'
+  // Travelled share of the scrollable length
+  progress: number
+  // Viewport share of the document length
+  visibleRatio: number
 }
 
 const { scrollThresholdPx } = ConfigurationService.timings
 
-const initialState: ScrollState = { offset: 0, isScrolled: false, direction: 'up' }
+const initialState: ScrollState = {
+  offset: 0,
+  isScrolled: false,
+  direction: 'up',
+  progress: 0,
+  visibleRatio: 1,
+}
 
 // Scroll lock count
 let lockCount = 0
+
+// Length the document can still travel
+const scrollableLength = (): number =>
+  Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
 
 const store = createStore<ScrollState>(initialState, {
   activate: (setState) => {
@@ -23,13 +37,30 @@ const store = createStore<ScrollState>(initialState, {
 
     let previous = window.scrollY
 
-    return bindWindowEvent('scroll', () => {
+    const read = () => {
       const offset = window.scrollY
       const direction = offset > previous ? 'down' : 'up'
+      const scrollable = scrollableLength()
+      const { scrollHeight } = document.documentElement
       previous = offset
 
-      setState({ offset, isScrolled: offset > scrollThresholdPx, direction })
-    })
+      setState({
+        offset,
+        isScrolled: offset > scrollThresholdPx,
+        direction,
+        progress: scrollable > 0 ? offset / scrollable : 0,
+        visibleRatio: scrollHeight > 0 ? Math.min(1, window.innerHeight / scrollHeight) : 1,
+      })
+    }
+
+    // A resize changes the travel just as much as a scroll does
+    const releaseScroll = bindWindowEvent('scroll', read)
+    const releaseResize = bindWindowEvent('resize', read)
+
+    return () => {
+      releaseScroll()
+      releaseResize()
+    }
   },
 })
 
@@ -51,6 +82,19 @@ class ScrollServiceClass extends Service {
   toTop = (): void => {
     if (!isBrowser()) return
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  /**
+   * Jump to a share of the travel
+   * @param {number} progress - Ratio between zero and one
+   * @return {void}
+   */
+
+  toProgress = (progress: number): void => {
+    if (!isBrowser()) return
+
+    const clamped = Math.min(1, Math.max(0, progress))
+    window.scrollTo({ top: clamped * scrollableLength() })
   }
 
   /**

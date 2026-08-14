@@ -6,9 +6,10 @@ import { useTranslations } from 'next-intl'
 import { IconButton } from '@/components/elements/actions/IconButton'
 import { Picture } from '@/components/elements/media/Picture'
 import { Text } from '@/components/elements/typography/Text'
+import { SectionHeading } from '@/components/sections/SectionHeading'
 import { Section } from '@/components/structures/layout/Section'
 import { COMPARISONS } from '@/declarations/content'
-import { COMPARISON_STYLES } from '@/declarations/ui/variants'
+import { BLOCK_STYLES, COMPARISON_STYLES } from '@/declarations/ui/variants'
 import { ConfigurationService } from '@/services/ConfigurationService'
 import type { Styleable } from '@/types/common'
 import type { ComparisonItem } from '@/types/content'
@@ -85,95 +86,102 @@ export const ComparisonSection = ({ items = COMPARISONS, className }: Comparison
         src={item[stage].src}
         alt={t(`items.${item.translationKey}.${stage}Alt`)}
         stretch
+        shadow={false}
+        reveal={false}
         className="absolute inset-0"
       />
     </div>
   )
 
   return (
-    <Section anchor="comparisons" title={t('title')} description={t('description')} width="wide">
-      <div
-        className={cn(COMPARISON_STYLES.frame, className)}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        onFocusCapture={() => setIsPaused(true)}
-        onBlurCapture={() => setIsPaused(false)}>
-        <div className={COMPARISON_STYLES.viewportWrapper}>
-          <div
-            ref={viewportRef}
-            onScroll={handleScroll}
-            aria-label={t('title')}
-            className={COMPARISON_STYLES.viewport}>
-            {items.map((item, slide) => (
-              <div
-                key={item.id}
-                role="group"
-                aria-label={t('position', {
-                  position: String(slide + 1),
-                  total: String(items.length),
-                })}
-                className={COMPARISON_STYLES.slide}>
-                <article
+    <Section anchor="comparisons" width="wide">
+      <div className={BLOCK_STYLES.stack}>
+        <SectionHeading title={t('title')} description={t('description')} />
+        <div
+          className={cn(COMPARISON_STYLES.frame, className)}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocusCapture={() => setIsPaused(true)}
+          onBlurCapture={() => setIsPaused(false)}>
+          <div className={COMPARISON_STYLES.viewportWrapper}>
+            <div
+              ref={viewportRef}
+              onScroll={handleScroll}
+              aria-label={t('title')}
+              className={COMPARISON_STYLES.viewport}>
+              {items.map((item, slide) => (
+                <div
+                  key={item.id}
+                  role="group"
+                  aria-label={t('position', {
+                    position: String(slide + 1),
+                    total: String(items.length),
+                  })}
+                  className={COMPARISON_STYLES.slide}>
+                  <article
+                    className={cn(
+                      COMPARISON_STYLES.card,
+                      slide === index
+                        ? COMPARISON_STYLES.cardActive
+                        : COMPARISON_STYLES.cardInactive
+                    )}>
+                    <div className={COMPARISON_STYLES.pair}>
+                      {STAGES.map((stage) => renderPanel(item, stage))}
+                    </div>
+
+                    <div className={COMPARISON_STYLES.caption}>
+                      <h3 className={COMPARISON_STYLES.captionTitle}>
+                        {t(`items.${item.translationKey}.title`)}
+                      </h3>
+                      <Text appearance="description">
+                        {t(`items.${item.translationKey}.description`)}
+                      </Text>
+                    </div>
+                  </article>
+                </div>
+              ))}
+            </div>
+
+            <IconButton
+              icon="chevronLeft"
+              size="md"
+              label={actions('previous')}
+              className={cn(COMPARISON_STYLES.arrow, COMPARISON_STYLES.arrowLeft)}
+              onClick={() => goTo(index - 1)}
+            />
+            <IconButton
+              icon="chevronRight"
+              size="md"
+              label={actions('next')}
+              className={cn(COMPARISON_STYLES.arrow, COMPARISON_STYLES.arrowRight)}
+              onClick={() => goTo(index + 1)}
+            />
+          </div>
+
+          <div className={COMPARISON_STYLES.controls}>
+            <div className={COMPARISON_STYLES.dots}>
+              {items.map((item, slide) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-current={slide === index}
+                  aria-label={t('position', {
+                    position: String(slide + 1),
+                    total: String(items.length),
+                  })}
                   className={cn(
-                    COMPARISON_STYLES.card,
-                    slide === index ? COMPARISON_STYLES.cardActive : COMPARISON_STYLES.cardInactive
-                  )}>
-                  <div className={COMPARISON_STYLES.pair}>
-                    {STAGES.map((stage) => renderPanel(item, stage))}
-                  </div>
+                    COMPARISON_STYLES.dot,
+                    slide === index && COMPARISON_STYLES.dotActive
+                  )}
+                  onClick={() => goTo(slide)}
+                />
+              ))}
+            </div>
 
-                  <div className={COMPARISON_STYLES.caption}>
-                    <h3 className={COMPARISON_STYLES.captionTitle}>
-                      {t(`items.${item.translationKey}.title`)}
-                    </h3>
-                    <Text appearance="description">
-                      {t(`items.${item.translationKey}.description`)}
-                    </Text>
-                  </div>
-                </article>
-              </div>
-            ))}
+            <p className={COMPARISON_STYLES.counter}>
+              {t('position', { position: String(index + 1), total: String(items.length) })}
+            </p>
           </div>
-
-          <IconButton
-            icon="chevronLeft"
-            size="md"
-            label={actions('previous')}
-            className={cn(COMPARISON_STYLES.arrow, COMPARISON_STYLES.arrowLeft)}
-            onClick={() => goTo(index - 1)}
-          />
-          <IconButton
-            icon="chevronRight"
-            size="md"
-            label={actions('next')}
-            className={cn(COMPARISON_STYLES.arrow, COMPARISON_STYLES.arrowRight)}
-            onClick={() => goTo(index + 1)}
-          />
-        </div>
-
-        <div className={COMPARISON_STYLES.controls}>
-          <div className={COMPARISON_STYLES.dots}>
-            {items.map((item, slide) => (
-              <button
-                key={item.id}
-                type="button"
-                aria-current={slide === index}
-                aria-label={t('position', {
-                  position: String(slide + 1),
-                  total: String(items.length),
-                })}
-                className={cn(
-                  COMPARISON_STYLES.dot,
-                  slide === index && COMPARISON_STYLES.dotActive
-                )}
-                onClick={() => goTo(slide)}
-              />
-            ))}
-          </div>
-
-          <p className={COMPARISON_STYLES.counter}>
-            {t('position', { position: String(index + 1), total: String(items.length) })}
-          </p>
         </div>
       </div>
     </Section>
