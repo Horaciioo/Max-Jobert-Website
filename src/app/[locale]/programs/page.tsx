@@ -3,9 +3,9 @@ import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 import { CallToActionSection } from '@/components/sections/CallToActionSection'
-import { FaqSection } from '@/components/sections/FaqSection'
-import { FeatureSection } from '@/components/sections/FeatureSection'
-import { ProgramSection } from '@/components/sections/ProgramSection'
+import { ModeSection } from '@/components/sections/ModeSection'
+import { RateSection } from '@/components/sections/RateSection'
+import { ServiceSection } from '@/components/sections/ServiceSection'
 import { PageHeader } from '@/components/structures/layout/PageHeader'
 import { Breadcrumb } from '@/components/structures/navigation/Breadcrumb'
 import { NavigationService } from '@/services/NavigationService'
@@ -29,9 +29,9 @@ class ProgramsPage extends Page {
           description={translate('metaDescription')}
           breadcrumb={breadcrumb}
         />
-        <ProgramSection />
-        <FeatureSection />
-        <FaqSection />
+        <ModeSection />
+        <ServiceSection />
+        <RateSection />
         <CallToActionSection />
       </>
     )
