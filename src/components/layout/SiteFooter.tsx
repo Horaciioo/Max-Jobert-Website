@@ -2,11 +2,10 @@
 
 import { useTranslations } from 'next-intl'
 
-import { BrandMark } from '@/components/layout/BrandMark'
-import { Icon } from '@/components/elements/media/Icon'
+import { Logo } from '@/components/elements/media/Logo'
 import { Text } from '@/components/elements/typography/Text'
 import { Container } from '@/components/structures/layout/Container'
-import type { IconName } from '@/declarations/ui/icons'
+import { LanguageSwitcher } from '@/components/structures/navigation/LanguageSwitcher'
 import { BRAND_STYLES, FOOTER_STYLES } from '@/declarations/ui/variants'
 import { Link, usePathname } from '@/i18n/routing'
 import { ConfigurationService } from '@/services/ConfigurationService'
@@ -24,7 +23,6 @@ export const SiteFooter = () => {
   const t = useTranslations()
   const navigation = useTranslations('navigation')
   const columns = NavigationService.footerColumns({ pathname, translate: t })
-  const socials = ConfigurationService.socialLinks()
 
   return (
     <footer className={FOOTER_STYLES.frame}>
@@ -32,25 +30,11 @@ export const SiteFooter = () => {
         <div className={FOOTER_STYLES.grid}>
           <div className="flex flex-col gap-4">
             <span className="flex items-center gap-3">
-              <BrandMark name="footer" className={BRAND_STYLES.markCompact} />
+              <Logo withName={false} className={BRAND_STYLES.markCompact} />
               <span className={BRAND_STYLES.name}>{ConfigurationService.site.name}</span>
             </span>
             <Text appearance="description">{navigation('tagline')}</Text>
-            {socials.length > 0 && (
-              <div className={FOOTER_STYLES.socials}>
-                {socials.map((social) => (
-                  <a
-                    key={social.id}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.id}
-                    className={FOOTER_STYLES.link}>
-                    <Icon name={social.id as IconName} size="sm" />
-                  </a>
-                ))}
-              </div>
-            )}
+            {ConfigurationService.isEnabled('languageSwitcher') && <LanguageSwitcher />}
           </div>
 
           {columns.map((column) => (

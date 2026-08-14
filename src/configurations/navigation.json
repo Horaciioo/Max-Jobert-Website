@@ -1,7 +1,14 @@
 {
-  "header": ["story", "programs", "contact"],
+  "header": [
+    "programs",
+    {
+      "id": "infos",
+      "routes": ["story", "faq", "method"]
+    },
+    "contact"
+  ],
   "footer": {
-    "site": ["home", "story", "programs", "bookAppointment"],
+    "site": ["home", "story", "programs", "method", "faq", "bookAppointment"],
     "legal": ["legalNotice", "privacyPolicy"]
   },
   "callToAction": "bookAppointment"
