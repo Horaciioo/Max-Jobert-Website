@@ -30,3 +30,10 @@ yarn-error.log*
 *.swo
 *~
 .DS_Store
+
+# Internal documentation and tooling (not part of the delivered site)
+*.md
+!/README.md
+.claude
+/scripts
+.yarn/install-state.gz
