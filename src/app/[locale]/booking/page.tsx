@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
 import { BookingSection } from '@/components/sections/BookingSection'
-import { SequenceSection } from '@/components/sections/SequenceSection'
+import { TrackSection } from '@/components/sections/TrackSection'
 import { PageHeader } from '@/components/structures/layout/PageHeader'
 import { Breadcrumb } from '@/components/structures/navigation/Breadcrumb'
 import { ASSESSMENT_STEPS } from '@/declarations/content'
@@ -28,7 +28,7 @@ class BookAppointmentPage extends Page {
           description={translate('metaDescription')}
           breadcrumb={breadcrumb}
         />
-        <SequenceSection namespace="protocol" items={ASSESSMENT_STEPS} />
+        <TrackSection namespace="protocol" items={ASSESSMENT_STEPS} />
         <BookingSection />
       </>
     )

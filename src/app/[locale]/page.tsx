@@ -4,10 +4,10 @@ import { getTranslations } from 'next-intl/server'
 
 import { CallToActionSection } from '@/components/sections/CallToActionSection'
 import { HeroSection } from '@/components/sections/HeroSection'
+import { MethodSection } from '@/components/sections/MethodSection'
 import { OutcomeSection } from '@/components/sections/OutcomeSection'
-import { ProgramSection } from '@/components/sections/ProgramSection'
-import { StatsSection } from '@/components/sections/StatsSection'
 import { TestimonialSection } from '@/components/sections/TestimonialSection'
+import { HERO_SEQUENCE, PHOTOS } from '@/declarations/content'
 import { Page } from '@/structures/Page'
 
 export interface HomePageProps {
@@ -22,10 +22,9 @@ class HomePage extends Page {
   render(): ReactNode {
     return (
       <>
-        <HeroSection secondaryRoute="story" />
-        <StatsSection />
+        <HeroSection image={PHOTOS.heroPoster} slides={HERO_SEQUENCE} />
+        <MethodSection />
         <OutcomeSection />
-        <ProgramSection />
         <TestimonialSection />
         <CallToActionSection />
       </>
