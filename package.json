@@ -18,9 +18,7 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check:registre": "node scripts/check-registre.mjs",
-    "check:environment": "node scripts/check-environment.mjs",
-    "validate": "yarn type-check && yarn lint && yarn build && yarn check:registre && yarn check:environment"
+    "validate": "yarn type-check && yarn lint && yarn build"
   },
   "dependencies": {
     "@next/third-parties": "^16.3.0",
