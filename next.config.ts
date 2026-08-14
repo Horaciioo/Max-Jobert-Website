@@ -3,10 +3,14 @@ import createNextIntlPlugin from 'next-intl/plugin'
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 
+// Next's hot reload compiles modules through eval, which production never does
+const isDevelopment = process.env.NODE_ENV === 'development'
+const DEVELOPMENT_SCRIPT_SOURCES = isDevelopment ? ` 'unsafe-eval'` : ''
+
 // Third-party script/beacon origins (analytics, embedded map)
 const CONTENT_SECURITY_POLICY = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://va.vercel-scripts.com`,
+  `script-src 'self' 'unsafe-inline'${DEVELOPMENT_SCRIPT_SOURCES} https://www.googletagmanager.com https://va.vercel-scripts.com`,
   `style-src 'self' 'unsafe-inline'`,
   `img-src 'self' data: https:`,
   `font-src 'self' data:`,
