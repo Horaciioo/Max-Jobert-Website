@@ -7,13 +7,16 @@ import {
   ENTER_EFFECTS,
   ENTER_TRIGGER,
   FLOAT_EFFECT,
+  INTRO_EFFECT,
   MOTION_ALLOWED_QUERY,
+  MOTION_ARMED_CLASS,
   MOTION_ATTRIBUTE,
   MOTION_FORMAT_ATTRIBUTE,
   MOTION_NAMES,
   MOTION_READY_CLASS,
   MOTION_VALUE_ATTRIBUTE,
   PARALLAX_EFFECT,
+  TRACE_EFFECT,
 } from '@/declarations/ui/motion'
 import type { EnterEffect, MotionName } from '@/declarations/ui/motion'
 import { FormatService } from '@/services/FormatService'
@@ -57,12 +60,40 @@ class MotionServiceClass extends Service {
             })
           }, root)
 
+          // Every effect now holds its own state inline, the CSS pre-hide can go
+          document.documentElement.classList.add(MOTION_ARMED_CLASS)
+
+          // Positions are stale after a client navigation, and a trigger that
+          // never fires leaves its block held at the pre-hidden opacity
+          ScrollTrigger.refresh()
+
           return () => context.revert()
         })
 
         return () => media.revert()
       }
     )
+  }
+
+  /**
+   * Uncover a freshly rendered page, left to right
+   * @param {HTMLElement | null} element - Page region
+   * @return {void}
+   */
+
+  introduce = (element: HTMLElement | null): void => {
+    if (!element) return
+
+    this.guard('introduce', undefined, () => {
+      if (!window.matchMedia(MOTION_ALLOWED_QUERY).matches) return
+
+      gsap.fromTo(element, INTRO_EFFECT.from, {
+        ...INTRO_EFFECT.to,
+        duration: INTRO_EFFECT.durationSeconds,
+        ease: INTRO_EFFECT.ease,
+        clearProps: INTRO_EFFECT.clearProperties,
+      })
+    })
   }
 
   /**
@@ -78,6 +109,7 @@ class MotionServiceClass extends Service {
     if (name === MOTION_NAMES.count) return this.playCount(element)
     if (name === MOTION_NAMES.float) return this.playFloat(element)
     if (name === MOTION_NAMES.parallax) return this.playParallax(element)
+    if (name === MOTION_NAMES.trace) return this.playTrace(element)
 
     if (name === MOTION_NAMES.curtainMedia) return this.playCurtain(element, CURTAIN_EFFECT.media)
     if (name === MOTION_NAMES.curtainOverlay)
@@ -163,6 +195,28 @@ class MotionServiceClass extends Service {
   }
 
   /**
+   * Fill a rail as the reader descends past it
+   * @param {HTMLElement} element - Rail fill
+   * @return {void}
+   */
+
+  private playTrace(element: HTMLElement): void {
+    // The track behind it spans the whole list, and so decides the range
+    const trigger = element.parentElement ?? element
+
+    gsap.fromTo(element, TRACE_EFFECT.from, {
+      ...TRACE_EFFECT.to,
+      ease: TRACE_EFFECT.ease,
+      scrollTrigger: {
+        trigger,
+        start: TRACE_EFFECT.start,
+        end: TRACE_EFFECT.end,
+        scrub: TRACE_EFFECT.scrub,
+      },
+    })
+  }
+
+  /**
    * Offset a node against the page scroll
    * @param {HTMLElement} element - Parallax node
    * @return {void}
@@ -221,6 +275,7 @@ class MotionServiceClass extends Service {
   protected override onError(method: string, error: unknown): void {
     super.onError(method, error)
     document.documentElement.classList.remove(MOTION_READY_CLASS)
+    document.documentElement.classList.add(MOTION_ARMED_CLASS)
   }
 }
 

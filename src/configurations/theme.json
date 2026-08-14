@@ -1,21 +1,21 @@
 {
-  "defaultMode": "dark",
+  "defaultMode": "light",
   "colors": {
     "light": {
-      "background": "255 255 255",
-      "surface": "243 247 253",
-      "surface-strong": "230 238 250",
-      "border": "213 225 242",
-      "border-strong": "180 198 226",
-      "foreground": "8 16 31",
-      "foreground-muted": "78 94 121",
-      "foreground-subtle": "90 107 133",
-      "primary": "11 99 214",
-      "primary-hover": "9 80 174",
-      "primary-soft": "232 241 254",
+      "background": "247 248 250",
+      "surface": "255 255 255",
+      "surface-strong": "238 240 245",
+      "border": "223 226 233",
+      "border-strong": "196 201 212",
+      "foreground": "10 12 18",
+      "foreground-muted": "82 88 102",
+      "foreground-subtle": "116 122 137",
+      "primary": "65 105 225",
+      "primary-hover": "38 68 172",
+      "primary-soft": "233 238 253",
       "primary-foreground": "255 255 255",
-      "accent": "10 110 158",
-      "accent-soft": "227 244 252",
+      "accent": "10 84 196",
+      "accent-soft": "228 238 252",
       "accent-foreground": "255 255 255",
       "success": "14 124 78",
       "success-soft": "230 247 239",
@@ -25,7 +25,10 @@
       "danger-soft": "252 236 236",
       "info": "29 78 216",
       "info-soft": "233 237 253",
-      "overlay": "8 16 31"
+      "highlight": "109 76 226",
+      "highlight-foreground": "255 255 255",
+      "media-foreground": "255 255 255",
+      "overlay": "8 10 18"
     },
     "dark": {
       "background": "6 10 22",
@@ -36,8 +39,8 @@
       "foreground": "237 243 252",
       "foreground-muted": "148 163 184",
       "foreground-subtle": "125 140 166",
-      "primary": "46 144 255",
-      "primary-hover": "92 169 255",
+      "primary": "110 140 245",
+      "primary-hover": "146 170 250",
       "primary-soft": "15 31 61",
       "primary-foreground": "3 8 15",
       "accent": "95 208 255",
@@ -51,11 +54,14 @@
       "danger-soft": "46 18 20",
       "info": "110 140 255",
       "info-soft": "19 26 61",
+      "highlight": "141 116 250",
+      "highlight-foreground": "3 8 15",
+      "media-foreground": "255 255 255",
       "overlay": "2 5 16"
     }
   },
   "radii": {
-    "xs": "0.25rem",
+    "xs": "0rem",
     "sm": "0.5rem",
     "md": "0.75rem",
     "lg": "1rem",
@@ -68,6 +74,8 @@
     "md": "0 12px 32px -14px rgb(var(--color-overlay) / 0.42)",
     "lg": "0 32px 64px -28px rgb(var(--color-overlay) / 0.55)",
     "glass": "inset 0 1px 0 rgb(var(--color-foreground) / 0.06), 0 24px 56px -28px rgb(var(--color-overlay) / 0.5)",
+    "image": "0 22px 44px -18px rgb(var(--color-overlay) / 0.55)",
+    "bar": "0 10px 30px -18px rgb(var(--color-overlay) / 0.45)",
     "glow": "0 0 0 1px rgb(var(--color-primary) / 0.28), 0 12px 36px -10px rgb(var(--color-primary) / 0.55)",
     "beam": "0 0 0 1px rgb(var(--color-primary) / 0.35), 0 0 72px -12px rgb(var(--color-primary) / 0.75)",
     "focus": "0 0 0 3px rgb(var(--color-primary) / 0.35)"
@@ -75,12 +83,13 @@
   "durations": {
     "fast": "140ms",
     "base": "240ms",
+    "moderate": "360ms",
     "slow": "520ms"
   },
   "layout": {
     "container": "82rem",
     "wide": "96rem",
     "prose": "44rem",
-    "header": "5.5rem"
+    "header": "8.5rem"
   }
 }

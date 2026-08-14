@@ -13,8 +13,12 @@ import { MotionService } from '@/services/MotionService'
 export const MotionStage = () => {
   const pathname = usePathname()
 
-  // Rebuilt on navigation, the previous page's triggers are reverted first
-  useEffect(() => MotionService.mount(document.body), [pathname])
+  // Rebuilt on navigation
+  useEffect(() => {
+    MotionService.introduce(document.querySelector('main'))
+
+    return MotionService.mount(document.body)
+  }, [pathname])
 
   return null
 }

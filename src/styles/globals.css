@@ -13,10 +13,12 @@
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--layout-header) + 3rem);
     -webkit-text-size-adjust: 100%;
+    /* Hidden so ScrollBar can float over the page without reserving a gutter */
+    scrollbar-width: none;
   }
 
   body {
-    @apply bg-background font-sans text-foreground antialiased;
+    @apply bg-surface-strong font-sans text-foreground antialiased;
     position: relative;
   }
 
@@ -40,28 +42,31 @@
     @apply text-pretty;
   }
 
-  ::-webkit-scrollbar {
-    width: 9px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: rgb(var(--color-surface-strong));
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border: 3px solid rgb(var(--color-surface-strong));
-    background-color: rgb(var(--color-border-strong));
+  html::-webkit-scrollbar {
+    display: none;
   }
 }
 
 @layer components {
   /* Project SVG, rasterised once by the browser and cached like any other bitmap */
+  /* Flat page colour, the layer the visual is dosed against */
   .texture-frame {
     position: fixed;
     inset: 0;
     z-index: -2;
     pointer-events: none;
     background-color: rgb(var(--color-background));
+  }
+
+  /* Held faint on purpose, page content has to read over it */
+  .texture-image {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    opacity: 0.22;
+    /* Never tiled: one copy scaled to the viewport, its ratio kept */
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
   }
@@ -159,19 +164,34 @@ main > section {
 }
 
 /*
-  Held out of sight until MotionService plays them in. The class is only set by the
+  Held out of sight until MotionService plays them in. `motion-ready` is only set by the
   boot script when motion is wanted, so reduced motion and no-script keep everything visible.
+
+  `motion-armed` is set by MotionService once every effect is wired, and drops these rules
+  for good: from that point GSAP owns each state inline. It is the safety net — a node React
+  re-creates on its own carries no inline style, and would otherwise stay stuck at zero
+  opacity with no trigger attached to it, leaving the page blank until a full reload.
 */
-.motion-ready [data-motion='rise'],
-.motion-ready [data-motion='fade'],
-.motion-ready [data-motion='slide'],
-.motion-ready [data-motion='riseStagger'] > * {
+html.motion-ready:not(.motion-armed) [data-motion='rise'],
+html.motion-ready:not(.motion-armed) [data-motion='fade'],
+html.motion-ready:not(.motion-armed) [data-motion='slide'],
+html.motion-ready:not(.motion-armed) [data-motion='slideReverse'],
+html.motion-ready:not(.motion-armed) [data-motion='sweep'],
+html.motion-ready:not(.motion-armed) [data-motion='riseStagger'] > * {
   opacity: 0;
 }
 
-.motion-ready [data-motion='draw'] {
+html.motion-ready:not(.motion-armed) [data-motion='sweep'] {
+  clip-path: inset(0 100% 0 0);
+}
+
+html.motion-ready:not(.motion-armed) [data-motion='draw'] {
   transform: scaleY(0);
   transform-origin: top center;
+}
+
+html.motion-ready:not(.motion-armed) [data-motion='trace'] {
+  height: 0;
 }
 
 @keyframes reveal-rise {

@@ -1,14 +1,15 @@
 import { Text } from '@/components/elements/typography/Text'
 import { MOTION_ATTRIBUTE, MOTION_NAMES } from '@/declarations/ui/motion'
-import { BLOCK_STYLES } from '@/declarations/ui/variants'
+import { BLOCK_STYLES, HEADING_APPEARANCES } from '@/declarations/ui/variants'
+import type { HeadingAppearance } from '@/declarations/ui/variants'
 import type { Styleable } from '@/types/common'
 import { cn } from '@/utils/classnames'
 
 export interface SectionHeadingProps extends Styleable {
   title: string
   description?: string
-  // Accent blocks are reserved for the pages that sell
-  accent?: boolean
+  // Declared appearance, media being reserved for a title set over a photograph
+  appearance?: HeadingAppearance
   centered?: boolean
 }
 
@@ -21,16 +22,20 @@ export interface SectionHeadingProps extends Styleable {
 export const SectionHeading = ({
   title,
   description,
-  accent = false,
+  appearance = 'plain',
   centered = false,
   className,
-}: SectionHeadingProps) => (
-  <div
-    className={cn(BLOCK_STYLES.header, centered && BLOCK_STYLES.headerCentered, className)}
-    {...{ [MOTION_ATTRIBUTE]: MOTION_NAMES.riseStagger }}>
-    <h2 className={cn(BLOCK_STYLES.frame, accent ? BLOCK_STYLES.toneAccent : BLOCK_STYLES.tone)}>
-      <span className={accent ? BLOCK_STYLES.titleAccent : BLOCK_STYLES.title}>{title}</span>
-    </h2>
-    {description && <Text className={BLOCK_STYLES.description}>{description}</Text>}
-  </div>
-)
+}: SectionHeadingProps) => {
+  const styles = HEADING_APPEARANCES[appearance]
+
+  return (
+    <div className={cn(BLOCK_STYLES.header, centered && BLOCK_STYLES.headerCentered, className)}>
+      <h2
+        className={cn(BLOCK_STYLES.frame, styles.block)}
+        {...{ [MOTION_ATTRIBUTE]: MOTION_NAMES.sweep }}>
+        <span className={styles.title}>{title}</span>
+      </h2>
+      {description && <Text className={styles.description}>{description}</Text>}
+    </div>
+  )
+}

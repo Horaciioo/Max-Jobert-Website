@@ -67,12 +67,14 @@ export const SequenceSection = ({ namespace, items, image }: SequenceSectionProp
             <div className={SEQUENCE_STYLES.portrait}>
               <span aria-hidden="true" className={MEDIA_STYLES.shadow} />
               <div
-                className={cn(MEDIA_STYLES.frameReverse, MEDIA_STYLES.duotone, 'aspect-[4/5]')}
+                className={cn(MEDIA_STYLES.frameReverse, 'aspect-[4/5]')}
                 {...{ [MOTION_ATTRIBUTE]: MOTION_NAMES.parallax }}>
                 <Picture
                   src={image}
                   alt={t('imageAlt')}
                   stretch
+                  shadow={false}
+                  reveal={false}
                   sizes={`(max-width: ${lg}px) 100vw, 40vw`}
                 />
               </div>

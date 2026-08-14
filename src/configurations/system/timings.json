@@ -5,5 +5,11 @@
   "shineDurationMs": 5200,
   "driftDurationMs": 9000,
   "marqueeDurationMs": 64000,
-  "carouselIntervalMs": 6000
+  "carouselIntervalMs": 6000,
+  "scrollBarIdleMs": 900,
+  "heroStillMs": 7000,
+  "typingStepMs": 55,
+  "erasingStepMs": 28,
+  "typingHoldMs": 1800,
+  "caretBlinkMs": 1000
 }

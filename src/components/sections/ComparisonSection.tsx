@@ -86,6 +86,8 @@ export const ComparisonSection = ({ items = COMPARISONS, className }: Comparison
         src={item[stage].src}
         alt={t(`items.${item.translationKey}.${stage}Alt`)}
         stretch
+        shadow={false}
+        reveal={false}
         className="absolute inset-0"
       />
     </div>

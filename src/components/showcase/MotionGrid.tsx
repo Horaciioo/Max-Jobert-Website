@@ -21,7 +21,10 @@ export const MotionGrid = () => (
         </Text>
         {/* The stage carries the effect, so a counter never overwrites its own label */}
         <span
-          className={cn(TONE_SOFT.primary, 'rounded-md px-3 py-2 text-center text-sm font-semibold')}
+          className={cn(
+            TONE_SOFT.primary,
+            'rounded-md px-3 py-2 text-center text-sm font-semibold'
+          )}
           {...{ [MOTION_ATTRIBUTE]: name, [MOTION_VALUE_ATTRIBUTE]: SAMPLE_COUNT }}>
           {SAMPLE_COUNT}
         </span>

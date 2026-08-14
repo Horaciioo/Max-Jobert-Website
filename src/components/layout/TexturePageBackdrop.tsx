@@ -1,7 +1,7 @@
 import { TEXTURE_BACKDROP_STYLES } from '@/declarations/ui/variants'
 
 export interface TexturePageBackdropProps {
-  // Public path of the background SVG
+  // Public path of the background image
   src: string
 }
 
@@ -13,7 +13,8 @@ export interface TexturePageBackdropProps {
 
 export const TexturePageBackdrop = ({ src }: TexturePageBackdropProps) => (
   <div aria-hidden="true">
-    <div className={TEXTURE_BACKDROP_STYLES.frame} style={{ backgroundImage: `url(${src})` }} />
+    <div className={TEXTURE_BACKDROP_STYLES.frame} />
+    <div className={TEXTURE_BACKDROP_STYLES.image} style={{ backgroundImage: `url(${src})` }} />
     <div className={TEXTURE_BACKDROP_STYLES.grain} />
   </div>
 )

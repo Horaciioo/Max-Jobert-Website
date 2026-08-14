@@ -35,7 +35,7 @@ export const DISABLED = 'disabled:pointer-events-none disabled:opacity-50'
  */
 
 export const UNDERLINE =
-  'relative after:absolute after:inset-x-0 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-base hover:after:scale-x-100'
+  'relative after:absolute after:inset-x-0 after:h-px after:origin-left after:scale-x-0 after:bg-primary after:transition-transform after:duration-moderate hover:after:scale-x-100'
 
 /**
  * Underline held open
@@ -43,6 +43,14 @@ export const UNDERLINE =
  */
 
 export const UNDERLINE_ACTIVE = 'after:scale-x-100'
+
+/**
+ * Hover wash, slower than a colour change so the fill reads
+ * @type {string}
+ */
+
+export const SWEEP =
+  "relative isolate overflow-hidden before:absolute before:inset-0 before:-z-10 before:origin-left before:scale-x-0 before:transition-transform before:duration-moderate before:ease-out before:content-[''] hover:before:scale-x-100 focus-visible:before:scale-x-100"
 
 /**
  * Tone and size order
@@ -230,6 +238,8 @@ export const LAYERS = {
   dropdown: 'z-40',
   overlay: 'z-50',
   toast: 'z-[60]',
+  // Rides over every other layer, the page never reflows around it
+  scrollBar: 'z-[70]',
 } as const
 
 /**

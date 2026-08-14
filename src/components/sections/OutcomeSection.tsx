@@ -44,7 +44,7 @@ export const OutcomeSection = ({ items = OUTCOMES }: OutcomeSectionProps) => {
               className={OUTCOME_STYLES.card}
               {...{ [MOTION_ATTRIBUTE]: MOTION_NAMES.rise }}>
               <div
-                className={cn(OUTCOME_STYLES.media, MEDIA_STYLES.frame, MEDIA_STYLES.duotone)}
+                className={cn(OUTCOME_STYLES.media, MEDIA_STYLES.frame)}
                 {...{
                   [MOTION_ATTRIBUTE]: MOTION_NAMES.float,
                   [MOTION_VALUE_ATTRIBUTE]: index * FLOAT_OFFSET_SECONDS,
@@ -53,6 +53,8 @@ export const OutcomeSection = ({ items = OUTCOMES }: OutcomeSectionProps) => {
                   src={item.image}
                   alt={t(`items.${item.translationKey}.imageAlt`)}
                   stretch
+                  shadow={false}
+                  reveal={false}
                   sizes={`(max-width: ${md}px) 100vw, 33vw`}
                 />
               </div>
